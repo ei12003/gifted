@@ -1,5 +1,7 @@
 {if $USERTYPE == 'teacher'}
 	<li><a id="navbar_color" href="{$BASE_URL}pages/teachers/t_classes.php"><span class="glyphicon glyphicon-book"></span> Classes</a></li>
+	<li><a id="navbar_color" href="{$BASE_URL}pages/teachers/t_exercises.php"><span class="glyphicon glyphicon-pencil"></span> Exercises</a></li>
+	
 {else if $USERTYPE == 'student'}
 	<li><a id="navbar_color" href=""><span class="glyphicon glyphicon-book"></span> Classes</a></li>
 	<li><a id="navbar_color" href=""><span class="glyphicon glyphicon-pencil"></span> Exercises</a></li>

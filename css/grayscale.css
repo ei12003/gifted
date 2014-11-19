@@ -50,10 +50,9 @@ a {
     transition: all .2s ease-in-out;
 }
 
-a:hover,
-a:focus {
-    text-decoration: none;
-    color: #11505d;
+#navbar_color:hover {
+	outline: 0;
+    background-color: rgba(255,255,255,.3);
 }
 
 .light {
@@ -109,6 +108,8 @@ a:focus {
     background-color: rgba(255,255,255,.3);
 }
 
+
+
 @media(min-width:767px) {
     .navbar {
         padding: 0;
@@ -132,6 +133,7 @@ a:focus {
 
 .dropdown-menu {
 	padding: 15px;
+	min-width: 100px;
 }
 
 .dropdown-menu input, .dropdown-menu button {

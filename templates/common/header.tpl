@@ -35,7 +35,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="{$BASE_URL}">
-                    <i class="fa fa-play-circle"></i>  <span class="light">GiftEd</span>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span class="light">GiftEd</span>
                 </a>
             </div>
 

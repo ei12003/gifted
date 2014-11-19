@@ -18,10 +18,18 @@
     -o-background-size: cover;
 }
 
-.classes-table {
+.table {
+
 	color: black;
 }
 
+.table tbody>tr:hover {
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+
 .panel.panel-default {
-	margin: 10%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 10%;
 }

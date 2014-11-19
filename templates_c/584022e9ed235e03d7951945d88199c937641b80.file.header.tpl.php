@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-11-19 02:55:38
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-19 04:06:13
          compiled from "C:\Bitnami\wappstack-5.4.34-0\apps\demo\htdocs\templates\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4795546ba5f0bd3e50-56789809%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '584022e9ed235e03d7951945d88199c937641b80' => 
     array (
       0 => 'C:\\Bitnami\\wappstack-5.4.34-0\\apps\\demo\\htdocs\\templates\\common\\header.tpl',
-      1 => 1416394502,
+      1 => 1416398769,
       2 => 'file',
     ),
   ),
@@ -66,7 +66,7 @@ font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
                 </button>
                 <a class="navbar-brand page-scroll" href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 ">
-                    <i class="fa fa-play-circle"></i>  <span class="light">GiftEd</span>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span class="light">GiftEd</span>
                 </a>
             </div>
 
