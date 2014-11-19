@@ -17,3 +17,11 @@
     background-size: cover;
     -o-background-size: cover;
 }
+
+.classes-table {
+	color: black;
+}
+
+.panel.panel-default {
+	margin: 10%;
+}

@@ -32,8 +32,8 @@
 	
 	//TOREMOVE
 	//for testing purposes
- 	$smarty->assign('USERNAME', "BOB");
-	$smarty->assign('USERTYPE', "student");
+ 	//$smarty->assign('USERNAME', "BOB");
+	//$smarty->assign('USERTYPE', "teacher");
 	////
 	
 	
