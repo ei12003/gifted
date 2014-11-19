@@ -1,22 +1,10 @@
 <?php
-
 	include_once('../config/init.php');
-	include_once('../database/members.php');
+	
+	$CURRENT_PAGE = 'profile';
 
-	if ($_SESSION['login'] && $_GET['username']){
-	   
-       $user = getMemberInfo($_GET['username']);
-	   
-	   foreach ($user as $abc) {
-		$pagetitle = "Profile - ".$abc['username']." Perfil";
-		$smarty->assign("PAGETITLE",$pagetitle);
-		$smarty->assign("INFO",$abc);
-		$smarty->display('../templates/profile.tpl');
-	   }
-     
-    }
-
-    else
-       header('Location: '.$BASE_URL);
+	$smarty->display('common/header.tpl');
+	$smarty->display('common/profile.tpl');
+	$smarty->display('common/footer.tpl');
 
 ?>

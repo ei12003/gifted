@@ -1,30 +1,44 @@
 <?php
-  //session_set_cookie_params(3600, '/~lbaw1354');
-  session_start();
+	session_set_cookie_params(3600, '/~ldso');
+	session_start();
 
-  $BASE_DIR = '/gifted/'; //FIXME
-  $BASE_URL = '/~lbaw1354/final/'; //FIXME
-  $SERVER = 'http://gnomo.fe.up.pt';
+	$BASE_DIR = 'C:/Bitnami/wappstack-5.4.34-0/apps/demo/htdocs/';
+	$BASE_URL = '/demo/';
+	$CURRENT_PAGE = 'home';
 
-  $conn = new PDO('sqlite:db.db'); //FIXME
-  $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	// DB //
+	
+	//$conn = new PDO('SQL DATABSE', 'username', 'password');
+	//$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//$conn->exec('SET SCHEMA \'public\'');
 
- // $conn->exec('SET SCHEMA \'proto\''); //FIXME
+	include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
 
-  include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
-  
-  $smarty = new Smarty;
-  $smarty->template_dir = $BASE_DIR . 'templates/';
-  $smarty->compile_dir = $BASE_DIR . 'templates_c/';
-  $smarty->assign('BASE_URL', $BASE_URL);
-  
-if(isset($_SESSION['privileges']))
-  if($_SESSION['privileges']=="Administrator")
-    $smarty->assign('ADMINISTRATOR', $_SESSION['login']);
-  else if($_SESSION['privileges']=="Moderator")
-    $smarty->assign('MODERATOR', $_SESSION['login']);
-  else if($_SESSION['privileges']=="Member")
-    $smarty->assign('MEMBER', $_SESSION['login']);
+	$smarty = new Smarty;
+	$smarty->template_dir = $BASE_DIR . 'templates/';
+	$smarty->compile_dir = $BASE_DIR . 'templates_c/';
+	$smarty->assign('BASE_URL', $BASE_URL);
+	$smarty->assign('CURRENT_PAGE',$CURRENT_PAGE);
 
+	$smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);  
+	$smarty->assign('FIELD_ERRORS', $_SESSION['field_errors']);
+	$smarty->assign('SUCCESS_MESSAGES', $_SESSION['success_messages']);
+	$smarty->assign('FORM_VALUES', $_SESSION['form_values']);
+	$smarty->assign('USERNAME', $_SESSION['username']);
+	$smarty->assign('USERTYPE', $_SESSION['usertype']);
+	$smarty->assign('USERID', $_SESSION['userid']);
+	
+	
+	//TOREMOVE
+	//for testing purposes
+ 	$smarty->assign('USERNAME', "BOB");
+	$smarty->assign('USERTYPE', "student");
+	////
+	
+	
+	unset($_SESSION['success_messages']);
+	unset($_SESSION['error_messages']);  
+	unset($_SESSION['field_errors']);
+	unset($_SESSION['form_values']);
 ?>
