@@ -8,9 +8,9 @@
 
 	// DB //
 	
-	//$conn = new PDO('SQL DATABSE', 'username', 'password');
-	//$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-	//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn = new PDO('sqlite:'.$BASE_DIR.$BASE_URL.'config/db.db');
+	$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//$conn->exec('SET SCHEMA \'public\'');
 
 	include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
