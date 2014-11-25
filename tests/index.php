@@ -61,7 +61,7 @@ input.trigger:checked + .spoiler {
        echo "</div></p>";
      
 	   echo "<h3>MEMBERS GET</h3>";
-	   $user_id=13;
+	   $user_id=1;
        $query = getUser($user_id);
        echo '<p></p><input type="checkbox" class="trigger" /> getUser('.strval($user_id).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
@@ -78,6 +78,15 @@ input.trigger:checked + .spoiler {
        echo '<p></p><input type="checkbox" class="trigger" /> getUserWithPass('.strval($username).','.strval($password).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
+     
+     $username='bhayes0'; $password='J5eFdrH3G8HU';
+     $first_name='Benjamin'; $last_name='Hayes'; $email='bhayes0@narod.ru'; 
+     $id = '1';
+      //http://localhost/gifted/api/editProfile.php?username=bhayes0&first_name=Benjamin&last_name=Hayes&email=bhayes0@narod.ru&password=J5eFdrH3G8HU&userid=1
+       $query = editProfile($username,$first_name,$last_name,$email,$password,$id);
+       echo '<p></p><input type="checkbox" class="trigger" /> editProfile(...): '.$query.' row(s) affected</div></p>';
+
+
 
 
 ?>

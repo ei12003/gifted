@@ -22,5 +22,16 @@ function getUserWithPass($username,$password){
     $stmt->execute(array($username,$password));
     $result = $stmt->fetch();    
 	return $result;
+}
 
+function editProfile($username,$first_name,$last_name,$email,$password,$id){
+	global $conn;
+	$stmt = $conn->prepare('UPDATE Members SET username = ?, 
+												first_name = ?, 
+												last_name = ?,
+												email = ?, 
+												password = ? WHERE id = ?');
+    $stmt->execute(array($username,$first_name,$last_name,$email,$password,$id));
+    $result = $stmt->rowCount();    
+	return $result;
 }

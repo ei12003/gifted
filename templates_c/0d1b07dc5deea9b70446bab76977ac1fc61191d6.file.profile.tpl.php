@@ -1,4 +1,29 @@
-<div class="container">
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-25 20:40:23
+         compiled from "C:\xampp\htdocs\\gifted\templates\common\profile.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:6025474d4a987a053-88956259%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0d1b07dc5deea9b70446bab76977ac1fc61191d6' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\\\gifted\\templates\\common\\profile.tpl',
+      1 => 1416943534,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '6025474d4a987a053-88956259',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5474d4a9889a38_46172121',
+  'variables' => 
+  array (
+    'USERID' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5474d4a9889a38_46172121')) {function content_5474d4a9889a38_46172121($_smarty_tpl) {?><div class="container">
     <h1>Edit Profile</h1>
   	<hr>
 	<div class="row">
@@ -17,7 +42,8 @@
         <h3>Personal info</h3>
         
         <form class="form-horizontal" role="form">
-          <input type="hidden" name="userid" value="{$USERID}">
+          <input type="hidden" name="userid" value="<?php echo $_smarty_tpl->tpl_vars['USERID']->value;?>
+">
           <div class="form-group">
             <label class="col-md-3 control-label">First name:</label>
             <div class="col-md-8">
@@ -66,4 +92,4 @@
       </div>
   </div>
 </div>
-<hr>
+<hr><?php }} ?>
