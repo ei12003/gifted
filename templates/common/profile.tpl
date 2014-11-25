@@ -21,37 +21,37 @@
           <div class="form-group">
             <label class="col-md-3 control-label">First name:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value="Pedro" name="first_name">
+              <input class="form-control" type="text" value="{$USERINFO.first_name}" name="first_name">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Last name:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value="Fernandes" name="last_name">
+              <input class="form-control" type="text" value="{$USERINFO.last_name}" name="last_name">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Email:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value="pedro@mail.com" name="email">
+              <input class="form-control" type="text" value="{$USERINFO.email}" name="email">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Username:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value="pedroX" name="username">
+              <input class="form-control" type="text" value="{$USERINFO.username}" name="username">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="12345" name="password">
+              <input class="form-control" type="password" value="" name="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="12345">
+              <input class="form-control" type="password" value="">
             </div>
           </div>
           <div class="form-group">
