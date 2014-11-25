@@ -14,7 +14,7 @@
 		<form action="{$BASE_URL}pages/profile.php">
 			<button class="btn btn-primary btn-block" id="logout">Edit Profile</button>
 		</form>
-		<form action="{$BASE_URL}pages/logout.php">
+		<form action="{$BASE_URL}actions/logout.php">
 			<button class="btn btn-primary btn-block" id="logout">Logout</button>
 		</form>
 	</div>

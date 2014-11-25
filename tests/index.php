@@ -1,6 +1,7 @@
 <?php
 
 	include_once('../config/init.php');
+  error_reporting(E_ALL);
 	include_once('../database/classes.php');
 	include_once('../database/members.php');
 ?>
@@ -27,7 +28,7 @@ input.trigger:checked + .spoiler {
   display:block;
 }";
 </style>
-<?
+<?php
 	   echo "<h3>CLASSES GET</h3>";
 	   $user_id=1;
        $query = getClassName($user_id);
@@ -72,6 +73,11 @@ input.trigger:checked + .spoiler {
        print_r($query);
        echo "</div></p>";
      
-    
+     $username='bhayes0'; $password='J5eFdrH3G8HU';
+       $query = getUserWithPass($username,$password);
+       echo '<p></p><input type="checkbox" class="trigger" /> getUserWithPass('.strval($username).','.strval($password).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
 
 ?>

@@ -16,11 +16,11 @@ function getUserEvents($user_id){
 	return $result;
 }
 
-function getPasswordHash($user_id){
+function getUserWithPass($username,$password){
 	global $conn;
-	$stmt = $conn->prepare('SELECT password FROM Members WHERE id = ? ORDER BY id');
-    $stmt->execute(array($user_id));
+	$stmt = $conn->prepare('SELECT usertype,id FROM Members WHERE username = ? AND password = ?');
+    $stmt->execute(array($username,$password));
     $result = $stmt->fetch();    
 	return $result;
-}
 
+}
