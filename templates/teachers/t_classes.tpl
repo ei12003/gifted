@@ -1,7 +1,7 @@
  <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">My Classes</div>
- 
+      
       <!-- Table -->
       <table class="table">
         <thead>
@@ -13,21 +13,13 @@
         </thead>
  
         <tbody>
+          {foreach from=$CLASSES item=class}
           <tr>
-            <td>1</td>
-            <td>Math</td>
-            <td>20</td>
+            <td class="classid">{$class.id}</td>
+            <td class="classid">{$class.name}</td>
+            <td class="classid">{$class.numStd}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>English</td>
-            <td>24</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>History</td>
-            <td>23</td>
-          </tr>
+          {/foreach}
         </tbody>
       </table>
  

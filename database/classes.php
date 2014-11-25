@@ -10,7 +10,7 @@ function getClassName($class_id) {
 
 function getUserClasses($user_id) {
 	global $conn;
-	$stmt = $conn->prepare('SELECT Classes.name FROM Classes,ClassMember WHERE ClassMember.memberId = ? AND ClassMember.classId = Classes.id GROUP BY Classes.id');
+	$stmt = $conn->prepare('SELECT Classes.name, Classes.id FROM Classes,ClassMember WHERE ClassMember.memberId = ? AND ClassMember.classId = Classes.id GROUP BY Classes.id');
     $stmt->execute(array($user_id));
     $result = $stmt->fetchAll();    
 	return $result;
@@ -38,5 +38,15 @@ function getStudentEventsClass($class_id){
     $stmt->execute(array($class_id));
     $result = $stmt->fetchAll();    
 	return $result;
+}
+
+function getNumStudentsClass($class_id){
+	global $conn;
+	$stmt = $conn->prepare('SELECT COUNT(*) as count
+   							FROM ClassMember 
+							where ClassMember.classId = ?');
+    $stmt->execute(array($class_id));
+    $result = $stmt->fetch();    
+	return $result['count'];
 }
 
