@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])){
 			$_SESSION['usertype'] = $row['usertype'];
 			$_SESSION['userid'] = $row['id'];
 			$_SESSION['username'] = $_POST['username'];
-			echo $_SESSION['username']. ':' . $_POST['password'].'</br>';
+		
 			if (!empty($_SERVER['HTTP_REFERER']))
 				header("Location: ".$_SERVER['HTTP_REFERER']);
 				//echo "back";
