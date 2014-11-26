@@ -104,6 +104,16 @@ input.trigger:checked + .spoiler {
       // echo '<p></p><input type="checkbox" class="trigger" /> deleteUser(...): '.$query.' row(s) affected</div></p>';
 
 	
+     
+		$class_id=1;
+       $query = getClassTotalScore($class_id);
+       echo '<p></p><input type="checkbox" class="trigger" /> getClassTotalScore('.strval($class_id).'): ('.$query.')<div class="spoiler"></div></p>';
+	   
+	   $class_id=1;
+       $query = getRankedClass($class_id);
+       echo '<p></p><input type="checkbox" class="trigger" /> getRankedClass('.strval($class_id).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
 
 
 ?>

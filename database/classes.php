@@ -23,6 +23,13 @@ function getScoreInClass($user_id,$class_id) {
     $result = $stmt->fetch();
 	return $result;
   }
+function getRankedClass($class_id){
+	global $conn;
+	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, memberId, score FROM ClassMember,Members WHERE Members.id = ClassMember.memberId AND classId = ?');
+    $stmt->execute(array($class_id));
+    $result = $stmt->fetchAll();
+	return $result;
+}
 
 function getStudentsIDFromClass($class_id) {
 	global $conn;
@@ -48,5 +55,15 @@ function getNumStudentsClass($class_id){
     $stmt->execute(array($class_id));
     $result = $stmt->fetch();    
 	return $result['count'];
-}
+} 
 
+function getClassTotalScore($class_id){
+	global $conn;
+
+	$query = "SELECT SUM(score) as totalscore FROM ClassMember WHERE classId = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->execute(array($class_id));
+	$result = $stmt->fetch(); 
+	
+	return $result['totalscore'];
+} 
