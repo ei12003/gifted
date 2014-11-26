@@ -11,7 +11,7 @@ DROP TABLE MemberEvents;
 
 CREATE TABLE Members(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username VARCHAR,
+  username VARCHAR UNIQUE,
   password VARCHAR,
   first_name VARCHAR,
   last_name VARCHAR,

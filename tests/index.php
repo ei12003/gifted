@@ -91,8 +91,19 @@ input.trigger:checked + .spoiler {
        echo '<p></p><input type="checkbox" class="trigger" /> getNumStudentsClass('.strval($class_id).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
+     
+     $username='diogo'; $password='diogop';
+     $first_name='diogof'; $last_name='diogol'; $email='diogo@narod.ru';
+	 $usertype="student"; $gender="Male"; $birth_date='7/8/2014';
+       $query = insertUser($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username);
+       echo '<p></p><input type="checkbox" class="trigger" /> insertUser(...): '.$query.' id created.</div></p>';
+     
+     
+     $id = $query;
+       //$query = deleteUser($id);
+      // echo '<p></p><input type="checkbox" class="trigger" /> deleteUser(...): '.$query.' row(s) affected</div></p>';
 
-
+	
 
 
 ?>

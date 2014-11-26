@@ -35,3 +35,34 @@ function editProfile($username,$first_name,$last_name,$email,$password,$id){
     $result = $stmt->rowCount();    
 	return $result;
 }
+
+function insertUser($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username){
+	global $conn;
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+	try{ 
+        $query = "INSERT INTO Members (first_name, last_name, email, birth_date, gender, usertype, password, username)
+						   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username));
+    $result = $conn->lastInsertId(); 
+	return $result;	
+    } 
+    catch(PDOException $exception){ 
+       // return $exception->getMessage(); 
+	   return -1;
+    } 
+	
+}
+
+function deleteUser($userid){//APAGAR DE CLASSMEMBER etc
+
+	global $conn;
+	$query = "DELETE FROM Members WHERE id = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($userid));
+    $result = $stmt->rowCount();    
+	return $result;
+
+}
