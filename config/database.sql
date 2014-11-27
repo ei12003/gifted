@@ -29,7 +29,8 @@ name VARCHAR
 CREATE TABLE ClassMember(
 memberId INTEGER REFERENCES Members(id),
 classId INTEGER REFERENCES Classes(id),
-score INTEGER CHECK(score>0)
+score INTEGER CHECK(score>-1),
+UNIQUE (memberId, classId)
 );
 
 CREATE TABLE Exercises(
@@ -76,6 +77,30 @@ memberId INTEGER REFERENCES Members(id),
 classId INTEGER REFERENCES Classes(id),
 description VARCHAR
 );
+
+CREATE TRIGGER on_class_delete BEFORE DELETE ON Classes BEGIN
+  DELETE FROM ClassMember WHERE classId = old.id;
+  DELETE FROM ClassExerciseSet WHERE classId = old.id;
+  DELETE FROM MemberEvents WHERE classId = old.id;
+END;
+
+CREATE TRIGGER on_member_delete BEFORE DELETE ON Members BEGIN
+  DELETE FROM ClassMember WHERE memberId = old.id;
+  DELETE FROM MemberInventory WHERE memberId = old.id;
+  DELETE FROM MemberEvents WHERE memberId = old.id;
+END;
+
+CREATE TRIGGER on_itens_delete BEFORE DELETE ON Itens BEGIN
+  UPDATE ExerciseSet SET itenId = null WHERE itenID = old.id;
+  DELETE FROM MemberInventory WHERE itenId = old.id;
+END;
+
+/*
+CREATE TRIGGER on_exercises_delete BEFORE DELETE ON Exercises BEGIN
+	DELETE FROM ExerciseOptions WHERE exerciseId = old.id;
+	DELETE FROM ExerciseRightAnswer WHERE exerciseId = old.id;
+	DELETE FROM ExerciseSet WHERE exerciseId = old.id;
+END;*/
 
 insert into Classes (id, name) values (1, 'História');
 insert into Classes (id, name) values (2, 'Matemática');
@@ -134,56 +159,56 @@ insert into Members (first_name, last_name, email, birth_date, gender, usertype,
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Barbara', 'Diaz', 'bdiaz1c@cyberchimps.com', '7/26/2014', 'Female', 'student', 'KbCysAYpd2', 'bdiaz1c');
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Lawrence', 'Long', 'llong1d@sun.com', '3/2/2014', 'Male', 'student', 'tWXOqAxu', 'llong1d');
 
-insert into ClassMember (memberId, classId, score) values (16, 3, 39);
-insert into ClassMember (memberId, classId, score) values (37, 2, 324);
-insert into ClassMember (memberId, classId, score) values (8, 5, 427);
-insert into ClassMember (memberId, classId, score) values (30, 3, 272);
-insert into ClassMember (memberId, classId, score) values (45, 1, 12);
-insert into ClassMember (memberId, classId, score) values (5, 1, 339);
-insert into ClassMember (memberId, classId, score) values (29, 1, 314);
-insert into ClassMember (memberId, classId, score) values (34, 4, 18);
-insert into ClassMember (memberId, classId, score) values (34, 5, 280);
-insert into ClassMember (memberId, classId, score) values (42, 2, 144);
-insert into ClassMember (memberId, classId, score) values (8, 4, 139);
-insert into ClassMember (memberId, classId, score) values (8, 1, 408);
-insert into ClassMember (memberId, classId, score) values (29, 3, 4);
-insert into ClassMember (memberId, classId, score) values (24, 1, 83);
-insert into ClassMember (memberId, classId, score) values (12, 5, 280);
-insert into ClassMember (memberId, classId, score) values (39, 1, 309);
-insert into ClassMember (memberId, classId, score) values (10, 3, 30);
-insert into ClassMember (memberId, classId, score) values (34, 5, 372);
-insert into ClassMember (memberId, classId, score) values (31, 2, 493);
-insert into ClassMember (memberId, classId, score) values (9, 1, 7);
-insert into ClassMember (memberId, classId, score) values (46, 3, 173);
-insert into ClassMember (memberId, classId, score) values (13, 4, 497);
-insert into ClassMember (memberId, classId, score) values (31, 5, 15);
-insert into ClassMember (memberId, classId, score) values (42, 2, 449);
-insert into ClassMember (memberId, classId, score) values (44, 1, 492);
-insert into ClassMember (memberId, classId, score) values (26, 2, 263);
-insert into ClassMember (memberId, classId, score) values (6, 2, 372);
-insert into ClassMember (memberId, classId, score) values (46, 4, 457);
-insert into ClassMember (memberId, classId, score) values (41, 3, 137);
-insert into ClassMember (memberId, classId, score) values (19, 4, 200);
-insert into ClassMember (memberId, classId, score) values (36, 3, 199);
-insert into ClassMember (memberId, classId, score) values (20, 4, 290);
-insert into ClassMember (memberId, classId, score) values (22, 5, 169);
-insert into ClassMember (memberId, classId, score) values (26, 1, 266);
-insert into ClassMember (memberId, classId, score) values (34, 5, 47);
-insert into ClassMember (memberId, classId, score) values (9, 4, 422);
-insert into ClassMember (memberId, classId, score) values (24, 5, 431);
-insert into ClassMember (memberId, classId, score) values (2, 1, 346);
-insert into ClassMember (memberId, classId, score) values (45, 1, 333);
-insert into ClassMember (memberId, classId, score) values (7, 2, 18);
-insert into ClassMember (memberId, classId, score) values (46, 5, 180);
-insert into ClassMember (memberId, classId, score) values (40, 1, 326);
-insert into ClassMember (memberId, classId, score) values (40, 3, 131);
-insert into ClassMember (memberId, classId, score) values (50, 4, 481);
-insert into ClassMember (memberId, classId, score) values (32, 1, 319);
-insert into ClassMember (memberId, classId, score) values (17, 2, 402);
-insert into ClassMember (memberId, classId, score) values (3, 3, 16);
-insert into ClassMember (memberId, classId, score) values (30, 4, 68);
-insert into ClassMember (memberId, classId, score) values (35, 5, 492);
-insert into ClassMember (memberId, classId, score) values (15, 5, 145);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (16, 3, 39);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (37, 2, 324);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (8, 5, 427);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (30, 3, 272);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (45, 1, 12);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (5, 1, 339);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (29, 1, 314);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (34, 4, 18);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (34, 5, 280);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (42, 2, 144);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (8, 4, 139);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (8, 1, 408);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (29, 3, 4);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (24, 1, 83);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (12, 5, 280);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (39, 1, 309);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (10, 3, 30);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (34, 5, 372);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (31, 2, 493);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (9, 1, 7);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (46, 3, 173);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (13, 4, 497);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (31, 5, 15);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (42, 2, 449);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (44, 1, 492);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (26, 2, 263);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (6, 2, 372);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (46, 4, 457);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (41, 3, 137);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (19, 4, 200);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (36, 3, 199);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (20, 4, 290);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (22, 5, 169);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (26, 1, 266);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (34, 5, 47);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (9, 4, 422);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (24, 5, 431);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (2, 1, 346);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (45, 1, 333);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (7, 2, 18);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (46, 5, 180);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (40, 1, 326);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (40, 3, 131);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (50, 4, 481);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (32, 1, 319);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (17, 2, 402);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (3, 3, 16);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (30, 4, 68);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (35, 5, 492);
+INSERT OR IGNORE into ClassMember (memberId, classId, score) values (15, 5, 145);
 
 
 insert into Exercises (name) values ('Neutrogena Age Defense Anti Oxidant Daily Moisturizer');

@@ -1,5 +1,6 @@
 <?php
 
+
 function getClassName($class_id) {
 	global $conn;
 	$stmt = $conn->prepare('SELECT name FROM Classes WHERE id = ?');
@@ -8,7 +9,7 @@ function getClassName($class_id) {
 	return $result;
 }
 
-function getUserClasses($user_id) {
+function getUserClasses($user_id) { // US07
 	global $conn;
 	$stmt = $conn->prepare('SELECT Classes.name, Classes.id FROM Classes,ClassMember WHERE ClassMember.memberId = ? AND ClassMember.classId = Classes.id GROUP BY Classes.id');
     $stmt->execute(array($user_id));
@@ -23,7 +24,7 @@ function getScoreInClass($user_id,$class_id) {
     $result = $stmt->fetch();
 	return $result;
   }
-function getRankedClass($class_id){
+function getRankedClass($class_id){ //US06/US24
 	global $conn;
 	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, memberId, score FROM ClassMember,Members WHERE Members.id = ClassMember.memberId AND classId = ?');
     $stmt->execute(array($class_id));
@@ -39,9 +40,9 @@ function getStudentsIDFromClass($class_id) {
 	return $result;
 }
 
-function getStudentEventsClass($class_id){
+function getStudentEventsClass($class_id){ //US15
 	global $conn;
-	$stmt = $conn->prepare('SELECT MemberEvents.memberId, MemberEvents.description FROM MemberEvents,Members WHERE MemberEvents.memberId = Members.id AND MemberEvents.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
+	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, MemberEvents.memberId, MemberEvents.description FROM MemberEvents,Members WHERE MemberEvents.memberId = Members.id AND MemberEvents.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
     $stmt->execute(array($class_id));
     $result = $stmt->fetchAll();    
 	return $result;
@@ -67,3 +68,53 @@ function getClassTotalScore($class_id){
 	
 	return $result['totalscore'];
 } 
+
+function createClass($userid,$class_name){ //US08
+
+	global $conn;
+	
+	try{ 
+        $query = "insert into Classes (name) values (?)";
+		$stmt = $conn->prepare($query);
+    	$stmt->execute(array($class_name));
+    	$result = $conn->lastInsertId();
+    	$classid=$result;
+		return $result;	
+    } 
+    catch(PDOException $exception){ 
+        return $exception->getMessage(); 
+	   return -1;
+    } 
+
+}
+
+function deleteClass($classid){//US05
+
+	global $conn;
+	$query = "DELETE FROM Classes WHERE id = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($classid));
+    $result = $stmt->rowCount();    
+	return $result;
+
+}
+
+function addUserToClass($userid,$classid){//US09
+
+	global $conn;
+	$query = "INSERT INTO ClassMember (memberId,classId,score) VALUES (?,?,0)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($userid,$classid));
+    $result = $stmt->rowCount();    
+	return $result;
+
+}
+
+function removeUserFromClass($userid,$classid){//US23
+	global $conn;
+	$query = "DELETE FROM ClassMember WHERE classId=? AND memberId = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($classid,$userid));
+    $result = $stmt->rowCount();    
+	return $result;
+}

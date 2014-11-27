@@ -115,5 +115,24 @@ input.trigger:checked + .spoiler {
        print_r($query);
        echo "</div></p>";
 
+     $class_name='Física';
+     $userid=2;
+       $query = createClass($userid,$class_name);
+       echo '<p></p><input type="checkbox" class="trigger" /> createClass('.$userid.','.$class_name.'): '.$query.' id created.</div></p>';
+     
+     $id = $query;
+    //  $query = deleteClass($id);
+     // echo '<p></p><input type="checkbox" class="trigger" /> deleteClass(...): '.$query.' row(s) affected</div></p>';
+     
+
+     $userid=2;$classid=2;
+       $query = addUserToClass($userid,$classid);
+       echo '<p></p><input type="checkbox" class="trigger" /> addUserToClass('.$userid.','.$classid.'): '.$query.' row(s) affected</div></p>';
+    
+
+      $query = removeUserFromClass($userid,$classid);
+      echo '<p></p><input type="checkbox" class="trigger" /> removeUserFromClass(...): '.$query.' row(s) affected</div></p>';
+     
+
 
 ?>
