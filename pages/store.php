@@ -1,12 +1,12 @@
 <?php
 
 	include_once('../config/init.php');
-	include_once('../database/classes.php');
+	include_once('../database/store.php');
 
-	if (isset($_SESSION['username']) && isset($_GET['classid'])){
+	if (isset($_SESSION['username'])){
 	   
-    	$class = getStudentsFromClass($_GET['classid']);
-    	print_r($class);
+    	$itens = getStore();
+    	print_r($itens);
 		//$smarty->assign("CLASS",$abc);
 		//$smarty->display('../templates/class.tpl');
     }

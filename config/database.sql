@@ -18,7 +18,8 @@ CREATE TABLE Members(
   birth_date DATE,
   gender VARCHAR,
   email VARCHAR,
-  usertype VARCHAR
+  usertype VARCHAR,
+  points INTEGER DEFAULT 100
 );
 
 CREATE TABLE Classes(
@@ -78,6 +79,11 @@ classId INTEGER REFERENCES Classes(id),
 description VARCHAR
 );
 
+CREATE TABLE ItensStore(
+itenId INTEGER REFERENCES Itens(id),
+price INTEGER
+);
+
 CREATE TRIGGER on_class_delete BEFORE DELETE ON Classes BEGIN
   DELETE FROM ClassMember WHERE classId = old.id;
   DELETE FROM ClassExerciseSet WHERE classId = old.id;
@@ -91,6 +97,11 @@ CREATE TRIGGER on_member_delete BEFORE DELETE ON Members BEGIN
 END;
 
 CREATE TRIGGER on_itens_delete BEFORE DELETE ON Itens BEGIN
+  UPDATE ExerciseSet SET itenId = null WHERE itenID = old.id;
+  DELETE FROM MemberInventory WHERE itenId = old.id;
+END;
+
+CREATE TRIGGER buy_item AFTER INSERT ON MemberInventory BEGIN
   UPDATE ExerciseSet SET itenId = null WHERE itenID = old.id;
   DELETE FROM MemberInventory WHERE itenId = old.id;
 END;
@@ -625,3 +636,48 @@ insert into MemberEvents (memberId, classId, description) values (20, 3, 'primis
 insert into MemberEvents (memberId, classId, description) values (40, 1, 'praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio');
 insert into MemberEvents (memberId, classId, description) values (33, 2, 'suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa');
 
+insert into ItensStore (itenId, price) values (1, 70);
+insert into ItensStore (itenId, price) values (2, 18);
+insert into ItensStore (itenId, price) values (3, 98);
+insert into ItensStore (itenId, price) values (4, 41);
+insert into ItensStore (itenId, price) values (5, 8);
+insert into ItensStore (itenId, price) values (6, 82);
+insert into ItensStore (itenId, price) values (7, 35);
+insert into ItensStore (itenId, price) values (8, 47);
+insert into ItensStore (itenId, price) values (9, 99);
+insert into ItensStore (itenId, price) values (10, 76);
+insert into ItensStore (itenId, price) values (11, 82);
+insert into ItensStore (itenId, price) values (12, 82);
+insert into ItensStore (itenId, price) values (13, 11);
+insert into ItensStore (itenId, price) values (14, 41);
+insert into ItensStore (itenId, price) values (15, 39);
+insert into ItensStore (itenId, price) values (16, 54);
+insert into ItensStore (itenId, price) values (17, 16);
+insert into ItensStore (itenId, price) values (18, 23);
+insert into ItensStore (itenId, price) values (19, 46);
+insert into ItensStore (itenId, price) values (20, 60);
+insert into ItensStore (itenId, price) values (21, 18);
+insert into ItensStore (itenId, price) values (22, 19);
+insert into ItensStore (itenId, price) values (23, 60);
+insert into ItensStore (itenId, price) values (24, 91);
+insert into ItensStore (itenId, price) values (25, 24);
+insert into ItensStore (itenId, price) values (26, 85);
+insert into ItensStore (itenId, price) values (27, 33);
+insert into ItensStore (itenId, price) values (28, 4);
+insert into ItensStore (itenId, price) values (29, 59);
+insert into ItensStore (itenId, price) values (30, 13);
+insert into ItensStore (itenId, price) values (31, 77);
+insert into ItensStore (itenId, price) values (32, 67);
+insert into ItensStore (itenId, price) values (33, 5);
+insert into ItensStore (itenId, price) values (34, 3);
+insert into ItensStore (itenId, price) values (35, 42);
+insert into ItensStore (itenId, price) values (36, 69);
+insert into ItensStore (itenId, price) values (37, 45);
+insert into ItensStore (itenId, price) values (38, 62);
+insert into ItensStore (itenId, price) values (39, 29);
+insert into ItensStore (itenId, price) values (40, 83);
+insert into ItensStore (itenId, price) values (41, 92);
+insert into ItensStore (itenId, price) values (42, 74);
+insert into ItensStore (itenId, price) values (43, 91);
+insert into ItensStore (itenId, price) values (44, 80);
+insert into ItensStore (itenId, price) values (45, 91);

@@ -16,7 +16,7 @@
           {foreach from=$CLASSES item=class}
           <tr>
             <td class="classid">{$class.id}</td>
-            <td class="classid">{$class.name}</td>
+            <td class="classid"><a href="{$BASE_URL}pages/class.php?classid={$class.id}">{$class.name}</a></td>
             <td class="classid">{$class.numStd}</td>
           </tr>
           {/foreach}

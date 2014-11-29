@@ -63,6 +63,14 @@
             </div>
           </div>
         </form>
+        Events
+        {if $EVENTS|@count == 0}
+        <hr>No events to be shown.</hr>
+        {else}
+         {foreach from=$EVENTS item=event}
+          <hr>{$event.description}</hr>
+         {/foreach}
+         {/if}
       </div>
   </div>
 </div>

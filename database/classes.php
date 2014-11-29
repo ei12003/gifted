@@ -32,19 +32,27 @@ function getRankedClass($class_id){ //US06/US24
 	return $result;
 }
 
-function getStudentsIDFromClass($class_id) {
+function getStudentsFromClass($class_id) {
 	global $conn;
-	$stmt = $conn->prepare('SELECT Members.id FROM Members,Classes,ClassMember WHERE ClassMember.memberId = Members.id AND ClassMember.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
+	$stmt = $conn->prepare('SELECT DISTINCT Members.id, Members.first_name, Members.last_name, ClassMember.score FROM Members,Classes,ClassMember WHERE ClassMember.memberId = Members.id AND ClassMember.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
     $stmt->execute(array($class_id));
     $result = $stmt->fetchAll();    
 	return $result;
 }
 
-function getStudentEventsClass($class_id){ //US15
+function getStudentsEventsClass($class_id){ //US15
 	global $conn;
 	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, MemberEvents.memberId, MemberEvents.description FROM MemberEvents,Members WHERE MemberEvents.memberId = Members.id AND MemberEvents.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
     $stmt->execute(array($class_id));
     $result = $stmt->fetchAll();    
+	return $result;
+}
+
+function getStudentEventsClass($userid){ //US15
+	global $conn;
+	$stmt = $conn->prepare('SELECT MemberEvents.description, Classes.name FROM Classes,MemberEvents WHERE MemberEvents.memberId = ? AND MemberEvents.classId=Classes.id');
+    $stmt->execute(array($userid));
+    $result = $stmt->fetchALL();    
 	return $result;
 }
 
@@ -79,6 +87,7 @@ function createClass($userid,$class_name){ //US08
     	$stmt->execute(array($class_name));
     	$result = $conn->lastInsertId();
     	$classid=$result;
+    	addUserToClass($userid,$classid);
 		return $result;	
     } 
     catch(PDOException $exception){ 
