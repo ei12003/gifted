@@ -84,6 +84,19 @@ itenId INTEGER REFERENCES Itens(id),
 price INTEGER
 );
 
+CREATE TABLE Avatar(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR,
+  img_location VARCHAR
+);
+
+CREATE TABLE AvatarUser(
+  avatarId INTEGER REFERENCES Avatar(id),
+  memberId INTEGER REFERENCES Members(id),
+  UNIQUE (memberId, avatarId)
+);
+
+
 CREATE TRIGGER on_class_delete BEFORE DELETE ON Classes BEGIN
   DELETE FROM ClassMember WHERE classId = old.id;
   DELETE FROM ClassExerciseSet WHERE classId = old.id;
@@ -101,17 +114,15 @@ CREATE TRIGGER on_itens_delete BEFORE DELETE ON Itens BEGIN
   DELETE FROM MemberInventory WHERE itenId = old.id;
 END;
 
-CREATE TRIGGER buy_item AFTER INSERT ON MemberInventory BEGIN
-  UPDATE ExerciseSet SET itenId = null WHERE itenID = old.id;
-  DELETE FROM MemberInventory WHERE itenId = old.id;
-END;
-
 /*
 CREATE TRIGGER on_exercises_delete BEFORE DELETE ON Exercises BEGIN
 	DELETE FROM ExerciseOptions WHERE exerciseId = old.id;
 	DELETE FROM ExerciseRightAnswer WHERE exerciseId = old.id;
 	DELETE FROM ExerciseSet WHERE exerciseId = old.id;
 END;*/
+
+
+
 
 insert into Classes (id, name) values (1, 'História');
 insert into Classes (id, name) values (2, 'Matemática');
@@ -681,3 +692,66 @@ insert into ItensStore (itenId, price) values (42, 74);
 insert into ItensStore (itenId, price) values (43, 91);
 insert into ItensStore (itenId, price) values (44, 80);
 insert into ItensStore (itenId, price) values (45, 91);
+
+insert into Avatar (id, name, img_location) values (1, 'Koh Gen Do Aqua Foundation', 'https://weather.com/sit/amet/consectetuer.aspx?volutpat=vestibulum&eleifend=ac&donec=est&ut=lacinia&dolor=nisi&morbi=venenatis&vel=tristique&lectus=fusce&in=congue&quam=diam&fringilla=id&rhoncus=ornare&mauris=imperdiet&enim=sapien&leo=urna&rhoncus=pretium&sed=nisl&vestibulum=ut&sit=volutpat&amet=sapien&cursus=arcu&id=sed&turpis=augue&integer=aliquam&aliquet=erat&massa=volutpat&id=in&lobortis=congue&convallis=etiam&tortor=justo&risus=etiam&dapibus=pretium&augue=iaculis');
+insert into Avatar (id, name, img_location) values (2, 'Clonidine transdermal system', 'https://bbb.org/potenti/cras/in/purus/eu/magna.json?felis=platea&ut=dictumst&at=aliquam&dolor=augue&quis=quam&odio=sollicitudin&consequat=vitae&varius=consectetuer&integer=eget&ac=rutrum&leo=at&pellentesque=lorem&ultrices=integer&mattis=tincidunt&odio=ante&donec=vel&vitae=ipsum&nisi=praesent&nam=blandit&ultrices=lacinia&libero=erat&non=vestibulum&mattis=sed&pulvinar=magna&nulla=at&pede=nunc&ullamcorper=commodo&augue=placerat&a=praesent&suscipit=blandit&nulla=nam&elit=nulla&ac=integer&nulla=pede&sed=justo&vel=lacinia&enim=eget');
+insert into Avatar (id, name, img_location) values (3, 'Sulfur 30 Special Order', 'http://exblog.jp/leo/odio/condimentum.aspx?parturient=non&montes=mattis&nascetur=pulvinar&ridiculus=nulla&mus=pede&vivamus=ullamcorper');
+insert into Avatar (id, name, img_location) values (4, 'Menopause', 'http://wordpress.com/porttitor/id/consequat/in.js?ac=rhoncus&est=sed&lacinia=vestibulum&nisi=sit&venenatis=amet&tristique=cursus&fusce=id&congue=turpis&diam=integer&id=aliquet&ornare=massa&imperdiet=id&sapien=lobortis&urna=convallis&pretium=tortor&nisl=risus&ut=dapibus&volutpat=augue&sapien=vel&arcu=accumsan&sed=tellus&augue=nisi&aliquam=eu&erat=orci&volutpat=mauris&in=lacinia&congue=sapien&etiam=quis&justo=libero&etiam=nullam&pretium=sit&iaculis=amet&justo=turpis&in=elementum&hac=ligula&habitasse=vehicula&platea=consequat&dictumst=morbi&etiam=a&faucibus=ipsum&cursus=integer&urna=a&ut=nibh&tellus=in&nulla=quis&ut=justo&erat=maecenas&id=rhoncus&mauris=aliquam&vulputate=lacus&elementum=morbi&nullam=quis&varius=tortor&nulla=id&facilisi=nulla&cras=ultrices&non=aliquet&velit=maecenas&nec=leo&nisi=odio&vulputate=condimentum&nonummy=id&maecenas=luctus&tincidunt=nec&lacus=molestie&at=sed&velit=justo&vivamus=pellentesque&vel=viverra&nulla=pede&eget=ac&eros=diam&elementum=cras&pellentesque=pellentesque&quisque=volutpat&porta=dui&volutpat=maecenas&erat=tristique&quisque=est&erat=et&eros=tempus&viverra=semper&eget=est&congue=quam&eget=pharetra&semper=magna&rutrum=ac&nulla=consequat&nunc=metus&purus=sapien&phasellus=ut&in=nunc');
+insert into Avatar (id, name, img_location) values (5, 'Morphine sulfate', 'http://stumbleupon.com/in/quam.aspx?at=metus&dolor=aenean&quis=fermentum&odio=donec&consequat=ut&varius=mauris&integer=eget&ac=massa');
+insert into Avatar (id, name, img_location) values (6, 'mycophenolate mofetil', 'http://who.int/malesuada/in/imperdiet/et/commodo/vulputate/justo.js?ut=diam&nunc=erat&vestibulum=fermentum&ante=justo&ipsum=nec&primis=condimentum&in=neque&faucibus=sapien&orci=placerat&luctus=ante&et=nulla&ultrices=justo&posuere=aliquam&cubilia=quis&curae=turpis&mauris=eget&viverra=elit&diam=sodales&vitae=scelerisque&quam=mauris&suspendisse=sit&potenti=amet&nullam=eros&porttitor=suspendisse&lacus=accumsan&at=tortor&turpis=quis&donec=turpis&posuere=sed&metus=ante&vitae=vivamus&ipsum=tortor&aliquam=duis&non=mattis&mauris=egestas&morbi=metus&non=aenean&lectus=fermentum&aliquam=donec&sit=ut&amet=mauris&diam=eget&in=massa&magna=tempor&bibendum=convallis&imperdiet=nulla&nullam=neque&orci=libero&pede=convallis&venenatis=eget&non=eleifend&sodales=luctus&sed=ultricies&tincidunt=eu&eu=nibh&felis=quisque&fusce=id&posuere=justo&felis=sit&sed=amet&lacus=sapien&morbi=dignissim&sem=vestibulum&mauris=vestibulum&laoreet=ante&ut=ipsum&rhoncus=primis&aliquet=in&pulvinar=faucibus&sed=orci&nisl=luctus&nunc=et&rhoncus=ultrices&dui=posuere&vel=cubilia&sem=curae&sed=nulla');
+insert into Avatar (id, name, img_location) values (7, 'TobraDex', 'http://51.la/nulla/justo/aliquam/quis/turpis.json?est=aenean&quam=fermentum&pharetra=donec&magna=ut&ac=mauris&consequat=eget&metus=massa&sapien=tempor&ut=convallis&nunc=nulla&vestibulum=neque&ante=libero&ipsum=convallis&primis=eget&in=eleifend&faucibus=luctus&orci=ultricies&luctus=eu&et=nibh&ultrices=quisque&posuere=id&cubilia=justo&curae=sit&mauris=amet&viverra=sapien&diam=dignissim&vitae=vestibulum&quam=vestibulum&suspendisse=ante&potenti=ipsum&nullam=primis&porttitor=in&lacus=faucibus&at=orci&turpis=luctus&donec=et&posuere=ultrices&metus=posuere&vitae=cubilia&ipsum=curae&aliquam=nulla&non=dapibus&mauris=dolor&morbi=vel&non=est&lectus=donec&aliquam=odio&sit=justo&amet=sollicitudin&diam=ut&in=suscipit&magna=a&bibendum=feugiat&imperdiet=et&nullam=eros&orci=vestibulum&pede=ac&venenatis=est&non=lacinia&sodales=nisi&sed=venenatis&tincidunt=tristique&eu=fusce&felis=congue&fusce=diam&posuere=id&felis=ornare&sed=imperdiet&lacus=sapien&morbi=urna&sem=pretium&mauris=nisl&laoreet=ut&ut=volutpat&rhoncus=sapien&aliquet=arcu&pulvinar=sed&sed=augue&nisl=aliquam&nunc=erat&rhoncus=volutpat&dui=in&vel=congue&sem=etiam&sed=justo&sagittis=etiam&nam=pretium&congue=iaculis&risus=justo&semper=in&porta=hac&volutpat=habitasse');
+insert into Avatar (id, name, img_location) values (8, 'Degree', 'http://dropbox.com/rhoncus/sed/vestibulum.aspx?pellentesque=libero');
+insert into Avatar (id, name, img_location) values (9, 'Severe Cold and Flu', 'http://4shared.com/lacinia/erat/vestibulum/sed/magna/at/nunc.html?aliquam=sapien&convallis=arcu&nunc=sed&proin=augue&at=aliquam&turpis=erat&a=volutpat&pede=in&posuere=congue&nonummy=etiam&integer=justo&non=etiam&velit=pretium&donec=iaculis&diam=justo&neque=in&vestibulum=hac&eget=habitasse&vulputate=platea&ut=dictumst&ultrices=etiam&vel=faucibus&augue=cursus&vestibulum=urna&ante=ut&ipsum=tellus&primis=nulla&in=ut&faucibus=erat&orci=id&luctus=mauris&et=vulputate&ultrices=elementum&posuere=nullam&cubilia=varius&curae=nulla&donec=facilisi&pharetra=cras&magna=non&vestibulum=velit&aliquet=nec&ultrices=nisi&erat=vulputate&tortor=nonummy&sollicitudin=maecenas&mi=tincidunt&sit=lacus&amet=at&lobortis=velit&sapien=vivamus&sapien=vel&non=nulla&mi=eget&integer=eros&ac=elementum&neque=pellentesque&duis=quisque&bibendum=porta&morbi=volutpat&non=erat&quam=quisque&nec=erat&dui=eros&luctus=viverra&rutrum=eget&nulla=congue&tellus=eget&in=semper&sagittis=rutrum&dui=nulla&vel=nunc&nisl=purus&duis=phasellus&ac=in&nibh=felis&fusce=donec&lacus=semper');
+insert into Avatar (id, name, img_location) values (10, 'CLE DE PEAU BEAUTE REFINING FLUID FOUNDATION', 'http://php.net/sit/amet/sapien/dignissim/vestibulum/vestibulum/ante.html?cursus=luctus&urna=et&ut=ultrices&tellus=posuere&nulla=cubilia&ut=curae&erat=mauris&id=viverra&mauris=diam&vulputate=vitae&elementum=quam&nullam=suspendisse&varius=potenti&nulla=nullam&facilisi=porttitor');
+
+
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (2, 1);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 2);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (2, 3);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (4, 4);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 5);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 6);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (6, 7);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 8);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (8, 9);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 10);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (6, 11);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 12);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (8, 13);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 14);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (3, 15);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (4, 16);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (3, 17);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (6, 18);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (3, 19);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 20);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 21);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (3, 22);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (8, 23);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 24);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (4, 25);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (6, 26);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 27);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 28);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (7, 29);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 30);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 31);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 32);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (6, 33);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 34);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 35);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 36);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (2, 37);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (7, 38);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (2, 39);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 40);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (8, 41);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 42);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 43);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (9, 44);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (10, 45);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 46);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (7, 47);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (3, 48);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (1, 49);
+INSERT OR IGNORE into  AvatarUser (avatarId, memberId) values (5, 50);

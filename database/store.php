@@ -9,8 +9,8 @@ function getStore() {
 	return $result;
 }
 
-
-function buyItem($userid,$itemid) {
+//$offer_userid = 0 if not offering.
+function buyItem($userid,$itemid,$offer_userid) {
 	global $conn;
 	
 	//Check if User can afford it.
@@ -34,13 +34,18 @@ function buyItem($userid,$itemid) {
 		if($stmt->rowCount()<1)
 			return -1;
 		$stmt = $conn->prepare('INSERT INTO MemberInventory (memberId, itenId) VALUES (?, ?)');
-    	$stmt->execute(array($userid,$itemid));
+    	if($offer_userid>0)
+    		$stmt->execute(array($offer_userid,$itemid));
+    	else
+    		$stmt->execute(array($userid,$itemid));
     	if($stmt->rowCount()<1)
 			return -1;
-		echo "oi";
+		
 		return $points_left;
 	}
 }
+
+
 
 
 ?>

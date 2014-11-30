@@ -32,16 +32,27 @@ input.trigger:checked + .spoiler {
 </style>
 <?php
     echo "<h3>Inventory</h3>";
-     $user_id=8;
+     $user_id=7;
        $query = getUserInventory($user_id);
        echo '<p></p><input type="checkbox" class="trigger" /> getUserInventory('.strval($user_id).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
 
+          $user_id=8;
+       $query = getUserInventory($user_id);
+       echo '<p></p><input type="checkbox" class="trigger" /> getUserInventory('.strval($user_id).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+/*
      $userid=3;$itemid=1;
-       $query = buyItem($userid,$itemid);
-       echo '<p></p><input type="checkbox" class="trigger" /> buyItem('.$userid.','.$itemid.'): '.$query.' points left (failed if -1)</div></p>';
+       $query = buyItem($userid,$itemid,0);
+       echo '<p></p><input type="checkbox" class="trigger" /> (for himself)buyItem('.$userid.','.$itemid.',0): '.$query.' points left (failed if -1)</div></p>';
 
+     $userid=2;$itemid=1;
+     $offer_userid=8;
+       $query = buyItem($userid,$itemid,$offer_userid=8);
+       echo '<p></p><input type="checkbox" class="trigger" /> (offering)buyItem('.$userid.','.$itemid.','.$offer_userid.'): '.$query.' points left (failed if -1)</div></p>';
+*/
 
 	   echo "<h3>CLASSES GET</h3>";
 	   $user_id=1;
