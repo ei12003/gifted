@@ -5,7 +5,7 @@
 if(isset($_SESSION['username'])){
 	$CURRENT_PAGE = 'profile';
 	$user = getUser($_SESSION['userid']);
-	$events = getStudentEventsClass($_SESSION['userid']);
+	$events = getStudentEvents($_SESSION['userid']);
 	
 	$smarty->assign("USERINFO",$user);
 	$smarty->assign("EVENTS",$events);

@@ -48,7 +48,7 @@ function getStudentsEventsClass($class_id){ //US15
 	return $result;
 }
 
-function getStudentEventsClass($userid){ //US15
+function getStudentEvents($userid){ //US15
 	global $conn;
 	$stmt = $conn->prepare('SELECT MemberEvents.description, Classes.name FROM Classes,MemberEvents WHERE MemberEvents.memberId = ? AND MemberEvents.classId=Classes.id');
     $stmt->execute(array($userid));

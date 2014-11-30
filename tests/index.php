@@ -6,6 +6,7 @@
   include_once('../database/inventory.php');
   include_once('../database/store.php');
 	include_once('../database/members.php');
+  include_once('../database/exercises.php');
 ?>
 <style>
 body {
@@ -31,6 +32,46 @@ input.trigger:checked + .spoiler {
 }";
 </style>
 <?php
+
+    echo "<h3>Exercises</h3>";
+     $setid=4;
+       $query = getSet($setid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getSet('.strval($setid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+     $exid=1;
+       $query = getExercise($exid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getExercise('.strval($exid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+     $exid=1;
+       $query = getRightAnswer($exid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getRightAnswer('.strval($exid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+    $setid = 4;
+       $query = deleteSet($setid);
+       echo '<p></p><input type="checkbox" class="trigger" /> deleteSet('.strval($setid).'): '.$query.' row(s) affected</div></p>';
+
+    $setid=4;
+       $query = getSet($setid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getSet('.strval($setid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+       
+    $exeid = 1;
+       $query = deleteExercise($exeid);
+       echo '<p></p><input type="checkbox" class="trigger" /> deleteExercise('.strval($exeid).'): '.$query.' row(s) affected</div></p>';
+
+    $exeid=1;
+       $query = getExercise($exeid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getExercise('.strval($exeid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
     echo "<h3>Inventory</h3>";
      $user_id=7;
        $query = getUserInventory($user_id);
@@ -80,8 +121,8 @@ input.trigger:checked + .spoiler {
        echo "</div></p>";
        
        $userid=6;
-       $query = getStudentEventsClass($userid);
-     echo '<p></p><input type="checkbox" class="trigger" /> getStudentEventsClass('.strval($userid).'): ('.count($query).' )<div class="spoiler">';
+       $query = getStudentEvents($userid);
+     echo '<p></p><input type="checkbox" class="trigger" /> getStudentEvents('.strval($userid).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
        

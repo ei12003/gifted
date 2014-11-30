@@ -50,14 +50,19 @@ exerciseId INTEGER REFERENCES Exercises(id),
 optionId INTEGER REFERENCES ExerciseOptions(id)
 );
 
-CREATE TABLE ExerciseSet(
+CREATE TABLE Sets(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-exerciseId INTEGER REFERENCES Exercises(id),
 itenID INTEGER REFERENCES Itens(id)
 );
 
+CREATE TABLE ExerciseSet(
+setId INTEGER REFERENCES Sets(id),
+exerciseId INTEGER REFERENCES Exercises(id)
+);
+
+
 CREATE TABLE ClassExerciseSet(
-setID INTEGER REFERENCES ExerciseSet(id),
+setId INTEGER REFERENCES Sets(id),
 classId INTEGER REFERENCES Classes(id)
 );
 
@@ -110,16 +115,20 @@ CREATE TRIGGER on_member_delete BEFORE DELETE ON Members BEGIN
 END;
 
 CREATE TRIGGER on_itens_delete BEFORE DELETE ON Itens BEGIN
-  UPDATE ExerciseSet SET itenId = null WHERE itenID = old.id;
+  UPDATE Sets SET itenId = null WHERE itenID = old.id;
   DELETE FROM MemberInventory WHERE itenId = old.id;
 END;
 
-/*
-CREATE TRIGGER on_exercises_delete BEFORE DELETE ON Exercises BEGIN
-	DELETE FROM ExerciseOptions WHERE exerciseId = old.id;
-	DELETE FROM ExerciseRightAnswer WHERE exerciseId = old.id;
-	DELETE FROM ExerciseSet WHERE exerciseId = old.id;
-END;*/
+CREATE TRIGGER on_set_delete BEFORE DELETE ON Sets BEGIN
+  DELETE FROM ClassExerciseSet WHERE setID = old.id;
+	DELETE FROM ExerciseSet WHERE setID = old.id;
+END;
+
+CREATE TRIGGER on_exercise_delete BEFORE DELETE ON Exercises BEGIN
+  DELETE FROM ExerciseRightAnswer WHERE exerciseId = old.id;
+  DELETE FROM ExerciseOptions WHERE exerciseId = old.id;
+  DELETE FROM ExerciseSet WHERE exerciseId = old.id;
+END;
 
 
 
@@ -284,56 +293,56 @@ insert into Exercises (name) values ('eye itch relief');
 insert into Exercises (name) values ('Gemfibrozil');
 insert into Exercises (name) values ('Smut, Corn');
 
-insert into ExerciseOptions (exerciseId, description) values (41, 'aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris');
-insert into ExerciseOptions (exerciseId, description) values (11, 'eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero');
-insert into ExerciseOptions (exerciseId, description) values (37, 'vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula');
-insert into ExerciseOptions (exerciseId, description) values (1, 'et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus');
-insert into ExerciseOptions (exerciseId, description) values (14, 'id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat');
-insert into ExerciseOptions (exerciseId, description) values (46, 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu');
-insert into ExerciseOptions (exerciseId, description) values (18, 'faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras');
-insert into ExerciseOptions (exerciseId, description) values (1, 'leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis');
-insert into ExerciseOptions (exerciseId, description) values (9, 'at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet');
-insert into ExerciseOptions (exerciseId, description) values (19, 'primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus');
-insert into ExerciseOptions (exerciseId, description) values (43, 'praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent');
-insert into ExerciseOptions (exerciseId, description) values (49, 'nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum');
-insert into ExerciseOptions (exerciseId, description) values (13, 'congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a');
-insert into ExerciseOptions (exerciseId, description) values (6, 'quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus');
-insert into ExerciseOptions (exerciseId, description) values (30, 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in');
-insert into ExerciseOptions (exerciseId, description) values (50, 'quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at');
-insert into ExerciseOptions (exerciseId, description) values (1, 'dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at');
-insert into ExerciseOptions (exerciseId, description) values (16, 'montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent');
-insert into ExerciseOptions (exerciseId, description) values (44, 'interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus');
-insert into ExerciseOptions (exerciseId, description) values (40, 'risus semper porta volutpat quam pede lobortis ligula sit amet');
-insert into ExerciseOptions (exerciseId, description) values (14, 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique');
-insert into ExerciseOptions (exerciseId, description) values (19, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim');
-insert into ExerciseOptions (exerciseId, description) values (7, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean');
-insert into ExerciseOptions (exerciseId, description) values (23, 'volutpat sapien arcu sed augue aliquam erat volutpat in congue');
-insert into ExerciseOptions (exerciseId, description) values (46, 'commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt');
-insert into ExerciseOptions (exerciseId, description) values (43, 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed');
-insert into ExerciseOptions (exerciseId, description) values (19, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra');
-insert into ExerciseOptions (exerciseId, description) values (32, 'eget nunc donec quis orci eget orci vehicula condimentum curabitur in');
-insert into ExerciseOptions (exerciseId, description) values (16, 'blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in');
-insert into ExerciseOptions (exerciseId, description) values (24, 'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor');
-insert into ExerciseOptions (exerciseId, description) values (49, 'lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero');
-insert into ExerciseOptions (exerciseId, description) values (42, 'nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat');
-insert into ExerciseOptions (exerciseId, description) values (29, 'pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in');
-insert into ExerciseOptions (exerciseId, description) values (13, 'mi sit amet lobortis sapien sapien non mi integer ac neque duis');
-insert into ExerciseOptions (exerciseId, description) values (40, 'felis ut at dolor quis odio consequat varius integer ac leo pellentesque');
-insert into ExerciseOptions (exerciseId, description) values (1, 'sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui');
-insert into ExerciseOptions (exerciseId, description) values (50, 'mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac');
-insert into ExerciseOptions (exerciseId, description) values (36, 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam');
-insert into ExerciseOptions (exerciseId, description) values (7, 'turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia');
-insert into ExerciseOptions (exerciseId, description) values (11, 'orci pede venenatis non sodales sed tincidunt eu felis fusce');
-insert into ExerciseOptions (exerciseId, description) values (41, 'libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est');
-insert into ExerciseOptions (exerciseId, description) values (40, 'nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus');
-insert into ExerciseOptions (exerciseId, description) values (12, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius');
-insert into ExerciseOptions (exerciseId, description) values (6, 'nulla mollis molestie lorem quisque ut erat curabitur gravida nisi');
-insert into ExerciseOptions (exerciseId, description) values (18, 'est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus');
-insert into ExerciseOptions (exerciseId, description) values (15, 'volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet');
-insert into ExerciseOptions (exerciseId, description) values (20, 'luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum');
-insert into ExerciseOptions (exerciseId, description) values (37, 'interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu');
-insert into ExerciseOptions (exerciseId, description) values (50, 'eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium');
-insert into ExerciseOptions (exerciseId, description) values (6, 'sed augue aliquam erat volutpat in congue etiam justo etiam pretium');
+insert into ExerciseOptions (exerciseId, description) values (1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.');
+insert into ExerciseOptions (exerciseId, description) values (2, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.');
+insert into ExerciseOptions (exerciseId, description) values (3, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.');
+insert into ExerciseOptions (exerciseId, description) values (4, 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.');
+insert into ExerciseOptions (exerciseId, description) values (5, 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.');
+insert into ExerciseOptions (exerciseId, description) values (6, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.');
+insert into ExerciseOptions (exerciseId, description) values (7, 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.');
+insert into ExerciseOptions (exerciseId, description) values (8, 'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.');
+insert into ExerciseOptions (exerciseId, description) values (9, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.');
+insert into ExerciseOptions (exerciseId, description) values (10, 'Fusce consequat. Nulla nisl. Nunc nisl.');
+insert into ExerciseOptions (exerciseId, description) values (11, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.');
+insert into ExerciseOptions (exerciseId, description) values (12, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
+insert into ExerciseOptions (exerciseId, description) values (13, 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.');
+insert into ExerciseOptions (exerciseId, description) values (14, 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.');
+insert into ExerciseOptions (exerciseId, description) values (15, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.');
+insert into ExerciseOptions (exerciseId, description) values (16, 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.');
+insert into ExerciseOptions (exerciseId, description) values (17, 'In congue. Etiam justo. Etiam pretium iaculis justo.');
+insert into ExerciseOptions (exerciseId, description) values (18, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.');
+insert into ExerciseOptions (exerciseId, description) values (19, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.');
+insert into ExerciseOptions (exerciseId, description) values (20, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.');
+insert into ExerciseOptions (exerciseId, description) values (21, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.');
+insert into ExerciseOptions (exerciseId, description) values (22, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.');
+insert into ExerciseOptions (exerciseId, description) values (23, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
+insert into ExerciseOptions (exerciseId, description) values (24, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.');
+insert into ExerciseOptions (exerciseId, description) values (25, 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.');
+insert into ExerciseOptions (exerciseId, description) values (26, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+insert into ExerciseOptions (exerciseId, description) values (27, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.');
+insert into ExerciseOptions (exerciseId, description) values (28, 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.');
+insert into ExerciseOptions (exerciseId, description) values (29, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
+insert into ExerciseOptions (exerciseId, description) values (30, 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.');
+insert into ExerciseOptions (exerciseId, description) values (31, 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
+insert into ExerciseOptions (exerciseId, description) values (32, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.');
+insert into ExerciseOptions (exerciseId, description) values (33, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.');
+insert into ExerciseOptions (exerciseId, description) values (34, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+insert into ExerciseOptions (exerciseId, description) values (35, 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.');
+insert into ExerciseOptions (exerciseId, description) values (36, 'Fusce consequat. Nulla nisl. Nunc nisl.');
+insert into ExerciseOptions (exerciseId, description) values (37, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.');
+insert into ExerciseOptions (exerciseId, description) values (38, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.');
+insert into ExerciseOptions (exerciseId, description) values (39, 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
+insert into ExerciseOptions (exerciseId, description) values (40, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.');
+insert into ExerciseOptions (exerciseId, description) values (41, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.');
+insert into ExerciseOptions (exerciseId, description) values (42, 'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.');
+insert into ExerciseOptions (exerciseId, description) values (43, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.');
+insert into ExerciseOptions (exerciseId, description) values (44, 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.');
+insert into ExerciseOptions (exerciseId, description) values (45, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.');
+insert into ExerciseOptions (exerciseId, description) values (46, 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.');
+insert into ExerciseOptions (exerciseId, description) values (47, 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.');
+insert into ExerciseOptions (exerciseId, description) values (48, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.');
+insert into ExerciseOptions (exerciseId, description) values (49, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.');
+insert into ExerciseOptions (exerciseId, description) values (50, 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.');
 
 
 insert into ExerciseRightAnswer (exerciseId, optionId) values (12, 18);
@@ -439,57 +448,135 @@ insert into Itens (name, img_location, description) values ('ALUMINUM SULFATE', 
 insert into Itens (name, img_location, description) values ('Acetaminophen, Dextromethorphan HBr, Doxylamine Succinate', 'http://unesco.org/lacus/at/velit.json?etiam=mattis&vel=odio&augue=donec&vestibulum=vitae&rutrum=nisi&rutrum=nam&neque=ultrices&aenean=libero&auctor=non&gravida=mattis&sem=pulvinar&praesent=nulla&id=pede&massa=ullamcorper&id=augue&nisl=a&venenatis=suscipit&lacinia=nulla&aenean=elit&sit=ac&amet=nulla&justo=sed&morbi=vel&ut=enim&odio=sit&cras=amet&mi=nunc&pede=viverra&malesuada=dapibus&in=nulla&imperdiet=suscipit&et=ligula&commodo=in&vulputate=lacus&justo=curabitur&in=at&blandit=ipsum&ultrices=ac&enim=tellus&lorem=semper&ipsum=interdum&dolor=mauris&sit=ullamcorper&amet=purus&consectetuer=sit&adipiscing=amet&elit=nulla&proin=quisque&interdum=arcu&mauris=libero&non=rutrum&ligula=ac&pellentesque=lobortis&ultrices=vel&phasellus=dapibus&id=at&sapien=diam&in=nam&sapien=tristique&iaculis=tortor&congue=eu', 'nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum');
 insert into Itens (name, img_location, description) values ('scallop', 'http://nyu.edu/nec/nisi/volutpat/eleifend.js?ante=ligula&ipsum=pellentesque&primis=ultrices&in=phasellus&faucibus=id&orci=sapien&luctus=in&et=sapien&ultrices=iaculis&posuere=congue&cubilia=vivamus&curae=metus&mauris=arcu&viverra=adipiscing&diam=molestie&vitae=hendrerit&quam=at&suspendisse=vulputate&potenti=vitae&nullam=nisl&porttitor=aenean&lacus=lectus&at=pellentesque&turpis=eget&donec=nunc&posuere=donec&metus=quis&vitae=orci&ipsum=eget&aliquam=orci&non=vehicula&mauris=condimentum&morbi=curabitur&non=in&lectus=libero&aliquam=ut&sit=massa&amet=volutpat&diam=convallis&in=morbi&magna=odio&bibendum=odio&imperdiet=elementum&nullam=eu&orci=interdum&pede=eu&venenatis=tincidunt&non=in&sodales=leo&sed=maecenas&tincidunt=pulvinar&eu=lobortis&felis=est&fusce=phasellus&posuere=sit&felis=amet&sed=erat&lacus=nulla&morbi=tempus&sem=vivamus&mauris=in&laoreet=felis&ut=eu&rhoncus=sapien&aliquet=cursus&pulvinar=vestibulum&sed=proin&nisl=eu&nunc=mi&rhoncus=nulla&dui=ac&vel=enim&sem=in&sed=tempor&sagittis=turpis&nam=nec&congue=euismod', 'sit amet lobortis sapien sapien non mi integer ac neque');
 
+insert into Sets (itenID) values (21);
+insert into Sets (itenID) values (40);
+insert into Sets (itenID) values (16);
+insert into Sets (itenID) values (23);
+insert into Sets (itenID) values (24);
+insert into Sets (itenID) values (5);
+insert into Sets (itenID) values (11);
+insert into Sets (itenID) values (38);
+insert into Sets (itenID) values (33);
+insert into Sets (itenID) values (27);
+insert into Sets (itenID) values (17);
+insert into Sets (itenID) values (44);
+insert into Sets (itenID) values (33);
+insert into Sets (itenID) values (37);
+insert into Sets (itenID) values (8);
+insert into Sets (itenID) values (7);
+insert into Sets (itenID) values (29);
+insert into Sets (itenID) values (25);
+insert into Sets (itenID) values (30);
+insert into Sets (itenID) values (13);
+insert into Sets (itenID) values (31);
+insert into Sets (itenID) values (37);
+insert into Sets (itenID) values (39);
+insert into Sets (itenID) values (38);
+insert into Sets (itenID) values (50);
+insert into Sets (itenID) values (9);
+insert into Sets (itenID) values (19);
+insert into Sets (itenID) values (6);
+insert into Sets (itenID) values (18);
+insert into Sets (itenID) values (6);
+insert into Sets (itenID) values (2);
+insert into Sets (itenID) values (26);
+insert into Sets (itenID) values (41);
+insert into Sets (itenID) values (37);
+insert into Sets (itenID) values (48);
+insert into Sets (itenID) values (38);
+insert into Sets (itenID) values (40);
+insert into Sets (itenID) values (41);
+insert into Sets (itenID) values (3);
+insert into Sets (itenID) values (37);
+insert into Sets (itenID) values (9);
+insert into Sets (itenID) values (21);
+insert into Sets (itenID) values (24);
+insert into Sets (itenID) values (2);
+insert into Sets (itenID) values (38);
+insert into Sets (itenID) values (4);
+insert into Sets (itenID) values (23);
+insert into Sets (itenID) values (27);
+insert into Sets (itenID) values (34);
+insert into Sets (itenID) values (39);
 
-insert into ExerciseSet (exerciseId, itenId) values (36, 13);
-insert into ExerciseSet (exerciseId, itenId) values (12, 35);
-insert into ExerciseSet (exerciseId, itenId) values (34, 28);
-insert into ExerciseSet (exerciseId, itenId) values (7, 43);
-insert into ExerciseSet (exerciseId, itenId) values (11, 45);
-insert into ExerciseSet (exerciseId, itenId) values (19, 5);
-insert into ExerciseSet (exerciseId, itenId) values (6, 27);
-insert into ExerciseSet (exerciseId, itenId) values (30, 38);
-insert into ExerciseSet (exerciseId, itenId) values (9, 8);
-insert into ExerciseSet (exerciseId, itenId) values (47, 13);
-insert into ExerciseSet (exerciseId, itenId) values (42, 44);
-insert into ExerciseSet (exerciseId, itenId) values (8, 44);
-insert into ExerciseSet (exerciseId, itenId) values (6, 13);
-insert into ExerciseSet (exerciseId, itenId) values (39, 32);
-insert into ExerciseSet (exerciseId, itenId) values (4, 30);
-insert into ExerciseSet (exerciseId, itenId) values (27, 42);
-insert into ExerciseSet (exerciseId, itenId) values (27, 24);
-insert into ExerciseSet (exerciseId, itenId) values (37, 13);
-insert into ExerciseSet (exerciseId, itenId) values (22, 33);
-insert into ExerciseSet (exerciseId, itenId) values (32, 19);
-insert into ExerciseSet (exerciseId, itenId) values (7, 30);
-insert into ExerciseSet (exerciseId, itenId) values (23, 34);
-insert into ExerciseSet (exerciseId, itenId) values (31, 50);
-insert into ExerciseSet (exerciseId, itenId) values (22, 39);
-insert into ExerciseSet (exerciseId, itenId) values (27, 3);
-insert into ExerciseSet (exerciseId, itenId) values (22, 2);
-insert into ExerciseSet (exerciseId, itenId) values (31, 14);
-insert into ExerciseSet (exerciseId, itenId) values (28, 42);
-insert into ExerciseSet (exerciseId, itenId) values (34, 36);
-insert into ExerciseSet (exerciseId, itenId) values (14, 9);
-insert into ExerciseSet (exerciseId, itenId) values (19, 34);
-insert into ExerciseSet (exerciseId, itenId) values (18, 6);
-insert into ExerciseSet (exerciseId, itenId) values (7, 8);
-insert into ExerciseSet (exerciseId, itenId) values (43, 11);
-insert into ExerciseSet (exerciseId, itenId) values (44, 47);
-insert into ExerciseSet (exerciseId, itenId) values (34, 34);
-insert into ExerciseSet (exerciseId, itenId) values (9, 14);
-insert into ExerciseSet (exerciseId, itenId) values (16, 4);
-insert into ExerciseSet (exerciseId, itenId) values (30, 22);
-insert into ExerciseSet (exerciseId, itenId) values (32, 30);
-insert into ExerciseSet (exerciseId, itenId) values (8, 6);
-insert into ExerciseSet (exerciseId, itenId) values (19, 2);
-insert into ExerciseSet (exerciseId, itenId) values (34, 30);
-insert into ExerciseSet (exerciseId, itenId) values (30, 28);
-insert into ExerciseSet (exerciseId, itenId) values (36, 13);
-insert into ExerciseSet (exerciseId, itenId) values (35, 18);
-insert into ExerciseSet (exerciseId, itenId) values (10, 10);
-insert into ExerciseSet (exerciseId, itenId) values (20, 19);
-insert into ExerciseSet (exerciseId, itenId) values (32, 15);
-insert into ExerciseSet (exerciseId, itenId) values (43, 31);
+
+
+
+
+
+
+
+
+
+
+
+
+insert into ExerciseSet (setId, exerciseId) values (48, 4);
+insert into ExerciseSet (setId, exerciseId) values (48, 11);
+insert into ExerciseSet (setId, exerciseId) values (5, 27);
+insert into ExerciseSet (setId, exerciseId) values (3, 10);
+insert into ExerciseSet (setId, exerciseId) values (33, 10);
+insert into ExerciseSet (setId, exerciseId) values (17, 22);
+insert into ExerciseSet (setId, exerciseId) values (36, 31);
+insert into ExerciseSet (setId, exerciseId) values (34, 14);
+insert into ExerciseSet (setId, exerciseId) values (27, 24);
+insert into ExerciseSet (setId, exerciseId) values (40, 39);
+insert into ExerciseSet (setId, exerciseId) values (24, 14);
+insert into ExerciseSet (setId, exerciseId) values (39, 33);
+insert into ExerciseSet (setId, exerciseId) values (20, 36);
+insert into ExerciseSet (setId, exerciseId) values (4, 25);
+insert into ExerciseSet (setId, exerciseId) values (6, 14);
+insert into ExerciseSet (setId, exerciseId) values (9, 20);
+insert into ExerciseSet (setId, exerciseId) values (16, 11);
+insert into ExerciseSet (setId, exerciseId) values (3, 43);
+insert into ExerciseSet (setId, exerciseId) values (38, 25);
+insert into ExerciseSet (setId, exerciseId) values (2, 18);
+insert into ExerciseSet (setId, exerciseId) values (30, 2);
+insert into ExerciseSet (setId, exerciseId) values (45, 15);
+insert into ExerciseSet (setId, exerciseId) values (29, 33);
+insert into ExerciseSet (setId, exerciseId) values (7, 37);
+insert into ExerciseSet (setId, exerciseId) values (4, 36);
+insert into ExerciseSet (setId, exerciseId) values (4, 36);
+insert into ExerciseSet (setId, exerciseId) values (18, 12);
+insert into ExerciseSet (setId, exerciseId) values (33, 33);
+insert into ExerciseSet (setId, exerciseId) values (17, 18);
+insert into ExerciseSet (setId, exerciseId) values (48, 31);
+insert into ExerciseSet (setId, exerciseId) values (37, 42);
+insert into ExerciseSet (setId, exerciseId) values (28, 10);
+insert into ExerciseSet (setId, exerciseId) values (18, 14);
+insert into ExerciseSet (setId, exerciseId) values (2, 29);
+insert into ExerciseSet (setId, exerciseId) values (47, 11);
+insert into ExerciseSet (setId, exerciseId) values (44, 45);
+insert into ExerciseSet (setId, exerciseId) values (24, 16);
+insert into ExerciseSet (setId, exerciseId) values (21, 44);
+insert into ExerciseSet (setId, exerciseId) values (29, 25);
+insert into ExerciseSet (setId, exerciseId) values (21, 28);
+insert into ExerciseSet (setId, exerciseId) values (45, 49);
+insert into ExerciseSet (setId, exerciseId) values (15, 17);
+insert into ExerciseSet (setId, exerciseId) values (22, 22);
+insert into ExerciseSet (setId, exerciseId) values (26, 12);
+insert into ExerciseSet (setId, exerciseId) values (12, 13);
+insert into ExerciseSet (setId, exerciseId) values (41, 20);
+insert into ExerciseSet (setId, exerciseId) values (7, 36);
+insert into ExerciseSet (setId, exerciseId) values (36, 46);
+insert into ExerciseSet (setId, exerciseId) values (28, 6);
+insert into ExerciseSet (setId, exerciseId) values (32, 41);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 insert into ClassExerciseSet (setId, classId) values (21, 5);
