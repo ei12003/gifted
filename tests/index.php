@@ -34,6 +34,57 @@ input.trigger:checked + .spoiler {
 <?php
 
     echo "<h3>Exercises</h3>";
+
+    
+echo '<p></p><input type="checkbox" class="trigger" /> CREATING A SET (including exercise/options/rightanswer/class_attribution<div class="spoiler">';
+
+     $itemid=0;
+       $query = createSet($itemid);
+       echo '<p></p><input type="checkbox" class="trigger" /> createSet(): '.$query.' id created.</p>';
+       $setid=$query;
+
+    $description="Qual e etcetcetc";
+       $query = createExercise($description);
+       echo '<p></p><input type="checkbox" class="trigger" /> createExercise('.$description.'): '.$query.' id created.</p>';
+       $exid=$query;
+
+    $description="opçao1";
+       $query = createOption($exid,$description);
+       echo '<p></p><input type="checkbox" class="trigger" /> createOption('.$exid.','.$description.'): '.$query.' id created.</p>';
+       $optid=$query;
+
+    $description="opçao2";
+       $query = createOption($exid,$description);
+       echo '<p></p><input type="checkbox" class="trigger" /> createOption('.$exid.','.$description.'): '.$query.' id created.</p>';
+    
+       $query = setRightAnswer($exid,$optid);
+       echo '<p></p><input type="checkbox" class="trigger" /> setRightAnswer('.$exid.','.$optid.'): '.$query.' id created.</p>';
+
+    $description="opçao1";
+       $query = addExerciseToSet($exid,$setid);
+       echo '<p></p><input type="checkbox" class="trigger" /> addExerciseToSet('.$exid.','.$setid.'): '.$query.' id created.</p>';
+       $optid=$query;
+
+       $query = getSet($setid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getSet('.strval($setid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+       $query = getRightAnswer($exid);
+       echo '<p></p><input type="checkbox" class="trigger" /> getRightAnswer('.strval($exid).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+       $classid=1;
+       $query = addSetToClass($setid,$classid);
+       echo '<p></p><input type="checkbox" class="trigger" /> addSetToClass('.strval($setid).','.strval($classid).'):　'.$query.' row(s) affected</div></p>';
+       echo "</p>";
+
+
+echo "</div>";
+
+
+
      $setid=4;
        $query = getSet($setid);
        echo '<p></p><input type="checkbox" class="trigger" /> getSet('.strval($setid).'): ('.count($query).' )<div class="spoiler">';

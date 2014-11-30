@@ -34,8 +34,40 @@ function getRightAnswer($exeid){
 	return $result;
 }
 
-function createExercise(){
+function createOption($exid,$description){
+	global $conn;
+	$query = "insert into ExerciseOptions (exerciseId,description) values (?,?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($exid,$description));
+    $result = $conn->lastInsertId();
+	return $result;
+}
 
+function setRightAnswer($exid,$optid){
+	global $conn;
+	$query = "insert into ExerciseRightAnswer (exerciseId,optionId) values (?,?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($exid,$optid));
+    $result = $conn->lastInsertId();
+	return $result;
+}
+
+function addExerciseToSet($exid,$setid){
+	global $conn;
+	$query = "insert into ExerciseSet (setId,exerciseId) values (?,?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($setid,$exid));
+    $result = $conn->lastInsertId();
+	return $result;	
+}
+
+function createExercise($description){
+	global $conn;
+	$query = "insert into Exercises (name) values (?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($description));
+    $result = $conn->lastInsertId();
+	return $result;
 }
 
 function deleteExercise($exid){
@@ -48,8 +80,15 @@ function deleteExercise($exid){
 	return $result;
 }
 
-function createSet(){
+function createSet($itemid){
 
+	global $conn;
+	$query = "insert into Sets (itenID) values (?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($itemid));
+    $result = $conn->lastInsertId();
+	return $result;        	
+   
 }
 
 function deleteSet($setid){
@@ -62,5 +101,13 @@ function deleteSet($setid){
 	return $result;
 }
 
+function addSetToClass($setid,$classid){
+	global $conn;
+	$query = "insert into ClassExerciseSet (setId,classId) values (?,?)";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($setid,$classid));
+    $result = $stmt->rowCount();
+	return $result; 
+}
 
 ?>
