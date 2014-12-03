@@ -33,6 +33,7 @@ input.trigger:checked + .spoiler {
 </style>
 <?php
 
+echo $_SESSION['username'];
     echo "<h3>Exercises</h3>";
 
     
@@ -164,7 +165,21 @@ echo "</div>";
 	   echo '<p></p><input type="checkbox" class="trigger" /> getScoreInClass('.strval($user_id).','.strval($class_id).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
+	   
+	   
+	   
        
+     //  $user_id=26; $class_id=1;
+	   $amount=4;
+       $query = givePointsToUser($amount,$class_id,$user_id);
+	   echo '<p></p><input type="checkbox" class="trigger" /> givePointsToUser('.strval($amount).','.strval($user_id).','.strval($class_id).'): '.$query.' row(s) affected</div></p>';
+	   
+       $query = getScoreInClass($user_id,$class_id);
+	   echo '<p></p><input type="checkbox" class="trigger" /> getScoreInClass('.strval($user_id).','.strval($class_id).'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
+	   
        $class_id=3;
        $query = getStudentsFromClass($class_id);
 	   echo '<p></p><input type="checkbox" class="trigger" /> getStudentsFromClass('.strval($class_id).'): ('.count($query).' )<div class="spoiler">';

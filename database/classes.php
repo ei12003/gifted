@@ -127,3 +127,13 @@ function removeUserFromClass($userid,$classid){//US23
     $result = $stmt->rowCount();    
 	return $result;
 }
+
+function givePointsToUser($amount,$classid,$userid){
+	
+	global $conn;
+	$query = "UPDATE ClassMember SET score = (SELECT score FROM ClassMember WHERE classid = ? AND memberId = ?)+? WHERE classid = ? AND memberId = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($classid,$userid,$amount,$classid,$userid));
+    $result = $stmt->rowCount();    
+	return $result;
+}
