@@ -28,8 +28,37 @@
 	cursor: pointer;
 }
 
-.panel.panel-default {
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 10%;
+a:hover {
+    text-decoration: none;
 }
+
+a:active {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.panel-default > .panel-heading:hover {
+	background-color: #B0C4DE;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

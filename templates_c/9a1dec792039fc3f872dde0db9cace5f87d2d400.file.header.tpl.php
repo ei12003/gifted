@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-11-25 20:12:41
+<?php /* Smarty version Smarty-3.1.15, created on 2014-12-03 17:08:36
          compiled from "C:\xampp\htdocs\\gifted\templates\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:311005474d4a94d00f2-15598262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a1dec792039fc3f872dde0db9cace5f87d2d400' => 
     array (
       0 => 'C:\\xampp\\htdocs\\\\gifted\\templates\\common\\header.tpl',
-      1 => 1416935588,
+      1 => 1417622915,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5474d4a9776669_87156690',
   'variables' => 
   array (
     'BASE_URL' => 0,
     'USERNAME' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5474d4a9776669_87156690',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5474d4a9776669_87156690')) {function content_5474d4a9776669_87156690($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="en">
@@ -92,4 +92,6 @@ font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
                 </ul>
             </div>
         </div>
-    </nav><?php }} ?>
+    </nav>
+	
+	<br><br><br><br><?php }} ?>

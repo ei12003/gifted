@@ -18,6 +18,8 @@
 
 <script src="{$BASE_URL}js/home.js"></script>
 
+<script src="{$BASE_URL}js/t_classes.js"></script>
+
 </body>
 
 </html>
