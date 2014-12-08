@@ -1,16 +1,29 @@
 <div class="container">
     <h1>My Classes</h1>
-	{foreach from=$CLASSES item=class}
-		<div class="panel-group" id="accordion">
-			<div class="panel panel-default">
+		<div class="panel-group">
+		{foreach from=$CLASSES item=class}
+			<div id="{$class.id}" class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a  data-toggle="collapse" data-parent="#accordion" href="#{$class.id}">{$class.id}. {$class.name} (30 Students)</a>
+						<a  data-toggle="collapse" href="#content_{$class.id}">{$class.id}. {$class.name} (30 Students) </a>
 					</h4>
 				</div>
-				<div id="{$class.id}" class="panel-collapse collapse">
-					<div class="panel-body">					
-						 <table class="table table-striped">
+				<div id="content_{$class.id}" class="panel-collapse collapse">
+					<div class="panel-body">	
+		
+						<input type="text" style="height:33px;color:black;padding-left:10px;">
+		
+						<button id="add_button_{$class.id}" type="button" class="btn btn-default addStundetnButton">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Student
+						</button>
+						
+						<button id="rmv_button_{$class.id}" type="button" class="btn btn-danger pull-right rmvClassButton">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Class
+						</button>
+						
+						<br><br>
+					
+						<table id="table_{$class.id}" class="table table-striped table-condensed">
 							<thead>
 							  <tr>
 								<th>#</th>
@@ -40,7 +53,9 @@
 					</div>
 				</div>
 			</div>
+		{/foreach}
 		</div>
-	{/foreach}
 </div>
+
+
 

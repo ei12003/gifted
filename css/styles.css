@@ -49,7 +49,17 @@ a:visited {
 	cursor: pointer;
 }
 
+.panel-title a {
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+}
 
+.modal-body{
+	color:black;
+	font-size: 150%;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
 
 

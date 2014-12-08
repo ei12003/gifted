@@ -2,7 +2,7 @@
 	
 	session_start();
 
-	$BASE_DIR = 'C:/xampp/htdocs/';
+	$BASE_DIR = 'D:/xampp/htdocs/';
 	$BASE_URL = '/gifted/';
 	$CURRENT_PAGE = 'home';
 

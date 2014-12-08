@@ -4,6 +4,9 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{$BASE_URL}js/bootstrap.min.js"></script>
 
+<!-- Bootbox JavaScript -->
+<script src="{$BASE_URL}js/bootbox.min.js"></script>
+
 <!-- Plugin JavaScript -->
 <script src="{$BASE_URL}js/jquery.easing.min.js"></script>
 
