@@ -110,12 +110,29 @@ function deleteClass($classid){//US05
 
 function addUserToClass($userid,$classid){//US09
 
-	global $conn;
-	$query = "INSERT INTO ClassMember (memberId,classId,score) VALUES (?,?,0)";
-	$stmt = $conn->prepare($query);
-    $stmt->execute(array($userid,$classid));
-    $result = $stmt->rowCount();    
-	return $result;
+ global $conn;
+
+ 
+ $stmt = $conn->prepare('SELECT * FROM Members WHERE id = ?');
+    $stmt->execute(array($userid));
+    $result = $stmt->fetchAll();   
+    if(count($result)>0){
+     try {
+      $query = "INSERT INTO ClassMember (memberId,classId,score) VALUES (?,?,0)";
+   $stmt = $conn->prepare($query);
+      $stmt->execute(array($userid,$classid));
+      $result = $stmt->rowCount();  
+     } 
+      catch( PDOException $Exception ) {
+    
+  $result = $Exception->getCode();
+
+ }
+ }
+    else
+     $result = 0;
+ 
+ return $result;
 
 }
 

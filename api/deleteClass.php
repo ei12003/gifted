@@ -10,13 +10,16 @@
 
 	$row = deleteClass($_GET['classid']);
 	if($row<1)
-		header('HTTP/1.1 404');
+		//header('HTTP/1.1 404');
+		echo false;
 	else{
-		header('HTTP/1.1 200');
+		//header('HTTP/1.1 200');
+		echo true;
 	}
 
   }
   else
-	header('HTTP/1.1 404');
+	//header('HTTP/1.1 404');
+	echo false;
  
 ?>

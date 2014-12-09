@@ -1,3 +1,7 @@
+body {
+	padding-top:70px;
+}
+
 .carousel {
     height: 50%;
 }
@@ -21,6 +25,12 @@
 .table {
 
 	color: black;
+}
+
+.modal-body{
+	color:black;
+	font-size: 150%;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .table tbody>tr:hover {
@@ -55,15 +65,41 @@ a:visited {
     margin: -10px -15px;
 }
 
-.modal-body{
-	color:black;
-	font-size: 150%;
-	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+.slide-image {
+    width: 100%;
 }
 
+.carousel-holder {
+    margin-bottom: 30px;
+}
 
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
 
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
 
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+	
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
 
 
 

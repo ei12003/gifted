@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-12-08 21:37:37
+<?php /* Smarty version Smarty-3.1.15, created on 2014-12-09 19:34:16
          compiled from "D:\xampp\htdocs\\gifted\templates\teachers\t_classes.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:112235485e6dcb620f5-66281093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4a8ac3764dc07df01023794992ac9a12674038d6' => 
     array (
       0 => 'D:\\xampp\\htdocs\\\\gifted\\templates\\teachers\\t_classes.tpl',
-      1 => 1418070787,
+      1 => 1418149923,
       2 => 'file',
     ),
   ),
@@ -46,7 +46,8 @@ $_smarty_tpl->tpl_vars['class']->_loop = true;
 " class="panel-collapse collapse">
 					<div class="panel-body">	
 		
-						<input type="text" style="height:33px;color:black;padding-left:10px;">
+						<input id= "searchStudents_<?php echo $_smarty_tpl->tpl_vars['class']->value['id'];?>
+" class="searchStudents" type="text" style="height:33px;color:black;padding-left:10px;">
 		
 						<button id="add_button_<?php echo $_smarty_tpl->tpl_vars['class']->value['id'];?>
 " type="button" class="btn btn-default addStundetnButton">

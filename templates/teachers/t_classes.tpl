@@ -11,7 +11,7 @@
 				<div id="content_{$class.id}" class="panel-collapse collapse">
 					<div class="panel-body">	
 		
-						<input type="text" style="height:33px;color:black;padding-left:10px;">
+						<input id= "searchStudents_{$class.id}" class="searchStudents" type="text" style="height:33px;color:black;padding-left:10px;">
 		
 						<button id="add_button_{$class.id}" type="button" class="btn btn-default addStundetnButton">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Student
