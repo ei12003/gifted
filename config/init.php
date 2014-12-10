@@ -2,7 +2,7 @@
 	
 	session_start();
 
-	$BASE_DIR = 'D:/xampp/htdocs/';
+	$BASE_DIR = '/usr/users2/mieic2012/ei12003/public_html/';
 	$BASE_URL = '/gifted/';
 	$CURRENT_PAGE = 'home';
 
@@ -12,7 +12,7 @@
 	$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//$conn->exec('SET SCHEMA \'public\'');
-
+/*
 	include_once($BASE_DIR.$BASE_URL. 'lib/smarty/Smarty.class.php');
 
 	$smarty = new Smarty;
@@ -51,7 +51,7 @@ else
 	//$smarty->assign('USERTYPE', "teacher");
 	////
 	
-	
+	*/
 	unset($_SESSION['success_messages']);
 	unset($_SESSION['error_messages']);  
 	unset($_SESSION['field_errors']);

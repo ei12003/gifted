@@ -7,6 +7,7 @@
   include_once('../database/store.php');
 	include_once('../database/members.php');
   include_once('../database/exercises.php');
+  
 ?>
 <style>
 body {
@@ -33,7 +34,14 @@ input.trigger:checked + .spoiler {
 </style>
 <?php
 
-echo $_SESSION['username'];
+echo "<h3>Search</h3>";
+
+	$search_query="Be";
+       $query = searchUser($search_query);
+       echo '<p></p><input type="checkbox" class="trigger" /> searchUser('.$search_query.'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+
     echo "<h3>Exercises</h3>";
 
     

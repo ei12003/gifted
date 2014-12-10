@@ -1,5 +1,20 @@
 <?php
 
+
+function searchUser($search_query) {
+	global $conn;
+	$stmt = $conn->prepare("SELECT id, first_name, last_name, email, birth_date, gender, username FROM Members
+					WHERE id LIKE '%' || ? || '%' OR 
+							first_name LIKE '%' || ? || '%' OR
+							last_name LIKE '%' || ? || '%' OR
+							username LIKE '%' || ? || '%' OR
+							email LIKE '%' || ? || '%' ORDER BY id");
+    $stmt->execute(array($search_query,$search_query,$search_query,$search_query,$search_query));
+    $result = $stmt->fetchAll();    
+	return $result;
+}
+
+
 function getUser($user_id) {
 	global $conn;
 	$stmt = $conn->prepare('SELECT first_name, last_name, email, birth_date, gender, username FROM Members WHERE id = ? ORDER BY id');
@@ -66,5 +81,7 @@ function deleteUser($userid){
 	return $result;
 
 }
+
+
 
 
