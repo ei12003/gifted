@@ -7,7 +7,7 @@ include_once('../database/members.php');
 // echo 'session:'.$_SESSION['username'];
 // insertUser($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username){
 if (!isset($_SESSION['username'])){
-	
+	//$_POST['confpass'] VERIFICAR
 	if (isset($_POST['first_name'])
 		&& isset($_POST['last_name'])
 		&& isset($_POST['email'])

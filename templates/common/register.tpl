@@ -4,16 +4,16 @@
       <div class="col-md-9 personal-info">
         <h3>Register</h3>
         
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" >
      
 	 		  <div class="form-group">
             <label class="col-md-3 control-label">Type:</label>
             <div class="col-md-8">
 			<div class="radio">
-  <label><input type="radio" name="usert">Student</label>
+  <label><input type="radio" name="usertype" value="student">Student</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="usert">Teacher</label>
+  <label><input type="radio" name="usertype" value="teacher">Teacher</label>
 </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
 <div class="form-group">
             <label class="col-md-3 control-label">Birthday:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" id="datepicker-7"> 
+              <input class="form-control" type="text" id="datepicker-7" name="birth_date"> 
 			</div>
           </div>
 	
@@ -44,10 +44,10 @@
             <label class="col-md-3 control-label">Gender:</label>
             <div class="col-md-8">
 			<div class="radio">
-  <label><input type="radio" name="optradio">Female</label>
+  <label><input type="radio" name="gender" value="female">Female</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="optradio">Male</label>
+  <label><input type="radio" name="gender" value="Male">Male</label>
 </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password">
+              <input class="form-control" type="password" name="confpass">
             </div>
           </div>
           <div class="form-group">
