@@ -25,16 +25,18 @@ body {
 .table {
 
 	color: black;
+	font-size: 110%;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.modal-body{
+.modal-body, .modal-header{
 	color:black;
 	font-size: 150%;
 	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .table tbody>tr:hover {
-	background-color: #f5f5f5;
+	background-color: #CCFFFF;
 	cursor: pointer;
 }
 
