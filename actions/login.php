@@ -14,6 +14,7 @@ if (!isset($_SESSION['username'])){
 		if(!$row){
 
 			$_SESSION['username'] = null;
+			$_SESSION['error_messages']= 'Login failed';
 			//echo "failed";
 			header("Location: ../index.php");
 		}

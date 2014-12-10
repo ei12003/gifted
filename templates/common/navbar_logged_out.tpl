@@ -1,3 +1,9 @@
+{if isset($ERROR_MESSAGES)}
+<script type="text/javascript">
+alert("{$ERROR_MESSAGES}");
+</script>
+{/if}
+
 <li class="dropdown" >
 	<a class="dropdown-toggle" id="nav_login" href="#" data-toggle="dropdown">Log In<strong class="caret"></strong></a>
 	<div class="dropdown-menu" >

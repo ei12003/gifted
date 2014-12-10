@@ -16,7 +16,7 @@
 	} else if ($row == 1) {
 		//header('HTTP/1.1 200');
 		$user = getUser($_GET['userid']);
-		echo json_encode(array(true, $user["first_name"]));
+		echo json_encode(array(true, $user["first_name"].' '.$user["last_name"]));
 	} else {
 		echo json_encode(array(false, "User does not exist."));
 	}
