@@ -6,6 +6,19 @@
         
         <form class="form-horizontal" role="form">
      
+	 		  <div class="form-group">
+            <label class="col-md-3 control-label">Type:</label>
+            <div class="col-md-8">
+			<div class="radio">
+  <label><input type="radio" name="usert">Student</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="usert">Teacher</label>
+</div>
+            </div>
+          </div>
+		  
+		  
           <div class="form-group">
             <label class="col-md-3 control-label">First name:</label>
             <div class="col-md-8">
@@ -38,6 +51,8 @@
 </div>
             </div>
           </div>
+		  
+		  
 		  
 
           <div class="form-group">
