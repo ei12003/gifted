@@ -2,26 +2,9 @@
 	
 	session_start();
 	
-	$BASE_DIR = dirname(__FILE__);
-	$BASE_DIR = substr($BASE_DIR, 0, strripos($BASE_DIR, "\\"));
-	$BASE_DIR = substr($BASE_DIR, 0, strripos($BASE_DIR, "\\"));
-	for ($k = 0; $k < strlen($BASE_DIR); $k++) {
-		if ($BASE_DIR[$k] == '\\') {
-			$BASE_DIR[$k] = '/';
-		}
-	}
-	
-	$url = $_SERVER['REQUEST_URI']; //returns the current URL
-	$parts = explode('/',$url);
-	$dir = $_SERVER['SERVER_NAME'];
-	for ($i = 0; $i < count($parts) - 1; $i++) {
-		$dir .= $parts[$i] . "/";
-	}
-	
-	$BASE_URL = substr($dir, 0, strripos($dir, "/"));
-	$BASE_URL = substr($BASE_URL, 0, strripos($BASE_URL, "/")+1);
-	$BASE_URL = substr($BASE_URL, stripos($BASE_URL, "/"));
-	
+	$BASE_DIR = "D:/Xampp/htdocs";
+	$BASE_URL = "/gifted/";
+
 	$CURRENT_PAGE = 'home';
 
 	// DB //
