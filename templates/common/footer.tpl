@@ -1,9 +1,11 @@
-<!-- Navbar JavaScript -->
+	<footer></footer>
+	
 	</div>
+		
+	<!-- Navbar JavaScript -->
+	<script src="{$BASE_URL}js/navbar.js"></script>
 
-<script src="{$BASE_URL}js/navbar.js"></script>
-
-<script src="{$BASE_URL}js/home.js"></script>
+	<script src="{$BASE_URL}js/home.js"></script>
 
 
 </body>

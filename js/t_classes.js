@@ -13,17 +13,11 @@ $(document).ready(function () {
 		});
 	});
 	
-	/* 
-	$(".searchStudents").on('input',function(e){
-		alert('Changed!');
-	}); 
-	*/
-	
 	$(".studentTable tbody>tr").click( function() {
 		
 		var studentID = $(':nth-child(1)', this).html();
 		var studentName = $(':nth-child(2)', this).html();
-	
+		
 		bootbox.dialog({
 			message: studentID + ". " + studentName,
 			backdrop: false,
@@ -40,20 +34,12 @@ $(document).ready(function () {
 					label: "Kick Student",
 					className: "btn-danger",
 					callback: function() {
-						alert("kick Student");
+						alert("#TODO kick Student");
 					}
 				}
 			}
 		});
 	});
-	
-	
-	$(document).on('click', '.bootbox', function(){
-		var classname = event.target.className;
-		if(!$('.' + classname).parents('.modal-dialog').length && classname != "bootbox-input bootbox-input-text form-control")
-			bootbox.hideAll();
-	});
-	
 	
 });
 
@@ -68,7 +54,7 @@ function jquery_events() {
 		if (input != null && input != "") {
 			addStudent(classID, input);
 		} else {
-			$("#searchStudents_" + classID).focus();
+			$("#searchStudents_" + classID).select2('open');
 		}
 	});
 	

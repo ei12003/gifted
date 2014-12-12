@@ -1,12 +1,11 @@
 body {
-	padding-top:70px;
 	overflow: hidden;
 }
 
 #scroll_bar_fix {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 70px;
     right: -32px;
     bottom: 0;
     overflow-y: scroll;
@@ -113,8 +112,14 @@ a:visited {
     color: #333;
 }
 
+.footer, .push {
+    height: 500px; /* .push must be the same height as .footer */
+}
 
-
+.footer { /* centers the text */
+    text-align: center; /* horizontal centering */
+    line-height: 142px; /* vertical centering; should be equal to the footer height */
+}
 
 
 
