@@ -1,5 +1,15 @@
 body {
 	padding-top:70px;
+	overflow: hidden;
+}
+
+#scroll_bar_fix {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: -32px;
+    bottom: 0;
+    overflow-y: scroll;
 }
 
 .carousel {
@@ -26,13 +36,13 @@ body {
 
 	color: black;
 	font-size: 110%;
-	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	
 }
 
 .modal-body, .modal-header{
 	color:black;
 	font-size: 150%;
-	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	
 }
 
 .table tbody>tr:hover {

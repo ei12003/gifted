@@ -17,33 +17,36 @@
     <!-- Custom CSS -->
     <link href="{$BASE_URL}css/grayscale.css" rel="stylesheet">
 	<link href="{$BASE_URL}css/styles.css" rel="stylesheet">
+	<link href="{$BASE_URL}css/select2.css" rel="stylesheet">
+	<link href="{$BASE_URL}css/select2-bootstrap.css"  rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{$BASE_URL}font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 	
-	 <!-- jQuery -->
+	
+	<!-- jQuery -->
 	<script src="{$BASE_URL}js/jquery.js"></script>
+	<script src="{$BASE_URL}js/jquery.easing.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="{$BASE_URL}js/bootstrap.min.js"></script>
 	
+	<!-- Custom Theme JavaScript -->
+	<script src="{$BASE_URL}js/grayscale.js"></script>
+	
 	<!-- Bootbox Plugin JavaScript -->
 	<script src="{$BASE_URL}js/bootbox.min.js"></script>
 
-	<!-- Plugin JavaScript -->
-	<script src="{$BASE_URL}js/jquery.easing.min.js"></script>
-
-	<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="{$BASE_URL}js/grayscale.js"></script>
+	<!-- JQEURY JavaScript -->
+	<script src="{$BASE_URL}js/select2.js"></script>
 	
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+	<div id="scroll_bar_fix">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">

@@ -5,15 +5,6 @@
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Class
 		</button>
 		
-		
-		<datalist id="userList">
-			<option value="Internet Explorer">
-			<option value="Firefox">
-			<option value="Google Chrome">
-			<option value="Opera">
-			<option value="Safari">
-		</datalist>
-
 		<div id="classPanelGroup" class="panel-group">
 		{foreach from=$CLASSES item=class}
 			<div id="{$class.id}" class="panel panel-default">
@@ -26,7 +17,14 @@
 				<div id="content_{$class.id}" class="panel-collapse collapse">
 					<div class="panel-body">	
 		
-						<input id= "searchStudents_{$class.id}" class="searchStudents" type="text" list="userList" style="height:33px;color:black;padding-left:10px;">	
+						<select id= "searchStudents_{$class.id}" class="select2 searchStudents" style="width:250px">
+							<option value=""></option>
+							<option value="18">18. Richard Riley</option>
+							<option value="19">19. Jason Coleman</option>
+							<option value="20">20. Kathryn Frazier</option>
+							<option value="21">21. Arthur Lewis</option>
+							<option value="23">23. Sandra Perez</option>
+						</select>
 	
 						<button id="add_button_{$class.id}" type="button" class="btn btn-default addStudentButton">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Student
