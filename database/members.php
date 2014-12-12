@@ -82,6 +82,16 @@ function deleteUser($userid){
 
 }
 
+function getStudents() {
+
+	global $conn;
+	$sql = "SELECT id, first_name, last_name FROM Members WHERE usertype = 'student'";
+	$query = $conn->query($sql);
+	$result = $query->fetchAll();
+	
+	return $result;
+}
+
 
 
 

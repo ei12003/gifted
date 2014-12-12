@@ -3539,9 +3539,3 @@ the specific language governing permissions and limitations under the Apache Lic
     };
 
 }(jQuery));
-
-
-$(function(){
-	// turn the element to select2 select style
-	$('.select2').select2();
-});

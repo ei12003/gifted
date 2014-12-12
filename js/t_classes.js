@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+	loadUsers();
+
 	jquery_events();
 
 	$("#createClass").click(function() {
@@ -41,11 +43,16 @@ $(document).ready(function () {
 		});
 	});
 	
+	
+	
+	
+	
 });
 
 function jquery_events() {
 
 	$(".addStudentButton").click(function() {
+	
 		var id = $(this).attr('id');
 		var classID = id.substring(id.lastIndexOf("_")+1);
 		
@@ -80,6 +87,29 @@ function jquery_events() {
 		});
 	});
 
+}
+
+function loadUsers() {
+	
+	$.get( "../../api/getStudents.php", function( data ) {
+		if (data == false) {
+			alert("Unable to obtain Users.");
+			return;
+		}
+	
+		var json = jQuery.parseJSON( data );
+		for (i=0; i < json.length; i++) {
+			var arr = json[i];
+			var val = arr["id"];
+			var txt = arr["id"] + ". " + arr["first_name"] + " " + arr["last_name"];
+			
+			$(".searchStudents").append($('<option></option>').val(val).html(txt));
+		}
+		
+		
+		$('.select2').select2();
+	});
+	
 }
 
 function addStudent(classID, studentID) {

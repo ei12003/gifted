@@ -19,11 +19,11 @@
 		
 						<select id= "searchStudents_{$class.id}" class="select2 searchStudents" style="width:250px">
 							<option value=""></option>
-							<option value="18">18. Richard Riley</option>
+<!-- 							<option value="18">18. Richard Riley</option>
 							<option value="19">19. Jason Coleman</option>
 							<option value="20">20. Kathryn Frazier</option>
 							<option value="21">21. Arthur Lewis</option>
-							<option value="23">23. Sandra Perez</option>
+							<option value="23">23. Sandra Perez</option> -->
 						</select>
 	
 						<button id="add_button_{$class.id}" type="button" class="btn btn-default addStudentButton">
