@@ -19,6 +19,11 @@ $(document).ready(function () {
 		
 		var studentID = $(':nth-child(1)', this).html();
 		var studentName = $(':nth-child(2)', this).html();
+
+		var id = $(this).parent().parent().attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		
+		$row = $(this);
 		
 		bootbox.dialog({
 			message: studentID + ". " + studentName,
@@ -36,7 +41,25 @@ $(document).ready(function () {
 					label: "Kick Student",
 					className: "btn-danger",
 					callback: function() {
-						alert("#TODO kick Student");
+						
+						bootbox.dialog({
+							message: "Are you sure you want to kick this student from the class?",
+							buttons: {
+								no: {
+									label: "No",
+									className: "btn-default"
+								},
+								yes: {
+									label: "Yes",
+									className: "btn-danger",
+									callback: function() {
+										kickStudent(classID, studentID, $row);
+									}
+								}
+							}
+						});
+						
+						
 					}
 				}
 			}
@@ -108,6 +131,19 @@ function loadUsers() {
 		
 		
 		$('.select2').select2();
+	});
+	
+}
+
+function kickStudent(classID, studentID, row) {
+
+	$.get( "../../api/removeStudent.php", { classid: classID, userid: studentID} , function( data ) {
+		if (data == true) {
+			row.remove();
+			bootbox.alert("Student was kicked from class.");
+		} else {
+			bootbox.alert("Unable to kick this student.");
+		}
 	});
 	
 }

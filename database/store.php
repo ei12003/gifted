@@ -2,8 +2,7 @@
 
 function getStore() {
 	global $conn;
-	$stmt = $conn->prepare('SELECT ItensStore.price, Itens.id,Itens.name,Itens.img_location,Itens.description
-		FROM ItensStore JOIN Itens ON Itens.id=ItensStore.itenId');
+	$stmt = $conn->prepare('SELECT price, id,name,img_location,description FROM Itens');
     $stmt->execute();
     $result = $stmt->fetchAll();    
 	return $result;
@@ -14,7 +13,7 @@ function buyItem($userid,$itemid,$offer_userid) {
 	global $conn;
 	
 	//Check if User can afford it.
-	$stmt = $conn->prepare('SELECT price FROM ItensStore WHERE ItensStore.itenId= ?');
+	$stmt = $conn->prepare('SELECT price FROM Itens WHERE Itens.id= ?');
     $stmt->execute(array($itemid));
     $result = $stmt->fetch();    
     $price = $result['price'];

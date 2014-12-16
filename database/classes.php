@@ -40,6 +40,14 @@ function getStudentsFromClass($class_id) {
 	return $result;
 }
 
+function getTeacherFromClass($class_id) {
+	global $conn;
+	$stmt = $conn->prepare('SELECT DISTINCT Members.id, Members.first_name, Members.last_name, ClassMember.score FROM Members,Classes,ClassMember WHERE ClassMember.memberId = Members.id AND ClassMember.classId = ? AND Members.usertype = "teacher" ORDER BY Members.id');
+    $stmt->execute(array($class_id));
+    $result = $stmt->fetchAll();    
+	return $result;
+}
+
 function getStudentsEventsClass($class_id){ //US15
 	global $conn;
 	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, MemberEvents.memberId, MemberEvents.description FROM MemberEvents,Members WHERE MemberEvents.memberId = Members.id AND MemberEvents.classId = ? AND Members.usertype = "student" ORDER BY Members.id');

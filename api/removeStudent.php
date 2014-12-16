@@ -10,13 +10,13 @@
 
 	$row = removeUserFromClass($_GET['userid'],$_GET['classid']);
 	if($row==0)
-		header('HTTP/1.1 404');
+		echo false;
 	else{
-		header('HTTP/1.1 200');
+		echo true;
 	}
 
   }
   else
-	header('HTTP/1.1 404');
+	echo false;
  
 ?>

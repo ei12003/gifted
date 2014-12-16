@@ -1,7 +1,7 @@
 <?php
 
-	include_once('../config/init.php');
-	include_once('../database/inventory.php');
+	include_once('../../config/init.php');
+	include_once('../../database/inventory.php');
 
 	if (isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'student'){
 	   
@@ -10,7 +10,7 @@
 		$smarty->assign("INVENTORY",$itens);
 
 		$smarty->display('common/header.tpl');
-		$smarty->display('../templates/students/inventory.tpl');
+		$smarty->display('students/s_inventory.tpl');
 		$smarty->display('common/footer.tpl');
     }
     else
