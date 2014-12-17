@@ -16,9 +16,10 @@
 
     <!-- Custom CSS -->
     <link href="{$BASE_URL}css/grayscale.css" rel="stylesheet">
-	<link href="{$BASE_URL}css/styles.css" rel="stylesheet">
 	<link href="{$BASE_URL}css/select2.css" rel="stylesheet">
 	<link href="{$BASE_URL}css/select2-bootstrap.css"  rel="stylesheet">
+	<link href="{$BASE_URL}css/styles.css" rel="stylesheet">
+	
 
     <!-- Custom Fonts -->
     <link href="{$BASE_URL}font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

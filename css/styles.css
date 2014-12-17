@@ -121,6 +121,40 @@ a:visited {
     line-height: 142px; /* vertical centering; should be equal to the footer height */
 }
 
+.btn-log {
+  color: #000;
+  background-color: #53A7E8;
+  border-color: #3B88C3;
+}
+
+.btn-log:hover,
+.btn-log:focus,
+.btn-log.focus,
+.btn-log:active,
+.btn-log.active,
+.open > .dropdown-toggle.btn-log {
+  color: #000;
+  background-color: #4B97D2;
+  border-color: #000;
+}
+
+.btn-reg {
+  color: #000;
+  background-color: #FFC044;
+  border-color: #F1A02A;
+}
+
+.btn-reg:hover,
+.btn-reg:focus,
+.btn-reg.focus,
+.btn-reg:active,
+.btn-reg.active,
+.open > .dropdown-toggle.btn-reg {
+  color: #000;
+  background-color: #EFA120;
+  border-color: #000;
+}
+
 
 
 

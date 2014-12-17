@@ -1,9 +1,19 @@
-$(document).ready(function () {
+function checkValidPass(input) {
 
-	$( "#datepicker-7" ).datepicker({
-	   defaultDate:+9,
-	   dayNamesMin: [ "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa" ],
-	   duration: "slow"
+	if ( $("#password").val() != $("#confpass").val()) {
+		input.setCustomValidity("Passwords don't match.");
+	} else {
+		input.setCustomValidity("");
+	}
+
+}
+
+function checkValidUsername(input) {
+	$.get( "../api/validNewUsername.php", {username: input.value}, function( data ) {
+		if (data == true) {
+			input.setCustomValidity("");
+		} else {
+			input.setCustomValidity("Username already exists.");
+		}
 	});
-	
-});
+}
