@@ -20,7 +20,11 @@ $(document).ready(function () {
 				},
 				profile: {
 					label: "View Profile",
-					className: "btn-default"
+					className: "btn-default",
+						callback: function() {
+						window.location.href = "../showprofile.php?id="+ studentID;
+						
+					}
 				}
 			}
 		});
