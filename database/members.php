@@ -14,6 +14,13 @@ function searchUser($search_query) {
 	return $result;
 }
 
+function getUserByUsername($username) {
+	global $conn;
+	$stmt = $conn->prepare('SELECT id FROM Members WHERE username = ?');
+    $stmt->execute(array($username));
+    $result = $stmt->fetch();
+	return $result;
+}
 
 function getUser($user_id) {
 	global $conn;

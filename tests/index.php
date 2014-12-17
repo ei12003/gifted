@@ -41,6 +41,16 @@ echo "<h3>Search</h3>";
        echo '<p></p><input type="checkbox" class="trigger" /> searchUser('.$search_query.'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
        echo "</div></p>";
+	   
+	$username="Be";
+       $query = getUserByUsername($username);
+       echo '<p></p><input type="checkbox" class="trigger" /> getUserByUsername('.$username.'): ('.count($query).' )<div class="spoiler">';
+       print_r($query);
+       echo "</div></p>";
+	   if(empty($query))
+		echo 'EMPTY';
+		else
+		echo 'NOT';
 
     echo "<h3>Exercises</h3>";
 
