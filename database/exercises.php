@@ -11,6 +11,34 @@ function getSet($setid) {
 	return $result;
 }
 
+
+function getSetName($setid) {
+	global $conn;
+	$stmt = $conn->prepare(
+		'SELECT name from Sets where id = ?');
+    $stmt->execute(array($setid));
+    $result = $stmt->fetch();   
+	return $result['name'];
+}
+
+function getExerciseName($setid) {
+	global $conn;
+	$stmt = $conn->prepare(
+		'SELECT name from Exercises where id = ?');
+    $stmt->execute(array($setid));
+    $result = $stmt->fetch();   
+	return $result['name'];
+}
+
+function getSetsFromTeacher($userid) {
+	global $conn;
+	$stmt = $conn->prepare('SELECT * from sets where teacher_id = ?');
+    $stmt->execute(array($userid));
+    $result = $stmt->fetchAll();    
+	return $result;
+}
+
+
 function getExercise($exeid) {
 	global $conn;
 	$stmt = $conn->prepare(
@@ -30,8 +58,8 @@ function getRightAnswer($exeid){
 		WHERE Exercises.Id = ? 
 		');
     $stmt->execute(array($exeid));
-    $result = $stmt->fetchAll();    
-	return $result;
+    $result = $stmt->fetch();    
+	return $result['optionId'];
 }
 
 function createOption($exid,$description){
@@ -48,7 +76,7 @@ function setRightAnswer($exid,$optid){
 	$query = "insert into ExerciseRightAnswer (exerciseId,optionId) values (?,?)";
 	$stmt = $conn->prepare($query);
     $stmt->execute(array($exid,$optid));
-    $result = $conn->lastInsertId();
+    $result = $stmt->rowCount();  
 	return $result;
 }
 
@@ -57,7 +85,7 @@ function addExerciseToSet($exid,$setid){
 	$query = "insert into ExerciseSet (setId,exerciseId) values (?,?)";
 	$stmt = $conn->prepare($query);
     $stmt->execute(array($setid,$exid));
-    $result = $conn->lastInsertId();
+    $result = $stmt->rowCount();    
 	return $result;	
 }
 
@@ -80,15 +108,20 @@ function deleteExercise($exid){
 	return $result;
 }
 
-function createSet($itemid){
-
+function createSet($name,$userid){
 	global $conn;
-	$query = "insert into Sets (itenID) values (?)";
-	$stmt = $conn->prepare($query);
-    $stmt->execute(array($itemid));
-    $result = $conn->lastInsertId();
+	try{ 
+		$query = "insert into Sets (name,teacher_id,itenID) values (?,?,0)";
+		$stmt = $conn->prepare($query);
+	    $stmt->execute(array($name,$userid));
+	    $result = $conn->lastInsertId();
+	}
+	catch(PDOException $exception){ 
+        echo $exception->getMessage(); 
+	   return -1;
+    } 
+
 	return $result;        	
-   
 }
 
 function deleteSet($setid){

@@ -52,14 +52,16 @@ optionId INTEGER REFERENCES ExerciseOptions(id)
 
 CREATE TABLE Sets(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-itenID INTEGER REFERENCES Itens(id)
+name VARCHAR DEFAULT 'Untitled', 
+-- CHANGE DEFAULT
+teacher_id INTEGER REFERENCES Members(id),
+itenID INTEGER REFERENCES Itens(id) 
 );
 
 CREATE TABLE ExerciseSet(
 setId INTEGER REFERENCES Sets(id),
 exerciseId INTEGER REFERENCES Exercises(id)
 );
-
 
 CREATE TABLE ClassExerciseSet(
 setId INTEGER REFERENCES Sets(id),

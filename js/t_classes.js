@@ -140,6 +140,10 @@ function kickStudent(classID, studentID, row) {
 	$.get( "../../api/removeStudent.php", { classid: classID, userid: studentID} , function( data ) {
 		if (data == true) {
 			row.remove();
+			
+			var classCount = parseInt($("#classCount_" + classID).html());
+			$("#classCount_" + classID).html(classCount-1);
+			
 			bootbox.alert("Student was kicked from class.");
 		} else {
 			bootbox.alert("Unable to kick this student.");
