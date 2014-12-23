@@ -25,29 +25,22 @@ $(document).ready(function () {
 		});
 	});
 	
-	
-});
-
-function atleastOneChecked() {
-	$ret = null;
-	$('.radioStyle').each(function(i, obj) {
-		if ($(this).prop('checked'))
-			$ret = $(this).attr("id");
-	});
-	return $ret;
-}
-
-function jquery_events() {
-	$(".addExerciseButton, .editExerciseButton").click(function() {
-	
-		var id = $(this).attr('id');
-		var setID = id.substring(id.lastIndexOf("_")+1);
-		
-		$current_set = setID;
+	$('#createEx').on('hidden.bs.modal', function (e) {
+	  $(this)
+		.find("input,textarea,select")
+		   .val('')
+		   .end()
+		.find("input[type=checkbox], input[type=radio]")
+		   .prop("checked", "")
+		   .end();
+		   
+	  $current_set = -1;
 	});
 	
 	
 	$("#createExerciseButton").click(function() {
+	
+	
 		if ($current_set == -1) return;
 		
 		if ($("#question").val() == null || $("#question").val() == "") {
@@ -72,8 +65,32 @@ function jquery_events() {
 				$("#opt4").val(),
 				atleastOneChecked()
 			);
+			
+			$("#createEx").modal("hide");
+			
 		}
 		
+	});
+	
+	
+});
+
+function atleastOneChecked() {
+	$ret = null;
+	$('.radioStyle').each(function(i, obj) {
+		if ($(this).prop('checked'))
+			$ret = $(this).attr("id");
+	});
+	return $ret;
+}
+
+function jquery_events() {
+	$(".addExerciseButton, .editExerciseButton").click(function() {
+	
+		var id = $(this).attr('id');
+		var setID = id.substring(id.lastIndexOf("_")+1);
+		
+		$current_set = setID;
 	});
 	
 	
@@ -135,7 +152,29 @@ function createExercise(setID, ques, opt1, opt2, opt3, opt4, ans) {
 			
 			exID = data_array[1];
 			
+			$firstp = "<div id='ex"+exID+"' class='panel panel-default'>       <div class='panel-heading'>        <h4 class='panel-title'>         <a data-toggle='collapse' href='#ex_content_"+exID+"'>"+ques+"</a>        </h4>       </div>       <div id='ex_content_"+exID+"' class='panel-collapse collapse'>        <div class='panel-body'>                 <button id='edit_ex_button_"+exID+"' type='button' class='btn btn-sm btn-default editExerciseButton' data-toggle='modal' data-target='#editEx'>          <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit         </button>                  <button id='delete_ex_button_"+exID+"' type='button' class='btn btn-sm btn-danger pull-right deleteExerciseButton'>          <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete         </button>                  <br><br>";
+
+			list =  [opt1, opt2, opt3, opt4];
+			$opts = "";
+			for(var $i = 0;$i<4;$i++){
+				
+			  $opts += "<span style='color:black;'>"+($i+1)+".  "+list[$i]+" <span>";
+			  if(ans == ("op"+($i+1))){
+				$opts +=  "<span class='glyphicon glyphicon-ok'></span>";
+			  }
+			  $opts += "<br>";
+				  
+			}          
+			$lastp = "</div></div></div>";
+
+			$new_html = $firstp +$opts+$lastp;
 			
+			$("#exercisePanelGroup" + setID).append($new_html);
+			
+			var setCount = parseInt($("#setCount_" + setID).html());
+			$("#setCount_" + setID).html(setCount+1);
+			
+			jquery_events();
 			
 		} else {
 			bootbox.alert(data_array[1]);
