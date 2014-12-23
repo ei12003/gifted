@@ -31,15 +31,16 @@
                     {$USERINFO.email}
             </div>
              </div>
-    </div>        
+       
  
          <div class="row">
             <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
+            <div class="col-md-9">
                      {$USERINFO.username}
             </div>
           </div>
       </div>
+    </div> 
      
             
           
