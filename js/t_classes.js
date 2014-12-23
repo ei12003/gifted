@@ -40,6 +40,31 @@ $(document).ready(function () {
 						window.location.href = "../showprofile.php?id="+ studentID;	
 					}
 				},
+				add: {
+					label: "Add Points",
+					className: "btn-success",
+					callback: function() {
+						bootbox.dialog({
+							message: '<input class="spin_'+studentID+'" type="number" min="1" value="1"/>',
+
+							buttons: {
+								add: {
+									label: "Add",
+									className: "btn-default",
+									callback: function() {
+										
+										$amount = $(".spin_"+studentID).val();
+										addPoints($amount,studentID,classID);
+
+									}
+								}
+							}
+
+						});
+
+
+					}
+				},
 				kick: {
 					label: "Kick Student",
 					className: "btn-danger",
@@ -176,6 +201,30 @@ function addStudent(classID, studentID) {
 	});
 	
 }
+
+function addPoints(pts,studentID,classID){
+	$.get( "../../api/addPointsAsTeacher.php", { amount: pts, classid: classID, userid: studentID} , function( data ) {
+		var data_array = jQuery.parseJSON( data );
+		
+		if (data_array[0] == true) {
+		
+			bootbox.alert(data_array[1]);
+			var $row = $("#score_" + classID + "_" + studentID);	
+			var $num = parseInt($row.html()) + parseInt(pts);
+			$row.html($num);
+
+			$row = $("#classscore_" + classID);
+			$num = parseInt($row.html()) + parseInt(pts);
+			$row.html($num);
+
+			
+		} else {
+			bootbox.alert(data_array[1]);
+		}
+	});
+
+}
+
 
 function deleteClass(classID) {
 	$.get( "../../api/deleteClass.php", { classid: classID} , function( data ) {

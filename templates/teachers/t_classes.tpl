@@ -10,7 +10,7 @@
 			<div id="{$class.id}" class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<span style="padding:10px;pointer-events: none;" class="pull-right"><i style="font-size:80%;">Score:</i> {$class.score}</span>
+						<span style="padding:10px;pointer-events: none;" class="pull-right"><i style="font-size:80%;">Score:</i> <span id="classscore_{$class.id}">{$class.score}</span></span>
 						<a  data-toggle="collapse" href="#content_{$class.id}">{$class.id}. {$class.name}<i style="font-size:80%;"><br><span id="classCount_{$class.id}">{$class.numStd}</span> Student(s)</i> </a>
 					</h4>
 				</div>
@@ -50,7 +50,7 @@
 								<tr>
 									<td>{$student.id}</td>
 									<td>{$student.first_name} {$student.last_name}</td>
-									<td>{$student.score}</td>
+									<td id="score_{$class.id}_{$student.id}">{$student.score}</td>
 								</tr>
 								
 								{/foreach}

@@ -9,14 +9,15 @@
   	&& isset($_GET['userid'])){
 
 	$row = givePointsToUser($_GET['amount'],$_GET['classid'],$_GET['userid']);
+
+
 	if($row==0)
-		header('HTTP/1.1 404');
-	else{
-		header('HTTP/1.1 200');
-	}
+		echo json_encode(array(false, "Fail."));
+	else
+		echo json_encode(array(true, "Success."));
 
   }
   else
-	header('HTTP/1.1 404');
+	echo json_encode(array(false, "Unauthorized."));
  
 ?>
