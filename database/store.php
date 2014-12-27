@@ -8,6 +8,14 @@ function getStore() {
 	return $result;
 }
 
+function getStoreSize() {
+	global $conn;
+	$stmt = $conn->prepare('SELECT COUNT(*) as size FROM Itens');
+    $stmt->execute();
+    $result = $stmt->fetch();    
+	return $result['size'];
+}
+
 //$offer_userid = 0 if not offering.
 function buyItem($userid,$itemid,$offer_userid) {
 	global $conn;

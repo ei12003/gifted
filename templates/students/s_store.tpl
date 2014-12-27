@@ -35,7 +35,7 @@
 				</div>
 
 			</div> -->
-			
+
 			<div class="row">
 				
 				<!-- {foreach from=$ITEMS item=item}
@@ -50,35 +50,43 @@
 	
 				<div class="text-center">
 				  <ul class="pagination">
-					<li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+				  	<span style="display:none;" max="{$NUM_PAG}" current="1" class="pag_data"></span>
+					<li style = "display: none;" class="pg_prev"><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+					{for $i=1 to $NUM_PAG}
+					    <li><a  style = "{if $i>3}display: none;{elseif $i == 1} font-weight: bold; font-size: 17px;{/if}"  id={$i} class="pag_btn">{$i}</a></li>
+					{/for}
+					<li class="pg_next"><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
 				  </ul>
 				</div>
- 
-				{$count=1}
-				{$pagenum=1}
-				{foreach from=$ITEMS item=item}
-					
-					<div class="col-sm-4 col-lg-4 col-md-4" >
-					
-						<div class="thumbnail" >
-							<img src="{$item.img_location}" alt="">
-							<div class="caption">
-								<h4 class="span5 pull-right">{$item.price} §</h4>
-								<h4><a class="buy-item" id="{$item.id}">{$item.name}</a>
-								</h4>
-								<p>{$item.description}</p>
-							</div>
-						</div>
+				{$i=1}
+				{$pagnum=1}
+				<div id="items_list">
+					{foreach from=$ITEMS item=item}
 						
-					</div>
+						<div {if $pagnum !=1} style = "display: none;"{/if} id="{$pagnum}" class="col-sm-4 col-lg-4 col-md-4 pgn"  >
+						
+							<div class="thumbnail" >
+								<img src="{$item.img_location}" alt="">
+								<div class="caption">
+									<h4 class="span5 pull-right">{$item.price} §</h4>
+									<h4><a class="buy-item" id="{$item.id}">{$item.name}</a>
+									</h4>
+									<p>{$item.description}</p>
+								</div>
+							</div>
+							
+						</div>
 
-				{/foreach}
+						{if $i == $ITEM_PER_PAGE}
+							{$i == 1}
+							{$pagnum=$pagnum+1}
+							{$i = 1}
+						{else}
+							{$i=$i+1}
+						{/if}
+
+					{/foreach}
+				</div>
 
 				<!-- <div class="col-sm-4 col-lg-4 col-md-4">
 					<div class="thumbnail">
