@@ -26,7 +26,7 @@
 					
 					<br><br>
 					
-					<div class="panel-group">
+					<div id="exercisePanelGroup{$set.id}" class="panel-group">
 					{foreach from=$set.exercises item=ex}
 						<div id="ex{$ex.id}" class="panel panel-default">
 							<div class="panel-heading">
@@ -37,9 +37,9 @@
 							<div id="ex_content_{$ex.id}" class="panel-collapse collapse">
 								<div class="panel-body">
 								
-									<!-- <button id="edit_ex_button_{$ex.id}" type="button" class="btn btn-sm btn-default editExerciseButton" data-toggle="modal" data-target="#editEx">
+									<button id="edit_ex_button_{$ex.id}" type="button" class="btn btn-sm btn-default editExerciseButton" data-toggle="modal" data-target="#editEx">
 										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
-									</button> -->
+									</button>
 									
 									<button id="delete_ex_button_{$ex.id}" type="button" class="btn btn-sm btn-danger pull-right deleteExerciseButton">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
