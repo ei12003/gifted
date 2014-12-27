@@ -1,5 +1,7 @@
 <div class="container">
-	
+	<style>
+	a { cursor: pointer;}
+	</style>
 	<div class="row">
 	<h1>Store</h1>
 
@@ -33,7 +35,7 @@
 				</div>
 
 			</div> -->
-
+			
 			<div class="row">
 				
 				<!-- {foreach from=$ITEMS item=item}
@@ -63,17 +65,17 @@
 				{foreach from=$ITEMS item=item}
 					
 					<div class="col-sm-4 col-lg-4 col-md-4" >
-						<a href="https://www.google.pt">
+					
 						<div class="thumbnail" >
 							<img src="{$item.img_location}" alt="">
 							<div class="caption">
 								<h4 class="span5 pull-right">{$item.price} §</h4>
-								<h4><a href="https://www.google.pt">{$item.name}</a>
+								<h4><a class="buy-item" id="{$item.id}">{$item.name}</a>
 								</h4>
 								<p>{$item.description}</p>
 							</div>
 						</div>
-						</a>
+						
 					</div>
 
 				{/foreach}

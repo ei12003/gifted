@@ -19,7 +19,7 @@ function getUserByUsername($username) {
 	$stmt = $conn->prepare('SELECT id FROM Members WHERE username = ?');
     $stmt->execute(array($username));
     $result = $stmt->fetch();
-	return $result;
+	return $result['id'];
 }
 
 function getUser($user_id) {

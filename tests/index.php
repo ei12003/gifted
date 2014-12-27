@@ -42,10 +42,13 @@ echo "<h3>Search</h3>";
        print_r($query);
        echo "</div></p>";
 	   
-	$username="Be";
+	$username="apierc23e3";
        $query = getUserByUsername($username);
-       echo '<p></p><input type="checkbox" class="trigger" /> getUserByUsername('.$username.'): ('.count($query).' )<div class="spoiler">';
-       print_r($query);
+       if($query == null)
+        echo '<h4>NULL</h4>';
+
+       echo '<p></p><input type="checkbox" class="trigger" /> getUserByUsername('.$username.'): ('.$query.' )<div class="spoiler">';
+       echo '|'.$query;
        echo "</div></p>";
 	   if(empty($query))
 		echo 'EMPTY';
@@ -143,7 +146,7 @@ echo "</div>";
        echo "</div></p>";
 
     echo "<h3>Inventory</h3>";
-     $user_id=7;
+     $user_id=4;
        $query = getUserInventory($user_id);
        echo '<p></p><input type="checkbox" class="trigger" /> getUserInventory('.strval($user_id).'): ('.count($query).' )<div class="spoiler">';
        print_r($query);
