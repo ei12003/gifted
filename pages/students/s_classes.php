@@ -16,7 +16,8 @@
 			$students=getStudentsFromClass($row['id']);
 			$score_total = getClassTotalScore($row['id']);
 			$size=count($students);
-			$class = array("name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[1]);
+			$class_events = getStudentsEventsClass($row['id']);
+			$class = array("name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[1], "classEvents"=>$class_events);
 			$classes[] = $class;
 		}
 

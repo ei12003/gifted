@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+
 	$(".studentTable tbody>tr").click( function() {
 		
 		var studentID = $(':nth-child(1)', this).html();
@@ -50,6 +52,16 @@ $(document).ready(function () {
 				}
 			}
 		});
+	});
+
+
+	$(".evButton").click(function() {
+		var id = $(this).attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		$(".evButton_"+classID).toggle();
+		$("#table_ev_"+classID).toggle();
+		
+
 	});
 
 });

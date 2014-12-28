@@ -30,7 +30,6 @@
 								</tr>
 							</thead>
 							<tbody>
-							
 								{foreach from=$class.students item=student}
 								
 									{if $USERID == $student.id} 
@@ -42,15 +41,82 @@
 										<td>{$student.first_name} {$student.last_name}</td>
 										<td>{$student.score}</td>
 									</tr>
-								
+									
 								{/foreach}
 							  
 							</tbody>
 						</table>
+						<button id="ev_button_{$class.id}" type="button" class="btn btn-default pull-left evButton evButton_{$class.id}" style="margin-bottom:20px">
+							<span id="ev_glyph_{$class.id}" class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> <span id="ev_text_{$class.id}">Show Events</span>
+						</button>
+						<button id="ev_button_{$class.id}" type="button" class="btn btn-default pull-left evButton evButton_{$class.id}" style="display:none;margin-bottom:20px">
+							<span id="ev_glyph_{$class.id}" class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> <span id="ev_text_{$class.id}">Hide Events</span>
+						</button>
+						<style>
+							html, body { overflow-x: hidden; width: 100%; }
+							table.eventsTable tbody { height:300px;overflow-y:scroll ;  display:block; }
+						</style>
+						<table id="table_ev_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered eventsTable">
+							
+							
+   							
+							<tbody>
+							
+								{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}</td>
+								</tr>
+								{/foreach}
+								{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}</td>
+								</tr>
+								{/foreach}
+								{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}</td>
+								</tr>
+								{/foreach}
+								{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}</td>
+								</tr>
+								{/foreach}
+							
+							{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}</td>
+								</tr>
+								{/foreach}
+								{foreach from=$class.classEvents item=event}
+								<tr>
+									<td><b>{$event.first_name} {$event.last_name}</b></td>
+									<td>{$event.description}OI</td>
+								</tr>
+								{/foreach}
+
+					
+							
+							
+							</tbody>
 						
+					
+					
+						</table>
 					</div>
+					
 				</div>
+
 			</div>
+
+			</div>
+
+			
 		{/foreach}
 		</div>
 </div>
