@@ -3,10 +3,10 @@
   <!-- edit form column -->
   <div class="col-md-9 personal-info">
     <h1>
-      Register
+	Register
     </h1>
     
-    <form class="form-horizontal" action="{$BASE_URL}actions/register.php" method="POST" role="form" id="register_form">
+    <form class="form-horizontal" action="{$BASE_URL}actions/register.php" method="POST" role="form" id="register_form" onsubmit = "return validateRegister()">
       
       <div class="form-group">
         <label class="col-md-3 control-label">
@@ -77,15 +77,16 @@
         </div>
       </div>
       
-      
-      
-      
+	  
+	  
+	  
       <div class="form-group">
         <label class="col-md-3 control-label">
           Email:
         </label>
         <div class="col-md-8">
-          <input required  class="form-control" type="text" name="email">
+          <input required class="form-control" type = "text" name = "email" id = "txt_email">
+		  <span id = "lbl_email"></span>
         </div>
       </div>
       <div class="form-group">
@@ -93,7 +94,8 @@
           Username:
         </label>
         <div class="col-md-8">
-          <input required  class="form-control" type="text" name="username" oninput="checkValidUsername(this)">
+          <input required  class="form-control" type="text" name="username" id = "txt_username" oninput="validUsername(this)">
+		  <span id = "lbl_username"></span>
         </div>
       </div>
       <div class="form-group">
@@ -101,7 +103,8 @@
           Password:
         </label>
         <div class="col-md-8">
-          <input required  class="form-control" type="password" id="password" name="password">
+		  <input required  class="form-control" type="password" name="password" id = "txt_password">
+		  <span id = "lbl_password"></span>
         </div>
       </div>
       <div class="form-group">
@@ -111,7 +114,8 @@
 		<div id="err"></div>
 		
         <div class="col-md-8">
-          <input required  class="form-control" type="password" id="confpass" name="confpassword" oninput="checkValidPass(this)">
+		  <input required  class="form-control" type="password" name="rpassword" id="txt_rpassword">
+		  <span id = "lbl_rpassword"></span>
         </div>
       </div>
       <div class="form-group">
