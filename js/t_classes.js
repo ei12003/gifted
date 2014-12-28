@@ -1,8 +1,13 @@
 $(document).ready(function () {
 
 	loadUsers();
+	loadSets();
 
 	jquery_events();
+
+
+
+
 
 	$("#createClass").click(function() {
 		bootbox.prompt("Class name?", function(result) {
@@ -102,6 +107,33 @@ $(document).ready(function () {
 
 function jquery_events() {
 
+	$(".setButton").click(function() {
+		var id = $(this).attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		$(".setButton_"+classID).toggle();
+		$("#table_set_"+classID).toggle();
+		
+
+	});
+
+
+	$(".addSetButton").click(function() {
+	
+		var id = $(this).attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		
+		var input = $("#searchSets_" + classID).val();
+
+		
+		
+		if (input != null && input != "") {
+			addSet(classID, input);
+		} else {
+			$("#searchSets_" + classID).select2('open');
+		}
+	});
+
+
 	$(".addStudentButton").click(function() {
 	
 		var id = $(this).attr('id');
@@ -139,6 +171,30 @@ function jquery_events() {
 	});
 
 }
+
+function loadSets() {
+	
+	$.get( "../../api/getSets.php", function( data ) {
+		if (data == false) {
+			alert("Unable to obtain Sets.");
+			return;
+		}
+		//$(".searchSets").empty();
+		var json = jQuery.parseJSON( data );
+		for (i=0; i < json.length; i++) {
+			var arr = json[i];
+			var val = arr["id"];
+			var txt = arr["id"] + ". " + arr["name"];
+			
+			$(".searchSets").append($('<option></option>').val(val).html(txt));
+		}
+		
+		
+		$('.select2').select2();
+	});
+	
+}
+
 
 function loadUsers() {
 	
@@ -178,6 +234,15 @@ function kickStudent(classID, studentID, row) {
 		}
 	});
 	
+}
+
+function addSet(classID, setID) {
+	$.get( "../../api/addSetToClass.php", { classid: classID, setid: setID} , function( data ) {
+		var data_array = jQuery.parseJSON( data );
+		
+			bootbox.alert(data_array[1]);
+		
+	});
 }
 
 function addStudent(classID, studentID) {

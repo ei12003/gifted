@@ -30,9 +30,26 @@ function getExerciseName($setid) {
 	return $result['name'];
 }
 
+
+function getSetsClassTeach($setid,$classid,$userid) {
+	global $conn;
+	$stmt = $conn->prepare('SELECT Sets.id from ClassExerciseSet, Sets WHERE Sets.id = ? and Sets.id=ClassExerciseSet.setId and ClassExerciseSet.classId = ? and Sets.teacher_id=?');
+    $stmt->execute(array($setid,$classid,$userid));
+    $result = $stmt->fetchAll();    
+	return $result;
+}
+
+function getSetsIDFromClass($classid) {
+	global $conn;
+	$stmt = $conn->prepare('SELECT ClassExerciseSet.setId, Sets.name, ClassExerciseSet.classId from ClassExerciseSet INNER JOIN Sets ON Sets.id=ClassExerciseSet.setId where ClassExerciseSet.classId = ?');
+    $stmt->execute(array($classid));
+    $result = $stmt->fetchAll();    
+	return $result;
+}
+
 function getSetsFromTeacher($userid) {
 	global $conn;
-	$stmt = $conn->prepare('SELECT * from sets where teacher_id = ?');
+	$stmt = $conn->prepare('SELECT id,name from Sets where teacher_id=?');
     $stmt->execute(array($userid));
     $result = $stmt->fetchAll();    
 	return $result;
@@ -111,7 +128,7 @@ function deleteExercise($exid){
 function createSet($name,$userid){
 	global $conn;
 	try{ 
-		$query = "insert into Sets (name,teacher_id,itenID) values (?,?,0)";
+		$query = "insert into Sets (name,teacher_id,itenID) values (?,?,0) ";
 		$stmt = $conn->prepare($query);
 	    $stmt->execute(array($name,$userid));
 	    $result = $conn->lastInsertId();
@@ -136,7 +153,7 @@ function deleteSet($setid){
 
 function addSetToClass($setid,$classid){
 	global $conn;
-	$query = "insert into ClassExerciseSet (setId,classId) values (?,?)";
+	$query = "INSERT OR IGNORE INTO ClassExerciseSet (setId,classId) values (?,?)";
 	$stmt = $conn->prepare($query);
     $stmt->execute(array($setid,$classid));
     $result = $stmt->rowCount();

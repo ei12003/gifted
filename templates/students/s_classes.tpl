@@ -57,9 +57,6 @@
 							table.eventsTable tbody { height:300px;overflow-y:scroll ;  display:block; }
 						</style>
 						<table id="table_ev_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered eventsTable">
-							
-							
-   							
 							<tbody>
 							
 								{foreach from=$class.classEvents item=event}
@@ -67,42 +64,7 @@
 									<td><b>{$event.first_name} {$event.last_name}</b></td>
 									<td>{$event.description}</td>
 								</tr>
-								{/foreach}
-								{foreach from=$class.classEvents item=event}
-								<tr>
-									<td><b>{$event.first_name} {$event.last_name}</b></td>
-									<td>{$event.description}</td>
-								</tr>
-								{/foreach}
-								{foreach from=$class.classEvents item=event}
-								<tr>
-									<td><b>{$event.first_name} {$event.last_name}</b></td>
-									<td>{$event.description}</td>
-								</tr>
-								{/foreach}
-								{foreach from=$class.classEvents item=event}
-								<tr>
-									<td><b>{$event.first_name} {$event.last_name}</b></td>
-									<td>{$event.description}</td>
-								</tr>
-								{/foreach}
-							
-							{foreach from=$class.classEvents item=event}
-								<tr>
-									<td><b>{$event.first_name} {$event.last_name}</b></td>
-									<td>{$event.description}</td>
-								</tr>
-								{/foreach}
-								{foreach from=$class.classEvents item=event}
-								<tr>
-									<td><b>{$event.first_name} {$event.last_name}</b></td>
-									<td>{$event.description}OI</td>
-								</tr>
-								{/foreach}
-
-					
-							
-							
+								{/foreach}							
 							</tbody>
 						
 					

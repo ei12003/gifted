@@ -34,8 +34,13 @@
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Class
 						</button>
 						
+						
+						
 						<br><br>
-					
+						
+
+
+
 						<table id="table_{$class.id}" class="table table-striped table-condensed table-bordered studentTable">
 							<thead>
 								<tr>
@@ -58,6 +63,53 @@
 							</tbody>
 						</table>
 						
+						
+						
+						<select id= "searchSets_{$class.id}" class="select2 searchSets pull-right" style="width:250px">
+							<option value=""></option>
+<!-- 							<option value="18">18. Richard Riley</option>
+							<option value="19">19. Jason Coleman</option>
+							<option value="20">20. Kathryn Frazier</option>
+							<option value="21">21. Arthur Lewis</option>
+							<option value="23">23. Sandra Perez</option> -->
+						</select>
+
+
+						<button id="addset_button_{$class.id}" type="button" class="btn btn-default addSetButton pull-right">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Set
+						</button>
+				
+
+						<button id="set_button_{$class.id}" type="button" class="btn btn-default pull-left setButton setButton_{$class.id}" style="margin-bottom:20px">
+							<span id="set_glyph_{$class.id}" class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> <span id="set_text_{$class.id}">Show Sets</span>
+						</button>
+						<button id="set_button_{$class.id}" type="button" class="btn btn-default pull-left setButton setButton_{$class.id}" style="display:none;margin-bottom:20px">
+							<span id="set_glyph_{$class.id}" class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> <span id="set_text_{$class.id}">Hide Sets</span>
+						</button>
+
+						
+
+						{if count($class.sets)>0}
+						<table id="table_set_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered setsTable">
+							<tbody>
+							
+								{foreach from=$class.sets item=set}
+								<tr>
+									<td>{$set.setId}.{$set.name}</td>
+								</tr>
+								{/foreach}							
+							</tbody>
+						</table>
+						{else}
+						<table id="table_set_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered setsTable">
+							<tbody>
+													
+							</tbody>
+						</table>
+						{/if}
+
+
+
 					</div>
 				</div>
 			</div>

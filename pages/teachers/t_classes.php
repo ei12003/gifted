@@ -3,6 +3,7 @@
 	include_once('../../config/init.php');
 	include_once('../../database/classes.php');
 	include_once('../../database/members.php');
+	include_once('../../database/exercises.php');
 
 	if(isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['usertype'] == "teacher"){
 
@@ -15,11 +16,12 @@
 			$students=getStudentsFromClass($row['id']);
 			$score_total = getClassTotalScore($row['id']);
 			$size=count($students);
-			$class = array("name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students);
+			$exercises = getSetsIDFromClass($row['id']);
+			$class = array("name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students,"sets" => $exercises);
 			$classes[] = $class;
 		}
 
-		//  print_r($classes);
+		//  print_r($exercises);
 		$smarty->assign("CLASSES",$classes);
 
 
