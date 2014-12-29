@@ -37,6 +37,45 @@ $('.select2-container').remove();
 	loadSets();
 
 	
+	$(".setsTable tbody>tr").unbind("click").click( function() {
+		var set_row = $('td', this).html();
+		var setID = set_row.substring(0,set_row.lastIndexOf("."));
+		var setName = set_row.substring(set_row.lastIndexOf(".")+1);
+
+		var id = $(this).parent().parent().attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+
+		$row = $(this);
+
+		
+		bootbox.dialog({
+			message: setID + ". " + setName,
+			backdrop: false,
+			buttons: {
+				cancel: {
+					label: "Cancel",
+					className: "btn-default"
+				},
+				exercise: {
+					label: "View",
+					className: "btn-default",
+					callback: function() {
+						window.location.href = "./t_exercises.php#"+ setID;	
+					}
+				},
+				remove: {
+					label: "Remove",
+					className: "btn-danger",
+					callback: function() {
+						removeSetFromClass(classID,setID,$row);
+					}
+				}
+			}
+		});
+
+		
+	});
+
 
 	$(".studentTable tbody>tr").unbind("click").click( function() {
 		
@@ -233,6 +272,18 @@ function loadUsers() {
 	
 }
 
+function removeSetFromClass(classID,setID,row){
+	$.get( "../../api/removeSetFromClass.php", { classid: classID, setid: setID} , function( data ) {
+		if (data == true) {
+			row.remove();
+			bootbox.alert("Success.");
+		} else {
+			bootbox.alert("Unable to remove this set.");
+		}
+	});
+
+}
+
 function kickStudent(classID, studentID, row) {
 
 	$.get( "../../api/removeStudent.php", { classid: classID, userid: studentID} , function( data ) {
@@ -265,6 +316,7 @@ function addSet(classID, setID) {
 			if (data_array[0] == true) {
 				var table = $("#table_set_" + classID);
 				table.append("<tr><td>"+setID+"."+data_array[1]+"</td></tr>");
+				jquery_events();
 				bootbox.alert('Success.');
 
 			}

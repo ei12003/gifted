@@ -160,4 +160,15 @@ function addSetToClass($setid,$classid){
 	return $result; 
 }
 
+
+function removeSetFromClass($setid,$classid){//US23
+	global $conn;
+	$query = "DELETE FROM ClassExerciseSet WHERE classId=? AND setId = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($classid,$setid));
+    $result = $stmt->rowCount();    
+	return $result;
+}
+
+
 ?>
