@@ -32,11 +32,11 @@ $(document).ready(function () {
 function jquery_events() {
 
 
-
+$('.select2-container').remove();
 	loadUsers();
 	loadSets();
 
-	$('.select2-container').remove();
+	
 
 	$(".studentTable tbody>tr").unbind("click").click( function() {
 		
