@@ -13,7 +13,8 @@
 		$row = addSetToClass($_GET['setid'],$_GET['classid']);
 		
 		if ($row == 1) {
-			echo json_encode(array(true, "Sucess."));
+			$name = getSetName($_GET['setid']);
+			echo json_encode(array(true, $name));
 		} else {
 			echo json_encode(array(false, "Fail."));
 		}

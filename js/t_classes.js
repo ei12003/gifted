@@ -1,12 +1,13 @@
 $(document).ready(function () {
 
-	loadUsers();
-	loadSets();
+
 
 	jquery_events();
-
-
-
+	
+	
+	
+	
+	
 
 
 	$("#createClass").click(function() {
@@ -20,7 +21,24 @@ $(document).ready(function () {
 		});
 	});
 	
-	$(".studentTable tbody>tr").click( function() {
+
+	
+	
+	
+	
+	
+});
+
+function jquery_events() {
+
+
+
+	loadUsers();
+	loadSets();
+
+	$('.select2-container').remove();
+
+	$(".studentTable tbody>tr").unbind("click").click( function() {
 		
 		var studentID = $(':nth-child(1)', this).html();
 		var studentName = $(':nth-child(2)', this).html();
@@ -98,16 +116,9 @@ $(document).ready(function () {
 			}
 		});
 	});
-	
-	
-	
-	
-	
-});
 
-function jquery_events() {
 
-	$(".setButton").click(function() {
+	$(".setButton").unbind('click').click(function() {
 		var id = $(this).attr('id');
 		var classID = id.substring(id.lastIndexOf("_")+1);
 		$(".setButton_"+classID).toggle();
@@ -117,7 +128,7 @@ function jquery_events() {
 	});
 
 
-	$(".addSetButton").click(function() {
+	$(".addSetButton").unbind('click').click(function() {
 	
 		var id = $(this).attr('id');
 		var classID = id.substring(id.lastIndexOf("_")+1);
@@ -134,7 +145,7 @@ function jquery_events() {
 	});
 
 
-	$(".addStudentButton").click(function() {
+	$(".addStudentButton").unbind('click').click(function() {
 	
 		var id = $(this).attr('id');
 		var classID = id.substring(id.lastIndexOf("_")+1);
@@ -148,7 +159,7 @@ function jquery_events() {
 		}
 	});
 	
-	$(".rmvClassButton").click(function() {
+	$(".rmvClassButton").unbind('click').click(function() {
 		var id = $(this).attr('id');
 		var classID = id.substring(id.lastIndexOf("_")+1);
 		
@@ -181,17 +192,19 @@ function loadSets() {
 		}
 		//$(".searchSets").empty();
 		var json = jQuery.parseJSON( data );
+
 		for (i=0; i < json.length; i++) {
 			var arr = json[i];
 			var val = arr["id"];
 			var txt = arr["id"] + ". " + arr["name"];
 			
-			$(".searchSets").append($('<option></option>').val(val).html(txt));
+		$(".searchSets").append($('<option></option>').val(val).html(txt));
 		}
 		
 		
-		$('.select2').select2();
+		$('.select2Sets').select2();
 	});
+
 	
 }
 
@@ -216,6 +229,7 @@ function loadUsers() {
 		
 		$('.select2').select2();
 	});
+
 	
 }
 
@@ -223,8 +237,15 @@ function kickStudent(classID, studentID, row) {
 
 	$.get( "../../api/removeStudent.php", { classid: classID, userid: studentID} , function( data ) {
 		if (data == true) {
+			points_deducted = parseInt(row.find('#score_'+classID+'_'+studentID).html());
 			row.remove();
 			
+			$row = $("#classscore_" + classID);
+			$num = parseInt($row.html()) - parseInt(points_deducted);
+			$row.html($num);
+
+
+
 			var classCount = parseInt($("#classCount_" + classID).html());
 			$("#classCount_" + classID).html(classCount-1);
 			
@@ -239,8 +260,17 @@ function kickStudent(classID, studentID, row) {
 function addSet(classID, setID) {
 	$.get( "../../api/addSetToClass.php", { classid: classID, setid: setID} , function( data ) {
 		var data_array = jQuery.parseJSON( data );
-		
-			bootbox.alert(data_array[1]);
+			
+			
+			if (data_array[0] == true) {
+				var table = $("#table_set_" + classID);
+				table.append("<tr><td>"+setID+"."+data_array[1]+"</td></tr>");
+				bootbox.alert('Success.');
+
+			}
+			else
+				bootbox.alert(data_array[1]);
+			
 		
 	});
 }
@@ -253,12 +283,12 @@ function addStudent(classID, studentID) {
 		if (data_array[0] == true) {
 		
 			var table = $("#table_" + classID);
-			table.append("<tr><td>"+studentID+"</td><td>"+data_array[1]+"</td><td>0</td></tr>");
+			table.append("<tr><td>"+studentID+"</td><td>"+data_array[1]+"</td><td id='score_"+classID+"_"+studentID+"'>0</td></tr>");
 			
 			var classCount = parseInt($("#classCount_" + classID).html());
 			
 			$("#classCount_" + classID).html(classCount+1);
-			
+			jquery_events();
 			
 		} else {
 			bootbox.alert(data_array[1]);
@@ -274,7 +304,8 @@ function addPoints(pts,studentID,classID){
 		if (data_array[0] == true) {
 		
 			bootbox.alert(data_array[1]);
-			var $row = $("#score_" + classID + "_" + studentID);	
+			var $row = $("#score_" + classID + "_" + studentID);
+			
 			var $num = parseInt($row.html()) + parseInt(pts);
 			$row.html($num);
 
@@ -311,9 +342,14 @@ function createClass(className) {
 		if (data_array[0] == true) {
 		
 			var classID = data_array[1];
-			$("#classPanelGroup").append("<div id='"+classID+"' class='panel panel-default'>				<div class='panel-heading'>					<h4 class='panel-title'>						<span style='padding:10px;pointer-events: none;' class='pull-right'><i style='font-size:80%;'>Score:</i> 0</span>						<a  data-toggle='collapse' href='#content_"+classID+"'>"+classID+". "+className+"<i style='font-size:80%;'><br><span id='classCount_"+classID+"'>0</span> Student(s)</i> </a>					</h4>				</div>				<div id='content_"+classID+"' class='panel-collapse collapse'>					<div class='panel-body'>									<input id= 'searchStudents_"+classID+"' class='searchStudents' type='text' list='userList' style='height:33px;color:black;padding-left:10px;'>								<button id='add_button_"+classID+"' type='button' class='btn btn-default addStudentButton'>							<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add Student						</button>												<button id='rmv_button_"+classID+"' type='button' class='btn btn-danger pull-right rmvClassButton'>							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete Class						</button>												<br><br>											<table id='table_"+classID+"' class='table table-striped table-condensed table-bordered studentTable'>							<thead>								<tr>									<th>#</th>									<th>Name</th>									<th>Score</th>								</tr>							</thead>							<tbody> 							</tbody>						</table>											</div>				</div>			</div>");
-		
+			
+			//WITH SETS
+			$("#classPanelGroup").append("<div id='"+classID+"' class='panel panel-default'>				<div class='panel-heading'>					<h4 class='panel-title'>						<span style='padding:10px;pointer-events: none;' class='pull-right'><i style='font-size:80%;'>Score:</i> <span id='classscore_"+classID+"'>0</span></span>						<a  data-toggle='collapse' href='#content_"+classID+"'>"+classID+". "+className+"<i style='font-size:80%;'><br><span id='classCount_"+classID+"'>0</span> Student(s)</i> </a>					</h4>				</div>				<div id='content_"+classID+"' class='panel-collapse collapse'>					<div class='panel-body'>									<select id= 'searchStudents_"+classID+"' class='select2 searchStudents' style='width:250px'>							<option value=''></option><!-- 							<option value='18'>18. Richard Riley</option>							<option value='19'>19. Jason Coleman</option>							<option value='20'>20. Kathryn Frazier</option>							<option value='21'>21. Arthur Lewis</option>							<option value='23'>23. Sandra Perez</option> -->						</select>							<button id='add_button_"+classID+"' type='button' class='btn btn-default addStudentButton'>							<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add Student						</button>												<button id='rmv_button_"+classID+"' type='button' class='btn btn-danger pull-right rmvClassButton'>							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete Class						</button>												<br><br>											<table id='table_"+classID+"' class='table table-striped table-condensed table-bordered studentTable'>							<thead>								<tr>									<th>#</th>									<th>Name</th>									<th>Score</th>								</tr>							</thead>							<tbody> 							</tbody>						</table>					<select id= 'searchSets_"+classID+"' class='select2Sets searchSets pull-right' style='width:250px'>							<option value=''></option><!-- 							<option value='18'>18. Richard Riley</option>							<option value='19'>19. Jason Coleman</option>							<option value='20'>20. Kathryn Frazier</option>							<option value='21'>21. Arthur Lewis</option>							<option value='23'>23. Sandra Perez</option> -->						</select>						<button id='addset_button_"+classID+"' type='button' class='btn btn-default addSetButton pull-right'>							<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add Set						</button>										<button id='set_button_"+classID+"' type='button' class='btn btn-default pull-left setButton setButton_"+classID+"' style='margin-bottom:20px'>							<span id='set_glyph_"+classID+"' class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <span id='set_text_"+classID+"'>Show Sets</span>						</button>						<button id='set_button_"+classID+"' type='button' class='btn btn-default pull-left setButton setButton_"+classID+"' style='display:none;margin-bottom:20px'>							<span id='set_glyph_"+classID+"' class='glyphicon glyphicon-zoom-out' aria-hidden='true'></span> <span id='set_text_"+classID+"'>Hide Sets</span>						</button>						<table id='table_set_"+classID+"' style='display:none;' class='table table-striped table-condensed table-bordered setsTable'>							<tbody>																				</tbody>						</table>						</div>				</div>			</div>");
+			
+			//WITHOUT SETS
+			//$("#classPanelGroup").append("<div id='"+classID+"' class='panel panel-default'>				<div class='panel-heading'>					<h4 class='panel-title'>						<span style='padding:10px;pointer-events: none;' class='pull-right'><i style='font-size:80%;'>Score:</i> 0</span>						<a  data-toggle='collapse' href='#content_"+classID+"'>"+classID+". "+className+"<i style='font-size:80%;'><br><span id='classCount_"+classID+"'>0</span> Student(s)</i> </a>					</h4>				</div>				<div id='content_"+classID+"' class='panel-collapse collapse'>					<div class='panel-body'>									<input id= 'searchStudents_"+classID+"' class='searchStudents' type='text' list='userList' style='height:33px;color:black;padding-left:10px;'>								<button id='add_button_"+classID+"' type='button' class='btn btn-default addStudentButton'>							<span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Add Student						</button>												<button id='rmv_button_"+classID+"' type='button' class='btn btn-danger pull-right rmvClassButton'>							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete Class						</button>												<br><br>											<table id='table_"+classID+"' class='table table-striped table-condensed table-bordered studentTable'>							<thead>								<tr>									<th>#</th>									<th>Name</th>									<th>Score</th>								</tr>							</thead>							<tbody> 							</tbody>						</table>											</div>				</div>			</div>");
 			jquery_events(); //Needed to update new JQUERY NODES
+
 		
 		} else {
 			bootbox.alert("Unable to create class.");

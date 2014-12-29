@@ -65,7 +65,7 @@
 						
 						
 						
-						<select id= "searchSets_{$class.id}" class="select2 searchSets pull-right" style="width:250px">
+						<select id= "searchSets_{$class.id}" class="select2Sets searchSets pull-right" style="width:250px">
 							<option value=""></option>
 <!-- 							<option value="18">18. Richard Riley</option>
 							<option value="19">19. Jason Coleman</option>
