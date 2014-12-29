@@ -56,6 +56,7 @@ $(document).ready(function () {
 		} else if (atleastOneChecked() == null) {
 			bootbox.alert("You must check one option as the correct answer.");
 		} else {
+
 			createExercise(
 				$current_set,
 				$("#question").val(),
@@ -85,7 +86,7 @@ function atleastOneChecked() {
 }
 
 function jquery_events() {
-	$(".addExerciseButton, .editExerciseButton").click(function() {
+	$(".addExerciseButton, .editExerciseButton").unbind("click").click(function() {
 	
 		var id = $(this).attr('id');
 		var setID = id.substring(id.lastIndexOf("_")+1);
@@ -94,7 +95,7 @@ function jquery_events() {
 	});
 	
 	
-	$(".rmvSetButton").click(function() {
+	$(".rmvSetButton").unbind("click").click(function() {
 		var id = $(this).attr('id');
 		var setID = id.substring(id.lastIndexOf("_")+1);
 		
@@ -116,7 +117,7 @@ function jquery_events() {
 		});
 	});
 	
-	$(".deleteExerciseButton").click(function() {
+	$(".deleteExerciseButton").unbind("click").click(function() {
 		var id = $(this).attr('id');
 		var exID = id.substring(id.lastIndexOf("_")+1);
 
@@ -221,7 +222,7 @@ function createSet(setName) {
 		
 			var setID = data_array[1];
 			
-			$("#setPanelGroup").append("<div id='"+setID+"' class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a  data-toggle='collapse' href='#content_"+setID+"'>"+setID+". "+setName+"<i style='font-size:80%;'><br><span id='setCount"+setID+"'>0</span> Exercise(s)</i></a></h4></div><div id='content_"+setID+"' class='panel-collapse collapse'><div class='panel-body'><button id='add_button_"+setID+"' type='button' class='btn btn-default addExerciseButton'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Create Exercise</button><button id='rmv_button_"+setID+"' type='button' class='btn btn-danger pull-right rmvSetButton'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete Set</button><br><br></div></div></div>");
+			$("#setPanelGroup").append("<div id='"+setID+"' class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a  data-toggle='collapse' href='#content_"+setID+"'>"+setID+". "+setName+"<i style='font-size:80%;'><br><span id='setCount"+setID+"'>0</span> Exercise(s)</i></a></h4></div><div id='content_"+setID+"' class='panel-collapse collapse'><div class='panel-body'><button id='add_button_"+setID+"' type='button' class='btn btn-default addExerciseButton' data-toggle='modal' data-target='#createEx'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Create Exercise</button><button id='rmv_button_"+setID+"' type='button' class='btn btn-danger pull-right rmvSetButton'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete Set</button><br><br><div id='exercisePanelGroup"+setID+"' class='panel-group'></div></div></div></div>");
 			
 			jquery_events();
 		
