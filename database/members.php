@@ -38,6 +38,14 @@ function getUserEvents($user_id){
 	return $result;
 }
 
+function getUserPoints($userid){
+	global $conn;
+	$stmt = $conn->prepare('SELECT points FROM Members WHERE id = ?');
+    $stmt->execute(array($userid));
+    $result = $stmt->fetch();    
+	return $result['points'];
+}
+
 function getUserWithPass($username,$password){
 	global $conn;
 	$stmt = $conn->prepare('SELECT usertype,id,points FROM Members WHERE username = ? AND password = ?');
@@ -88,6 +96,8 @@ function deleteUser($userid){
 	return $result;
 
 }
+
+
 
 function getStudents() {
 

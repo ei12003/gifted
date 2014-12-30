@@ -72,10 +72,20 @@
 	        <!-- IF ANSWERED -->
           	{else}
 	            {foreach from=$SET.exercises item=ex}
+		            {foreach from=$STUDENT_ANSWERS item=answer}
+		                    	{if $answer.exerciseId == $ex.id}
+		                    		{assign var="useropt" value = $answer.optionId}
+		                    		{if $answer.optionId == $ex.correct}
+		                    		{assign var="check" value = 1}
+		                    		{else}
+		                    		{assign var="check" value = 0}
+		                    		{/if}
+		                    	{/if}
+		               {/foreach}
 	            <div id="ex{$ex.id}" class="panel panel-default">
 	              <div class="panel-heading">
 	                <h4 class="panel-title">
-	                  <a data-toggle="collapse" href="#ex_content_{$ex.id}">
+	                  <a data-toggle="collapse"{if $check==0} style="background-color:#CD5555;"{else}style="background-color:#AADD00;"{/if}href="#ex_content_{$ex.id}">
 	                    {$ex.name}
 	                  </a>
 	                </h4>
@@ -90,6 +100,10 @@
 	                    {$c}.  {$opt.description}
 
 	                    <span>
+						
+						{if $opt.optid == $useropt} 
+						<span class="glyphicon glyphicon-user"></span>
+						{/if}
 	                      {if $opt.optid == $ex.correct} 
 	                      <span class="glyphicon glyphicon-ok">
 	                      </span>

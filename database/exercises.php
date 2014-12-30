@@ -202,6 +202,17 @@ function addMemberAnswer($setid,$classid,$userid,$count_points){
 
 }
 
+function hasStudentAnsweredSet($setid){
+	global $conn;
+	$query = "SELECT * FROM MemberAnswers WHERE	setId = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($setid));						
+    $result = $stmt->fetchAll();
+    if(count($result)>0)
+    	return 1;
+    else return 0;
+}
+
 function getMemberAnswer($setid,$classid,$userid){
 	global $conn;
 	$query = "SELECT * FROM MemberAnswers WHERE
@@ -213,6 +224,17 @@ function getMemberAnswer($setid,$classid,$userid){
     $result = $stmt->fetchAll();
     return $result;
 }
+
+function getAllStudentAnswers($ma){
+	global $conn;
+	$query = "SELECT exerciseId, optionId FROM MemberAnswersOptions WHERE
+								maId=?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($ma));						
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
 
 function getExPoints($exeid) {
 	global $conn;
@@ -230,6 +252,25 @@ function isOptionFromExercise($exeid,$optid){
     $stmt->execute(array($exeid,$optid));
     $result = $stmt->fetchAll();    
 	return count($result);
+}
+
+
+function addPointsToStudent($amount,$userid,$classid){
+
+	global $conn;
+	$query = "UPDATE ClassMember SET score = (SELECT score FROM ClassMember WHERE classid = ? AND memberId = ?)+? WHERE classid = ? AND memberId = ?";
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($classid,$userid,$amount,$classid,$userid));
+    $result = $stmt->rowCount();    
+    $aux = $result;
+
+    $query = "UPDATE Members SET points = (SELECT points FROM Members WHERE id = ?)+? WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($userid,$amount,$userid));
+    $result = $stmt->rowCount();    
+
+    $aux += $result;
+	return $aux;
 }
 
 

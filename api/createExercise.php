@@ -16,44 +16,48 @@
   	/*http://localhost/gifted/api/createSet.php?question=question1&op1=option1&op2=option2&op3=option3&op4=option4&correct=op2&setid=52
 
   	*/
+  	if(hasStudentAnsweredSet($_GET['setid'])==1)
+  		echo json_encode(array(false, "You can't add more exercises because a student has already answered this set."));
 
-	$exeid = createExercise($_GET['question']);	
-
-	if($exeid<1)
-		//header('HTTP/1.1 404');
-		echo json_encode(array(false, "Error creating exercise."));
 	else{
-		//header('HTTP/1.1 200');
-		//question / op1 / op2 / op3 / op4 / correct / setid
+		$exeid = createExercise($_GET['question']);	
 
-		$ops = array();	
+		if($exeid<1)
+			//header('HTTP/1.1 404');
+			echo json_encode(array(false, "Error creating exercise."));
+		else{
+			//header('HTTP/1.1 200');
+			//question / op1 / op2 / op3 / op4 / correct / setid
 
-		for($i=1;$i<5;$i++){
-			$op = createOption($exeid,$_GET['op'.$i]);
-			if($op<1){
-				$error = "Error creating option ".$id;
-				break;
+			$ops = array();	
+
+			for($i=1;$i<5;$i++){
+				$op = createOption($exeid,$_GET['op'.$i]);
+				if($op<1){
+					$error = "Error creating option ".$id;
+					break;
+				}
+				$ops['op'.$i] = $op;
 			}
-			$ops['op'.$i] = $op;
+
+			$row = setRightAnswer($exeid,$ops[$_GET['correct']]);
+
+			if( $row < 1 )
+				$error = "Error setting right answer.";
+
+			$row = addExerciseToSet($exeid,$_GET['setid']);
+
+			if($row<1)
+				$error = "Error setting right answer.";
+			
+
+			if(strlen($error)>0)
+				echo json_encode(array(false, $error));		
+			else
+				echo json_encode(array(true, $exeid));	
 		}
-
-		$row = setRightAnswer($exeid,$ops[$_GET['correct']]);
-
-		if( $row < 1 )
-			$error = "Error setting right answer.";
-
-		$row = addExerciseToSet($exeid,$_GET['setid']);
-
-		if($row<1)
-			$error = "Error setting right answer.";
-		
-
-		if(strlen($error)>0)
-			echo json_encode(array(false, $error));		
-		else
-			echo json_encode(array(true, $exeid));	
 	}
-
+	
   }
   else
 	//header('HTTP/1.1 404');

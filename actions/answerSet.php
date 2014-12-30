@@ -1,6 +1,6 @@
 <?php
   include_once('../config/init.php');
-  
+  include_once('../database/members.php');
   include_once('../database/exercises.php');
 
 if(isset($_SESSION['username']) 
@@ -53,8 +53,13 @@ $row =1;
   echo '<br>';
   print_r($corrects);
   echo '<br>'.$count_points.'<br>';
-//ADDPOINTS TO USER
+
+
+  addPointsToStudent($count_points,$_SESSION['userid'],$classid);
+
   $id = addMemberAnswer($setid,$classid,$_SESSION['userid'],$count_points);
+  $_SESSION['userpoints'] = getUserPoints($_SESSION['userid']);
+
   foreach($answers as $answer)
     addMemberAnswersOption($id,$answer['exeid'],$answer['optid']);
   if (!empty($_SERVER['HTTP_REFERER']))

@@ -6,6 +6,7 @@
 	include_once('../../database/exercises.php');
 
 	if(isset($_SESSION['username'])
+		&& $_SESSION['usertype'] == "student"
 		&& isset($_GET['classid'])
 		&& isset($_GET['setid'])){
 	   	
@@ -39,8 +40,11 @@
 			if(count($answer) == 0)// User still hasn't answered this set of exercises.
 				$smarty->assign("ANSWERED","false");			
 			else{
+				
 				$smarty->assign("ANSWERED","true");
-				echo $answer[0]['memberId'];			
+				
+				$answers = getAllStudentAnswers($answer[0]['id']);
+				$smarty->assign("STUDENT_ANSWERS",$answers);
 			}
 
 			$smarty->assign("CLASSID",$_GET['classid']);			
