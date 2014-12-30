@@ -34,7 +34,18 @@ input.trigger:checked + .spoiler {
 </style>
 <?php
 
-echo "<h3>Search</h3>";
+echo "<h3>EXERCISES STD<h3>";
+$result = getMemberAnswer(1,1,2);
+print_r($result);
+echo '<br>';
+echo count($result);
+echo '<br>';
+$result = getMemberAnswer(1,1,1);
+print_r($result);
+echo '<br>';
+echo count($result);
+
+echo "<br><br><h3>Search</h3>";
 
 	$search_query="Be";
        $query = searchUser($search_query);

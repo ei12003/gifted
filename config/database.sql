@@ -8,6 +8,7 @@ DROP TABLE ClassExerciseSet;
 DROP TABLE MemberInventory;
 DROP TABLE Itens;
 DROP TABLE MemberEvents;
+DROP TABLE MemberAnswers;
 
 CREATE TABLE Members(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,6 +37,7 @@ UNIQUE (memberId, classId)
 
 CREATE TABLE Exercises(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
+points INTEGER default 50,
 name VARCHAR
 );
 
@@ -55,7 +57,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 name VARCHAR DEFAULT 'Untitled', 
 -- CHANGE DEFAULT
 teacher_id INTEGER REFERENCES Members(id),
-itenID INTEGER REFERENCES Itens(id) 
+itenID INTEGER REFERENCES Itens(id)
 );
 
 CREATE TABLE ExerciseSet(
@@ -99,11 +101,27 @@ CREATE TABLE AvatarUser(
   UNIQUE (memberId, avatarId)
 );
 
+CREATE TABLE MemberAnswers(/*ACRESCENTAR AO TRIGGER*/
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  memberId INTEGER REFERENCES Members(id),
+  classId INTEGER REFERENCES Classes(id),
+  setId INTEGER REFERENCES Sets(id),
+  points INTEGER,
+  UNIQUE (memberId, classId, setId)
+);
+
+CREATE TABLE MemberAnswersOptions(/*ACRESCENTAR AO TRIGGER*/
+  maId INTEGER REFERENCES MemberAnswers(id),
+  exerciseId INTEGER REFERENCES Exercises(id),
+  optionId INTEGER REFERENCES ExerciseOptions(id)
+);
+
 
 CREATE TRIGGER on_class_delete BEFORE DELETE ON Classes BEGIN
   DELETE FROM ClassMember WHERE classId = old.id;
   DELETE FROM ClassExerciseSet WHERE classId = old.id;
   DELETE FROM MemberEvents WHERE classId = old.id;
+  DELETE FROM MemberAnswers WHERE classId = old.id;
 END;
 
 CREATE TRIGGER on_member_delete BEFORE DELETE ON Members BEGIN
@@ -127,9 +145,6 @@ CREATE TRIGGER on_exercise_delete BEFORE DELETE ON Exercises BEGIN
   DELETE FROM ExerciseOptions WHERE exerciseId = old.id;
   DELETE FROM ExerciseSet WHERE exerciseId = old.id;
 END;
-
-
-
 
 insert into Classes (id, name) values (1, 'História');
 insert into Classes (id, name) values (2, 'Matemática');

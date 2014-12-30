@@ -39,6 +39,15 @@ function getSetsClassTeach($setid,$classid,$userid) {
 	return $result;
 }
 
+function isSetFromClass($classid,$setid){
+
+	global $conn;
+	$stmt = $conn->prepare('SELECT * from ClassExerciseSet where  classId = ? AND  setId = ?');
+    $stmt->execute(array($classid,$setid));
+    $result = $stmt->fetchAll();    
+	return count($result);
+}
+
 function getSetsIDFromClass($classid) {
 	global $conn;
 	$stmt = $conn->prepare('SELECT ClassExerciseSet.setId, Sets.name, ClassExerciseSet.classId from ClassExerciseSet INNER JOIN Sets ON Sets.id=ClassExerciseSet.setId where ClassExerciseSet.classId = ?');
@@ -168,6 +177,59 @@ function removeSetFromClass($setid,$classid){//US23
     $stmt->execute(array($classid,$setid));
     $result = $stmt->rowCount();    
 	return $result;
+}
+
+
+function addMemberAnswersOption($maid,$exeid,$optid){
+	global $conn;
+	$query = "INSERT INTO MemberAnswersOptions (maId,exerciseId,optionId)
+					VALUES (?,?,?)";
+    $stmt = $conn->prepare($query);
+	$stmt->execute(array($maid,$exeid,$optid));
+    $result = $stmt->rowCount();
+    return $result;
+}
+
+
+function addMemberAnswer($setid,$classid,$userid,$count_points){
+	global $conn;
+	$query = "INSERT INTO MemberAnswers (setid,classid,memberid,points)
+					VALUES (?,?,?,?)";
+    $stmt = $conn->prepare($query);
+	$stmt->execute(array($setid,$classid,$userid,$count_points));
+    $result = $conn->lastInsertId();
+    return $result;
+
+}
+
+function getMemberAnswer($setid,$classid,$userid){
+	global $conn;
+	$query = "SELECT * FROM MemberAnswers WHERE
+								setId=? AND
+								classId=? AND
+								memberId=?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($setid,$classid,$userid));						
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+function getExPoints($exeid) {
+	global $conn;
+	$stmt = $conn->prepare(
+		'SELECT points from Exercises where id = ?');
+    $stmt->execute(array($exeid));
+    $result = $stmt->fetch();   
+	return $result['points'];
+}
+
+function isOptionFromExercise($exeid,$optid){
+
+	global $conn;
+	$stmt = $conn->prepare('SELECT * from ExerciseOptions where  exerciseId = ? AND  id = ?');
+    $stmt->execute(array($exeid,$optid));
+    $result = $stmt->fetchAll();    
+	return count($result);
 }
 
 

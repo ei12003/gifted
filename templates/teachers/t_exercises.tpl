@@ -16,14 +16,6 @@
 				<div id="content_{$set.id}" class="panel-collapse collapse">
 					<div class="panel-body">
 					
-					<button id="add_button_{$set.id}" type="button" class="btn btn-default addExerciseButton" data-toggle="modal" data-target="#createEx">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Exercise
-					</button>
-					
-					<button id="rmv_button_{$set.id}" type="button" class="btn btn-danger pull-right rmvSetButton">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Set
-					</button>
-					
 					<br><br>
 					
 					<div id="exercisePanelGroup{$set.id}" class="panel-group">

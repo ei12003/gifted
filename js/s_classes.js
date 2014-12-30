@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
 
-
 	$(".studentTable tbody>tr").click( function() {
 		
 		var studentID = $(':nth-child(1)', this).html();
@@ -52,6 +51,28 @@ $(document).ready(function () {
 				}
 			}
 		});
+	});
+
+
+	$(".setsTable tbody>tr").unbind("click").click( function() {
+		var set_row = $('td', this).html();
+		var setID = set_row.substring(0,set_row.lastIndexOf("."));
+		var setName = set_row.substring(set_row.lastIndexOf(".")+1);
+
+		var id = $(this).parent().parent().attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		window.location = "./s_exercise.php?setid="+setID+"&classid="+classID;
+	});
+
+
+
+	$(".setButton").unbind('click').click(function() {
+		var id = $(this).attr('id');
+		var classID = id.substring(id.lastIndexOf("_")+1);
+		$(".setButton_"+classID).toggle();
+		$("#table_set_"+classID).toggle();
+		
+
 	});
 
 

@@ -52,6 +52,14 @@
 						<button id="ev_button_{$class.id}" type="button" class="btn btn-default pull-left evButton evButton_{$class.id}" style="display:none;margin-bottom:20px">
 							<span id="ev_glyph_{$class.id}" class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> <span id="ev_text_{$class.id}">Hide Events</span>
 						</button>
+
+					<button id="set_button_{$class.id}" type="button" class="btn btn-default pull-left setButton setButton_{$class.id}" style="margin-bottom:20px;margin-left:5em">
+							<span id="set_glyph_{$class.id}" class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> <span id="set_text_{$class.id}">Show Sets</span>
+						</button>
+						<button id="set_button_{$class.id}" type="button" class="btn btn-default pull-left setButton setButton_{$class.id}" style="display:none;margin-bottom:20px;margin-left:5em">
+							<span id="set_glyph_{$class.id}" class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> <span id="set_text_{$class.id}">Hide Sets</span>
+						</button>
+
 						<style>
 							html, body { overflow-x: hidden; width: 100%; }
 							table.eventsTable tbody { height:300px;overflow-y:scroll ;  display:block; }
@@ -70,6 +78,30 @@
 					
 					
 						</table>
+
+						
+
+												{if count($class.sets)>0}
+						<table id="table_set_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered setsTable">
+							<tbody>
+							
+								{foreach from=$class.sets item=set}
+								<tr>
+									<td>{$set.setId}.{$set.name}</td>
+								</tr>
+								{/foreach}							
+							</tbody>
+						</table>
+						{else}
+						<table id="table_set_{$class.id}" style="display:none;" class="table table-striped table-condensed table-bordered setsTable">
+							<tbody>
+													
+							</tbody>
+						</table>
+						{/if}
+
+
+						<!-- -->
 					</div>
 					
 				</div>

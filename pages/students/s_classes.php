@@ -3,6 +3,7 @@
 	include_once('../../config/init.php');
 	include_once('../../database/classes.php');
 	include_once('../../database/members.php');
+	include_once('../../database/exercises.php');
 
 	if(isset($_SESSION['username'])){
 	   
@@ -17,7 +18,8 @@
 			$score_total = getClassTotalScore($row['id']);
 			$size=count($students);
 			$class_events = getStudentsEventsClass($row['id']);
-			$class = array("name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[1], "classEvents"=>$class_events);
+			$exercises = getSetsIDFromClass($row['id']);
+			$class = array("sets"=>$exercises, "name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[1], "classEvents"=>$class_events);
 			$classes[] = $class;
 		}
 
