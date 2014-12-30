@@ -48,6 +48,7 @@ function buyItem($userid,$itemid,$offer_userid) {
     	if($stmt->rowCount()<1)
 			return -1;
 		
+		$_SESSION['userpoints'] = $points_left;
 		return $points_left;
 	}
 }

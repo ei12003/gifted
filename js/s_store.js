@@ -53,7 +53,11 @@ $(document).ready(function () {
 	function buyItem(itemID){
 		$.get( "../../api/buyItem.php", { itemid: itemID} , function( data ) {
 			var data_array = jQuery.parseJSON( data );
-				bootbox.alert(data_array[1]);
+			bootbox.alert(data_array[1]);
+			if(data_array[0]==true){
+				$('.header_userpts').html(parseInt($('.header_userpts').html())-1);
+			}
+				
 		});
 	}
 
@@ -61,6 +65,9 @@ $(document).ready(function () {
 		$.get( "../../api/buyItem.php", { itemid: itemID, offer_username: studentUsername} , function( data ) {
 			var data_array = jQuery.parseJSON( data );
 				bootbox.alert(data_array[1]);
+				if(data_array[0]==true){
+					$('.header_userpts').html(parseInt($('.header_userpts').html())-1);
+				}
 		});
 	}
 

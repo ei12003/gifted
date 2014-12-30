@@ -10,7 +10,7 @@
 {/if}
 
 <li class="dropdown" >
-	<a class="dropdown-toggle" id="nav_login" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {$USERNAME}<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" id="nav_login" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {$USERNAME}{if $USERTYPE == 'student'} (<span class="header_userpts">{$USERPOINTS}</span> pts){/if}<strong class="caret"></strong></a>
 	<div class="dropdown-menu" >
 		<form action="{$BASE_URL}pages/profile.php">
 			<button class="btn btn-primary btn-block" id="logout">Edit Profile</button>

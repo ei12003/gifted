@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])){
 		}
 		else{
 			$_SESSION['usertype'] = $row['usertype'];
+			$_SESSION['userpoints'] = $row['points'];
 			$_SESSION['userid'] = $row['id'];
 			$_SESSION['username'] = $_POST['username'];
 		

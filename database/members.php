@@ -40,7 +40,7 @@ function getUserEvents($user_id){
 
 function getUserWithPass($username,$password){
 	global $conn;
-	$stmt = $conn->prepare('SELECT usertype,id FROM Members WHERE username = ? AND password = ?');
+	$stmt = $conn->prepare('SELECT usertype,id,points FROM Members WHERE username = ? AND password = ?');
     $stmt->execute(array($username,$password));
     $result = $stmt->fetch();    
 	return $result;

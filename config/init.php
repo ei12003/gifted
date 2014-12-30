@@ -21,6 +21,7 @@
 	$smarty->compile_dir = $BASE_DIR.$BASE_URL . 'templates_c/';
 	$smarty->assign('BASE_URL', $BASE_URL);
 	$smarty->assign('CURRENT_PAGE',$CURRENT_PAGE);
+
 if(isset($_SESSION['error_messages']))
 	$smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);  
 if(isset($_SESSION['field_errors']))
@@ -29,6 +30,11 @@ if(isset($_SESSION['success_messages']))
 	$smarty->assign('SUCCESS_MESSAGES', $_SESSION['success_messages']);
 if(isset($_SESSION['form_values']))
 	$smarty->assign('FORM_VALUES', $_SESSION['form_values']);
+
+
+
+if(isset($_SESSION['userpoints']))
+	$smarty->assign('USERPOINTS',$_SESSION['userpoints']);
 
 if(isset($_SESSION['username']))
 	$smarty->assign('USERNAME', $_SESSION['username']);
