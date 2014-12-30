@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	var max = parseInt($(".pag_data").attr("max"));
+
 	$(".pag_btn").click(function() {
 		var page = parseInt($(this).attr("id"));
 		var current = parseInt($(".pag_data").attr("current"));
@@ -22,8 +23,8 @@ $(document).ready(function () {
 
 	$(".buy-item").click(function() {
 		var itemID = $(this).attr("id");
-
-
+		var amount = parseInt($(this).parent().prev().html());
+	
 	bootbox.dialog({
 			message: $(this).html(),
 			backdrop: false,
@@ -32,7 +33,7 @@ $(document).ready(function () {
 					label: "Buy",
 					className: "btn-default",
 					callback: function() {
-						buyItem(itemID);
+						buyItem(itemID,amount);
 					}
 				},
 				offer: {
@@ -41,7 +42,7 @@ $(document).ready(function () {
 					callback: function() {
 						bootbox.prompt("Choose username", function(result) {
 							if (result != null) {
-								offerItemUsername(itemID,result)
+								offerItemUsername(itemID,result,amount);
 							}
 						}); 
 					}
@@ -50,23 +51,23 @@ $(document).ready(function () {
 		});
 	});
 
-	function buyItem(itemID){
+	function buyItem(itemID,amount){
 		$.get( "../../api/buyItem.php", { itemid: itemID} , function( data ) {
 			var data_array = jQuery.parseJSON( data );
 			bootbox.alert(data_array[1]);
 			if(data_array[0]==true){
-				$('.header_userpts').html(parseInt($('.header_userpts').html())-1);
+				$('.header_userpts').html(parseInt($('.header_userpts').html())-amount);
 			}
 				
 		});
 	}
 
-	function offerItemUsername(itemID,studentUsername){
+	function offerItemUsername(itemID,studentUsername,amount){
 		$.get( "../../api/buyItem.php", { itemid: itemID, offer_username: studentUsername} , function( data ) {
 			var data_array = jQuery.parseJSON( data );
 				bootbox.alert(data_array[1]);
 				if(data_array[0]==true){
-					$('.header_userpts').html(parseInt($('.header_userpts').html())-1);
+					$('.header_userpts').html(parseInt($('.header_userpts').html())-amount);
 				}
 		});
 	}
