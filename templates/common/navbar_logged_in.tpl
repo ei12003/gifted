@@ -25,7 +25,7 @@
 	(<span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> Level 2, <span class="header_userpts">{$USERPOINTS}</span> pts)
 	{else if $USERPOINTS >= 80 AND $USERPOINTS < 100}
 	(<span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> Level 3, <span class="header_userpts">{$USERPOINTS}</span> pts)
-	{else if $USERPOINTS >= 150 AND $USERPOINTS < 200}
+	{else if $USERPOINTS >= 100 AND $USERPOINTS < 200}
 	(<span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star"></span> Level 4, <span class="header_userpts">{$USERPOINTS}</span> pts)
 	{else if $USERPOINTS >= 200}
 	(<span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span><span class="glyphicon glyphicon-star yellow"></span> Level 5, <span class="header_userpts">{$USERPOINTS}</span> pts)
