@@ -31,10 +31,15 @@ $(document).ready(function () {
 
 function jquery_events() {
 
-
 $('.select2-container').remove();
+$('.select2Sets').empty();
+$('.select2Sets').append('<option value=""></option>');
+
+$('.searchStudents').empty();
+$('.searchStudents').append('<option value=""></option>');
 	loadUsers();
 	loadSets();
+
 
 	
 	$(".setsTable tbody>tr").unbind("click").click( function() {
