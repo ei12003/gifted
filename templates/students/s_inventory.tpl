@@ -34,5 +34,5 @@
 
 					<script>
 					var image ='<div><img src="{$itemobj.img_location}" width=260 height=260/></div>';
-					$('.btn').popover({ trigger: "hover",'placement': 'left', content: image, html: true });
+					$('#popoverOption').popover({ trigger: "hover",'placement': 'left', content: image, html: true });
 					</script>
