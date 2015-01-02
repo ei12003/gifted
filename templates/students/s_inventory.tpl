@@ -5,11 +5,12 @@
 	<br>
 	<br>
 					<script>
-					{foreach from=$INVENTORY item=itemobj}
-
 					var body = new Array();
 					var tshirt = new Array();
 					var eyes = new Array();
+					{foreach from=$INVENTORY item=itemobj}
+
+					
 
 					switch({$itemobj.part}) {
 					    case 0:
@@ -36,7 +37,7 @@
 	var d = document.createElement('div');
 	x.innerHTML = '';
 	var lin ='<div id="login">Login\
-			<ul><form name="loginForm" action="#" method="get" >\
+			<ul><form name="loginForm" action="#" metdod="get" >\
 			<li><p>Username: <input type="text" id="username" name=\'username\'/></p></li>\
 			<li><p>Password: <input type="text" id="pword" name=\'pword\'/></p></li>\
 			<li><p><div id="LoginFormButton" class="button">submeter  </div></p></li>\
@@ -48,13 +49,13 @@
 					*/
 					var content = "";
 					for(int i =0; i< tshirt.lenght,i++){
-						content+=' <tr><th>'+ tshirt[i].id + '</th>'
-									<th> + tshirt[i].name + '</th>'
-									<th>" + tshirt[i].description + "</th>
-									<th> " + tshirt[i].part + "</th>
-									<th> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title=" + tshirt[i].name "><img src="tshirt[i].img_location" class="avatar img-circle" alt="itemImage" height="42" width="42"></th></a>
-									<th><input type="radio" name="color" value="color"></th>
-								</tr>';
+						content+=' <tr><td>'+ tshirt[i].id + '</td>'
+									<td> + tshirt[i].name + '</td>'
+									<td>" + tshirt[i].description + "</td>
+									<td> " + tshirt[i].part + "</td>
+									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title=" + tshirt[i].name "><img src="tshirt[i].img_location" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
+									<td><input type="radio" name="color" value="color"></td>
+								</tr>;
 
 					}
 
@@ -65,70 +66,99 @@
 					<div class="color">
 						 <caption>Skin Color</caption>
 						<table class="table table-striped table-condensed table-bordered" id="inventory">
-							<thead>
+							<tdead>
 								<tr>
 									<th>#</th>
 									<th>Name</th>
 									<th>Description</th>
-									<th>Part</th>
+									<!--th>Part</th-->
 									<th>Preview</th>
 									<th>choose</th>
 								</tr>
-							</thead>
+							</tdead>
 							<tbody>
+								{foreach from=$INVENTORY item=itemobj}
+								{if $itemobj.part == 0}
+								<tr>
+									<td>{$itemobj.id}</td>
+									<td>{$itemobj.name}</td>
+									<td>{$itemobj.description}</td>
+									<!--td>{$itemobj.part}</td-->
+									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
+									<td><input type="radio" name="color" value="color"></td>
+								</tr>
+								{/if}
+								{/foreach}					
+						</tbody>
+						</table>
 					</div>
 					
 					<div class="shirt">
 						<table class="table table-striped table-condensed table-bordered" id="inventory">
 							 <caption>Shirts</caption>
-							<thead>
+							<tdead>
 								<tr>
-									<th>#</th>
-									<th>Name</th>
+									<th>#</td>
+									<th>Name</td>
 									<th>Description</th>
-									<th>Part</th>
+									<!--th>Part</th-->
 									<th>Preview</th>
 									<th>choose</th>
 								</tr>
-							</thead>
+							</tdead>
 							<tbody>
+								{foreach from=$INVENTORY item=itemobj}
+								{if $itemobj.part == 1}
+								<tr>
+									<td>{$itemobj.id}</td>
+									<td>{$itemobj.name}</td>
+									<td>{$itemobj.description}</td>
+									<!--td>{$itemobj.part}</td-->
+									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
+									<td><input type="radio" name="color" value="color"></td>
+								</tr>
+								{/if}
+								{/foreach}					
+						</tbody>
+						</table>
 					</div>
 
 					<div class="eyes">
 						<table class="table table-striped table-condensed table-bordered" id="inventory">
 							 <caption>Eye Color</caption>
-							<thead>
+							<tdead>
 								<tr>
 									<th>#</th>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Part</th>
+									<td>Name</th>
+									<td>Description</th>
+									<!--th>Part</th-->
 									<th>Preview</th>
 									<th>choose</th>
 								</tr>
-							</thead>
+							</tdead>
 							<tbody>
-					</div>	
-<br><br>
-		{foreach from=$INVENTORY item=itemobj}
-
+								{foreach from=$INVENTORY item=itemobj}
+								{if $itemobj.part == 2}
 								<tr>
-									<th>{$itemobj.id}</th>
-									<th>{$itemobj.name}</th>
-									<th>{$itemobj.description}</th>
-									<th>{$itemobj.part}</th>
-									<th> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" width="42"></th></a>
-									<th><input type="radio" name="color" value="color"></th>
+									<td>{$itemobj.id}</td>
+									<td>{$itemobj.name}</td>
+									<td>{$itemobj.description}</td>
+									<!--td>{$itemobj.part}</td-->
+									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
+									<td><input type="radio" name="color" value="color"></td>
 								</tr>
-								{/foreach}						  
-							</tbody>
+								{/if}
+								{/foreach}					
+						</tbody>
 						</table>
+					</div>	
+
 						<input type="submit">
 						</form>
 					</div>
 				</div>
 
 					<script>
-					var image ='<div><img src="{$itemobj.img_location}" width=260 height=260/></div>';
+					var image ='<div><img src="{$itemobj.img_location}" widtd=260 height=260/></div>';
 					$('#popoverOption').popover({ trigger: "hover",'placement': 'left', content: image, html: true });
 					</script>
