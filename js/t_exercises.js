@@ -1,4 +1,5 @@
 $current_set = -1;
+$exercise_id = -1;
 
 $(document).ready(function () {
 
@@ -25,7 +26,7 @@ $(document).ready(function () {
 		});
 	});
 	
-	$('#createEx').on('hidden.bs.modal', function (e) {
+	$('#createEx, #editEx').on('hidden.bs.modal', function (e) {
 	  $(this)
 		.find("input,textarea,select")
 		   .val('')
@@ -74,24 +75,125 @@ $(document).ready(function () {
 	});
 	
 	
+	
+	$("#saveExerciseButton").click(function() {
+	
+		if ($current_set == -1) return;
+		
+		
+		
+		if ($("#e_question").val() == null || $("#e_question").val() == "") {
+			$("#e_question").focus();
+		} else if ($("#e_opt1").val() == null || $("#e_opt1").val() == "") {
+			$("#e_opt1").focus();
+		} else if ($("#e_opt2").val() == null || $("#e_opt2").val() == "") {
+			$("#e_opt2").focus();
+		} else if ($("#e_opt3").val() == null || $("#e_opt3").val() == "") {
+			$("#e_opt3").focus();
+		} else if ($("#e_opt4").val() == null || $("#e_opt4").val() == "") {
+			$("#e_opt4").focus();
+		} else if (e_atleastOneChecked() == null) {
+			bootbox.alert("You must check one option as the correct answer.");
+		} else {
+		
+			deleteExercise($exercise_id);
+
+			createExercise(
+				$current_set,
+				$("#e_question").val(),
+				$("#e_opt1").val(),
+				$("#e_opt2").val(),
+				$("#e_opt3").val(),
+				$("#e_opt4").val(),
+				e_atleastOneChecked()
+			);
+			
+			$("#editEx").modal("hide");
+			
+		}
+		
+	});
+	
+	
+	
+	
+	
 });
+
+function updateEditModal() {
+	if ($exercise_id == -1) return;
+		
+		
+	$question_str = $("#ex_content_" + $exercise_id).siblings().children().children().text();
+	
+	$question = $question_str;
+	
+	$options = $("#ex_content_" + $exercise_id).children().children("span");
+	
+	$options_desc = {};
+	
+	
+	
+	$("#e_question").val($question);
+	
+	$ans = 0;
+	
+	for (i = 0; i < $options.length; i++) { 
+		$options_desc[i] = $options[i].textContent.substring(3).trim();
+		$("#e_opt" + (i+1)).val($options_desc[i]);
+		
+		if ($options[i].childNodes.length > 1) {
+			$ans = i+1;
+		}
+	}
+	
+	$("#e_op" + $ans).prop('checked', true);
+
+}
 
 function atleastOneChecked() {
 	$ret = null;
-	$('.radioStyle').each(function(i, obj) {
+	$('.radio1').each(function(i, obj) {
 		if ($(this).prop('checked'))
 			$ret = $(this).attr("id");
 	});
 	return $ret;
 }
 
+function e_atleastOneChecked() {
+	$ret = null;
+	$('.radio2').each(function(i, obj) {
+		if ($(this).prop('checked'))
+			$ret = ($(this).attr("id")).substring(2);
+	});
+	return $ret;
+}
+
 function jquery_events() {
-	$(".addExerciseButton, .editExerciseButton").unbind("click").click(function() {
-	
+	$(".addExerciseButton").unbind("click").click(function() {
+
 		var id = $(this).attr('id');
 		var setID = id.substring(id.lastIndexOf("_")+1);
 		
 		$current_set = setID;
+		
+	});
+	
+	$(".editExerciseButton").unbind("click").click(function() {
+	
+	
+		var id = $(this).parent().parent().parent().parent().parent().parent().attr('id');
+		var setID = id.substring(id.lastIndexOf("_")+1);
+		
+		$current_set = setID;
+
+	
+		var id = $(this).attr('id');
+		var exID = id.substring(id.lastIndexOf("_")+1);
+		
+		$exercise_id = exID;
+		
+		updateEditModal();
 	});
 	
 	
@@ -159,11 +261,11 @@ function createExercise(setID, ques, opt1, opt2, opt3, opt4, ans) {
 			$opts = "";
 			for(var $i = 0;$i<4;$i++){
 				
-			  $opts += "<span style='color:black;'>"+($i+1)+".  "+list[$i]+" <span>";
+			  $opts += "<span style='color:black;'>"+($i+1)+".  "+list[$i];
 			  if(ans == ("op"+($i+1))){
 				$opts +=  "<span class='glyphicon glyphicon-ok'></span>";
 			  }
-			  $opts += "<br>";
+			  $opts += "</span><br>";
 				  
 			}          
 			$lastp = "</div></div></div>";

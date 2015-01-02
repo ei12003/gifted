@@ -34,7 +34,7 @@
 						<div id="ex{$ex.id}" class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" href="#ex_content_{$ex.id}"><i style="font-size:80%;margin-right:2em;">{$num}.</i> {$ex.name}</a>
+									<a data-toggle="collapse" href="#ex_content_{$ex.id}">{$ex.name}</a>
 								</h4>
 							</div>
 							<div id="ex_content_{$ex.id}" class="panel-collapse collapse">
@@ -51,11 +51,12 @@
 									</button>
 									
 									<br><br>
-								{/if}
+									{/if}
+								
 									{$c = 0}
 									{foreach from=$ex.ops item=opt}
 										{$c = $c +1}
-										<span style="color:black;">{$c}.  {$opt.description} <span> {if $opt.optid == $ex.correct} <span class="glyphicon glyphicon-ok"></span> {/if}<br>
+										<span style="color:black;">{$c}.  {$opt.description}{if $opt.optid == $ex.correct}<span class="glyphicon glyphicon-ok"></span>{/if}</span><br>
 									{/foreach}
 								</div>
 							</div>
@@ -88,7 +89,7 @@
 					<div class="input-group">
 						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
 							Option 1
-							<input id="op1" style="margin-left:20px;" type="checkbox" class="radioStyle">
+							<input id="op1" style="margin-left:20px;" type="checkbox" class="radioStyle radio1">
 						</span>
 						<input id="opt1" type="text" class="form-control" placeholder="Option 1" aria-describedby="basic-addon2">
 						
@@ -97,7 +98,7 @@
 					<div class="input-group">
 						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
 							Option 2
-							<input id="op2" style="margin-left:20px;" type="checkbox" class="radioStyle">
+							<input id="op2" style="margin-left:20px;" type="checkbox" class="radioStyle radio1">
 						</span>
 						<input id="opt2" type="text" class="form-control" placeholder="Option 2" aria-describedby="basic-addon2">
 						
@@ -106,7 +107,7 @@
 					<div class="input-group">
 						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
 							Option 3
-							<input id="op3" style="margin-left:20px;" type="checkbox" class="radioStyle">
+							<input id="op3" style="margin-left:20px;" type="checkbox" class="radioStyle radio1">
 						</span>
 						<input id="opt3" type="text" class="form-control" placeholder="Option 3" aria-describedby="basic-addon2">
 						
@@ -115,7 +116,7 @@
 					<div class="input-group">
 						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
 							Option 4
-							<input id="op4" style="margin-left:20px;" type="checkbox" class="radioStyle">
+							<input id="op4" style="margin-left:20px;" type="checkbox" class="radioStyle radio1">
 						</span>
 						<input id="opt4" type="text" class="form-control" placeholder="Option 4" aria-describedby="basic-addon2">
 						
@@ -138,41 +139,56 @@
 				<h4 class="modal-title" id="myModalLabel">Edit Exercise</h4>
 			</div>
 			<div class="modal-body">
-
+					
 					<div class="input-group">
 						<span class="input-group-addon label-warning" style="color:white;" aria-describedby="basic-addon2">Question</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon2">
+						<input id="e_question" type="text" class="form-control" placeholder="Question" aria-describedby="basic-addon2">
 					</div><br>
 					
 					<div class="input-group">
-						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">Option 1</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon2">
+						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
+							Option 1
+							<input id="e_op1" style="margin-left:20px;" type="checkbox" class="radioStyle radio2">
+						</span>
+						<input id="e_opt1" type="text" class="form-control" placeholder="Option 1" aria-describedby="basic-addon2">
+						
 					</div><br>
 					
 					<div class="input-group">
-						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">Option 2</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon2">
+						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
+							Option 2
+							<input id="e_op2" style="margin-left:20px;" type="checkbox" class="radioStyle radio2">
+						</span>
+						<input id="e_opt2" type="text" class="form-control" placeholder="Option 2" aria-describedby="basic-addon2">
+						
 					</div><br>
 					
 					<div class="input-group">
-						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">Option 3</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon2">
+						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
+							Option 3
+							<input id="e_op3" style="margin-left:20px;" type="checkbox" class="radioStyle radio2">
+						</span>
+						<input id="e_opt3" type="text" class="form-control" placeholder="Option 3" aria-describedby="basic-addon2">
+						
 					</div><br>
 					
 					<div class="input-group">
-						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">Option 4</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon2">
-					</div>
+						<span class="input-group-addon label-info" style="color:white;" aria-describedby="basic-addon2">
+							Option 4
+							<input id="e_op4" style="margin-left:20px;" type="checkbox" class="radioStyle radio2">
+						</span>
+						<input id="e_opt4" type="text" class="form-control" placeholder="Option 4" aria-describedby="basic-addon2">
+						
+					</div><br>
 				
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button id="editExerciseButton" type="button" class="btn btn-primary">Save</button>
+				<button id="saveExerciseButton" type="button" class="btn btn-primary">Save</button>
 			</div>
 		</div>
 	  </div>
 	</div>
-
 	
 	
 
