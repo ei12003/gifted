@@ -56,7 +56,7 @@ $(document).ready(function () {
 			var data_array = jQuery.parseJSON( data );
 			bootbox.alert(data_array[1]);
 			if(data_array[0]==true){
-				$('.header_userpts').html(parseInt($('.header_userpts').html())-amount);
+				$('.header_userpts').html((parseInt($('.header_userpts').html())-amount)+" pts");
 			}
 				
 		});
@@ -67,7 +67,7 @@ $(document).ready(function () {
 			var data_array = jQuery.parseJSON( data );
 				bootbox.alert(data_array[1]);
 				if(data_array[0]==true){
-					$('.header_userpts').html(parseInt($('.header_userpts').html())-amount);
+					$('.header_userpts').html((parseInt($('.header_userpts').html())-amount)+" pts");
 				}
 		});
 	}

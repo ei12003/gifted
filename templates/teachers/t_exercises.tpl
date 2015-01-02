@@ -10,14 +10,17 @@
 			<div id="{$set.id}" class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a  data-toggle="collapse" href="#content_{$set.id}">{$set.id}. {$set.name}<i style="font-size:80%;"><br><span id="setCount_{$set.id}">{$set.numEx}</span> Exercise(s)</i></a>
+						<a  data-toggle="collapse" href="#content_{$set.id}">{$set.id}. {$set.name}{if $set.lock == 1}<span class="glyphicon glyphicon-lock pull-right" title="You can't add/edit exercises because a student has already answered this set."></span>{/if}<i style="font-size:80%;"><br><span id="setCount_{$set.id}">{$set.numEx}</span> Exercise(s)</i></a>
 					</h4>
 				</div>
 				<div id="content_{$set.id}" class="panel-collapse collapse">
 					<div class="panel-body">
+
+					{if $set.lock == 0}
 					<button id="add_button_{$set.id}" type="button" class="btn btn-default addExerciseButton" data-toggle="modal" data-target="#createEx">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Exercise
 					</button>
+					{/if}
 					
 					<button id="rmv_button_{$set.id}" type="button" class="btn btn-danger pull-right rmvSetButton">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Set
@@ -25,26 +28,30 @@
 					<br><br>
 					
 					<div id="exercisePanelGroup{$set.id}" class="panel-group">
+					{$num = 0}
 					{foreach from=$set.exercises item=ex}
+					{$num = $num +1}
 						<div id="ex{$ex.id}" class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" href="#ex_content_{$ex.id}">{$ex.name}</a>
+									<a data-toggle="collapse" href="#ex_content_{$ex.id}"><i style="font-size:80%;margin-right:2em;">{$num}.</i> {$ex.name}</a>
 								</h4>
 							</div>
 							<div id="ex_content_{$ex.id}" class="panel-collapse collapse">
 								<div class="panel-body">
 								
+									{if $set.lock == 0}
 									<button id="edit_ex_button_{$ex.id}" type="button" class="btn btn-sm btn-default editExerciseButton" data-toggle="modal" data-target="#editEx">
 										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
 									</button>
+									
 									
 									<button id="delete_ex_button_{$ex.id}" type="button" class="btn btn-sm btn-danger pull-right deleteExerciseButton">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
 									</button>
 									
 									<br><br>
-								
+								{/if}
 									{$c = 0}
 									{foreach from=$ex.ops item=opt}
 										{$c = $c +1}

@@ -8,6 +8,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['us
 	$CURRENT_PAGE = 't_exercises';
 	$list_sets = getSetsFromTeacher($_SESSION['userid']);
 	$sets = array();
+
+
 	foreach($list_sets as $set){
 		
 		$setID = $set['id'];
@@ -24,6 +26,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['us
 			$exe = array("id"=>$exe_id,"name"=>$exe_name, "correct" => $exe_correct, "ops" =>$exe_opts);
 			array_push($list,$exe);
 		}
+		
+		if(hasStudentAnsweredSet($setID))
+			$set['lock'] = 1;
+		else
+			$set['lock'] = 0;
+
 		$set['exercises'] = $list;
 		$set['numEx'] = count($list_ex);
 		array_push($sets,$set);
