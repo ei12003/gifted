@@ -213,6 +213,17 @@ function hasStudentAnsweredSet($setid){
     else return 0;
 }
 
+function hasAnsweredSet($setid,$userid){
+	global $conn;
+	$query = "SELECT * FROM MemberAnswers WHERE	setId = ? AND memberId = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($setid,$userid));						
+    $result = $stmt->fetchAll();
+    if(count($result)>0)
+    	return 1;
+    else return 0;
+}
+
 function getMemberAnswer($setid,$classid,$userid){
 	global $conn;
 	$query = "SELECT * FROM MemberAnswers WHERE

@@ -18,8 +18,17 @@
 			$score_total = getClassTotalScore($row['id']);
 			$size=count($students);
 			$class_events = getStudentsEventsClass($row['id']);
-			$exercises = getSetsIDFromClass($row['id']);
-			$class = array("sets"=>$exercises, "name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[1], "classEvents"=>$class_events);
+			$set_list = getSetsIDFromClass($row['id']);
+			$exercises = array();
+			//Array ( [0] => Array ( [setId] => 2 [name] => Division [classId] => 1 ) [1] => Array ( [setId] => 1 [name] => Sum [classId] => 1 ) ) 
+			foreach($set_list as $exercise){
+				if(hasAnsweredSet($exercise['setId'],$_SESSION['userid'])){
+					array_push($exercises,array('done'=> 1,'setId'=>$exercise['setId'],'name'=>$exercise['name'],'classId'=>$exercise['classId']));
+				}
+				else
+					array_push($exercises,array('done'=> 0,'setId'=>$exercise['setId'],'name'=>$exercise['name'],'classId'=>$exercise['classId']));
+			}	
+			$class = array("sets"=>$exercises, "name"=>$row['name'],"id"=>$row['id'],"score"=>$score_total,"numStd"=>$size,"students"=>$students, "teacher"=>$teacher[0], "classEvents"=>$class_events);
 			$classes[] = $class;
 		}
 

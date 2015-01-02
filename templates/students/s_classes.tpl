@@ -86,8 +86,8 @@
 							<tbody>
 							
 								{foreach from=$class.sets item=set}
-								<tr>
-									<td>{$set.setId}.{$set.name}</td>
+								<tr {if $set.done == 1}style="background-color:#66CD00;"{/if}>
+									<td>{$set.setId}.{$set.name}{if $set.done == 1}<span style="font-style:italic;margin-right:5em;" class="pull-right">Done</span>{/if}</td>
 								</tr>
 								{/foreach}							
 							</tbody>
