@@ -28,42 +28,10 @@
 
 					{/foreach}
 
-					console.log(body);
-					console.log(tshirt[0].part);
-					//Itens.id,Itens.name,Itens.img_location,Itens.part,Itens.description
-
-					/*
-					var x=document.getElementById("content");
-	var d = document.createElement('div');
-	x.innerHTML = '';
-	var lin ='<div id="login">Login\
-			<ul><form name="loginForm" action="#" metdod="get" >\
-			<li><p>Username: <input type="text" id="username" name=\'username\'/></p></li>\
-			<li><p>Password: <input type="text" id="pword" name=\'pword\'/></p></li>\
-			<li><p><div id="LoginFormButton" class="button">submeter  </div></p></li>\
-			</form></ul></div>';
-	x.appendChild(d);
-	$(d).append(lin);
-}	
-
-					*/
-					var content = "";
-					for(int i =0; i< tshirt.lenght,i++){
-						content+=' <tr><td>'+ tshirt[i].id + '</td>'
-									<td> + tshirt[i].name + '</td>'
-									<td>" + tshirt[i].description + "</td>
-									<td> " + tshirt[i].part + "</td>
-									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title=" + tshirt[i].name "><img src="tshirt[i].img_location" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="color" value="color"></td>
-								</tr>;
-
-					}
-
-					console.log(eyes);
 
 					</script>
-<form action="avatarselection()">
-					<div class="color">
+<form action="{$BASE_URL}/actions/avatar.php" method=POST>
+					<div class="skincolor">
 						 <caption>Skin Color</caption>
 						<table class="table table-striped table-condensed table-bordered" id="inventory">
 							<tdead>
@@ -85,7 +53,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="color" value="color"></td>
+									<td><input type="radio" name="skincolor" value="skincolor"> <input type="radio" name="skincolor" value="eyecolor" checked="checked" display:none></td></td>
 								</tr>
 								{/if}
 								{/foreach}					
@@ -115,7 +83,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="color" value="color"></td>
+									<td><input type="radio" name="shirt" value="shirt"> <input type="radio" name="shirt" value="eyecolor" checked="checked" display:none></td></td>
 								</tr>
 								{/if}
 								{/foreach}					
@@ -145,7 +113,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="color" value="color"></td>
+									<td><input type="radio" name="eyecolor" value="eyecolor"> <input type="radio" name="eyecolor" value="eyecolor" checked="checked" display:none></td>
 								</tr>
 								{/if}
 								{/foreach}					
