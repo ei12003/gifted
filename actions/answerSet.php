@@ -60,8 +60,15 @@ $row =1;
   $id = addMemberAnswer($setid,$classid,$_SESSION['userid'],$count_points);
   $_SESSION['userpoints'] = getUserPoints($_SESSION['userid']);
 
+
+
   foreach($answers as $answer)
     addMemberAnswersOption($id,$answer['exeid'],$answer['optid']);
+
+  $user = getUser($_SESSION['userid']);
+  $userflname = $user['first_name'].' '.$user['last_name'];
+  addUserEvent($_SESSION['userid'],$classid,$userflname." has answered the set ".getSetName($setid).".");
+
   if (!empty($_SERVER['HTTP_REFERER']))
         header("Location: ".$_SERVER['HTTP_REFERER']);
 	//$row = givePointsToUser($_GET['amount'],$_GET['classid'],$_GET['userid']);

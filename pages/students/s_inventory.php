@@ -8,6 +8,7 @@
     	$itens = getUserInventory($_SESSION['userid']);
     	//print_r($itens);
 		$smarty->assign("INVENTORY",$itens);
+		print_r($itens);
 
 		$smarty->display('common/header.tpl');
 		$smarty->display('students/s_inventory.tpl');

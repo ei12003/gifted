@@ -38,6 +38,7 @@ function getUserEvents($user_id){
 	return $result;
 }
 
+
 function getUserPoints($userid){
 	global $conn;
 	$stmt = $conn->prepare('SELECT points FROM Members WHERE id = ?');
@@ -86,6 +87,19 @@ function insertUser($first_name, $last_name, $email, $birth_date, $gender, $user
 	
 }
 
+
+
+function addUserEvent($userid,$classid,$event){
+	global $conn;
+    $query = "INSERT INTO MemberEvents (memberId, classId, description)
+						   VALUES (?, ?, ?)";
+	
+	$stmt = $conn->prepare($query);
+    $stmt->execute(array($userid,$classid,$event));
+    $result = $stmt->rowCount(); 
+	return $result;	
+}
+
 function deleteUser($userid){
 
 	global $conn;
@@ -96,8 +110,6 @@ function deleteUser($userid){
 	return $result;
 
 }
-
-
 
 function getStudents() {
 
