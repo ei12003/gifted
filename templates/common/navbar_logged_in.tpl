@@ -10,7 +10,7 @@
 	
 {else if $USERTYPE == 'student'}
 	<li><a id="navbar_color" href="{$BASE_URL}pages/students/s_classes.php"><span class="glyphicon glyphicon-book"></span> Classes</a></li>
-	<li><a id="navbar_color" href="{$BASE_URL}pages/students/s_store.php"><span class="glyphicon glyphicon-heart-empty"></span> Store{if $USERTYPE == 'student' AND isset($ITEMS)} <span style="color:yellow" class="header_userpts">{$USERPOINTS} pts</span> {/if}</a></li>
+	<li><a id="navbar_color" href="{$BASE_URL}pages/students/s_store.php"><span class="glyphicon glyphicon-heart-empty"></span> Store <span style="color:yellow" class="header_userpts">{$USERPOINTS} pts</span></a></li>
 	<li><a id="navbar_color" href="{$BASE_URL}pages/students/s_inventory.php"><span class="glyphicon glyphicon-star"></span> Inventory</a></li>
 {/if}
 
