@@ -3,7 +3,7 @@
 	include_once('../database/members.php');
 	include_once('../database/classes.php');
 	include_once('../database/avatar.php');
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && isset($_SESSION['username'])){
 	$user = getUser($_GET['id']);
 	$events = getStudentEvents($_GET['id']);
 

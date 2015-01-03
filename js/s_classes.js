@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 	$(".studentTable tbody>tr").click( function() {
 		
-		var studentID = $(':nth-child(1)', this).html();
+		var studentID = parseInt($(':nth-child(1)', this).html());
 		var studentName = $(':nth-child(2)', this).html();
 
 		var id = $(this).parent().parent().attr('id');
