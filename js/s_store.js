@@ -104,10 +104,12 @@ $(document).ready(function () {
 		if(page == max){
 			$( ".pag_btn#"+(max-2) ).show();
 			$(".pg_next").hide();
+			$(".pg_prev").show();
 		}
 		else if(page == 1){
 			$( ".pag_btn#"+(page+2) ).show();
 			$(".pg_prev").hide();
+			$(".pg_next").show();
 		}
 		else{
 			$(".pg_next").show();	

@@ -71,7 +71,7 @@
 									<h4 class="span5 pull-right">{$item.price} §</h4>
 									<h4><a class="buy-item" id="{$item.id}">{$item.name}</a>
 									</h4>
-									<p>{$item.description}</p>
+									<p style="font-size:100%;">{$item.description}</p>
 								</div>
 							</div>
 							

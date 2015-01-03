@@ -29,6 +29,7 @@ if (!isset($_SESSION['username'])){
 			$_SESSION['usertype'] = $_POST['usertype'];
 			$_SESSION['userid'] = $result;
 			$_SESSION['username'] = $_POST['username'];
+			$_SESSION['userpoints'] = 100;
 			
 			if (!empty($_SERVER['HTTP_REFERER']))
 				header("Location: ".$_SERVER['HTTP_REFERER']);
