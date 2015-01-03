@@ -34,45 +34,46 @@ background-repeat: no-repeat;}
           <div class="form-group">
             <label class="col-md-3 control-label">First name:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="text" value="{$USERINFO.first_name}" name="first_name">
+              <input required  class="form-control" type="text" value="{$USERINFO.first_name}" name="first_name" placeholder="Enter your first name" onblur="if(this.value == '') { this.value == '{$USERINFO.first_name}'; }" onfocus="if(this.value == '{$USERINFO.first_name}') { this.value = ''; }">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Last name:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="text" value="{$USERINFO.last_name}" name="last_name">
+              <input required  class="form-control" type="text" value="{$USERINFO.last_name}" name="last_name" placeholder="Enter your last name" onblur="if(this.value == '') { this.value == '{$USERINFO.last_name}'; }" onfocus="if(this.value == '{$USERINFO.last_name}') { this.value = ''; }">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Email:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="email" value="{$USERINFO.email}" name="email" placeholder="Enter your new email address" pattern = "(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{literal}{2,}{/literal}))">
+              <input required  class="form-control" type="email" value="{$USERINFO.email}" name="email" placeholder="Enter your new email address" onblur="if(this.value == '') { this.value == '{$USERINFO.email}'; }" onfocus="if(this.value == '{$USERINFO.email}') { this.value = ''; }" pattern = "(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\.[0-9]{literal}{1,3}{/literal}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{literal}{2,}{/literal}))">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Username:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="text" value="{$USERINFO.username}" name="username" placeholder="Ex.:User123" pattern="[a-zA-Z][a-zA-Z0-9]{literal}{4,}{/literal}" oninput="validUsername(this)">
-            </div>
+              <input required  class="form-control" type="text" value="{$USERINFO.username}" id = "txt_username" name="username" placeholder="Enter your new username" onblur="if(this.value == '') { this.value == '{$USERINFO.username}'; }" onfocus="if(this.value == '{$USERINFO.username}') { this.value = ''; }" placeholder="Ex.:User123" pattern="[a-zA-Z][a-zA-Z0-9]{literal}{4,}{/literal}" oninput="validUsername(this)">
+              <div class="txt_username">The username must be at least 5 characters length and start by a letter.</div>
+			</div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="password" name="password" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
-            </div>
+              <input required  class="form-control" type="password" id="txt_password" name="password" placeholder="Enter a new password" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
+              <div class="txt_password">The password must be at least 6 characters length (one letter and one digit must figure in it).</div>
+			</div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="password" name="rpassword" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
-            </div>
+              <input required  class="form-control" type="password" id="txt_rpassword" name="rpassword" placeholder="Retype your new password" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
+              <div class="txt_rpassword">The passwords must match.</div>
+			</div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
               <input type="submit" class="btn btn-primary" value="Save Changes">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>
