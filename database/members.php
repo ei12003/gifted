@@ -57,14 +57,19 @@ function getUserWithPass($username,$password){
 
 function editProfile($username,$first_name,$last_name,$email,$password,$id){
 	global $conn;
-	$stmt = $conn->prepare('UPDATE Members SET username = ?, 
-												first_name = ?, 
-												last_name = ?,
-												email = ?, 
-												password = ? WHERE id = ?');
+	
+	try{ 
+        $query = "UPDATE Members SET username = ?, first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?";
+	
+	$stmt = $conn->prepare($query);
     $stmt->execute(array($username,$first_name,$last_name,$email,$password,$id));
-    $result = $stmt->rowCount();    
-	return $result;
+    $result = $conn->rowCount(); 
+	return $result;	
+    } 
+    catch(PDOException $exception){ 
+       // return $exception->getMessage(); 
+	   return -1;
+    }
 }
 
 function insertUser($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username){
