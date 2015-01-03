@@ -4,58 +4,6 @@
 		<div>
 	<br>
 	<br>
-					<script>
-$(document).ready(function () {
-
-					
-$('.popoverOption').popover({ trigger: "hover",html:"true"});
-
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
-//var part0 = loadImage('', main);
-
-var default_img = loadImage('../../img/default.png')
-ctx.drawImage(default_img, 0, 0);
-
-{IF $AVATARCHOICES.part0 != NULL}
-var part0 = loadImage('../../img/{$AVATARCHOICES.ipart0}');
-ctx.drawImage(part0, 0, 0);
-{/if}
-
-{IF $AVATARCHOICES.part1 != NULL}
-var part1 = loadImage('../../img/{$AVATARCHOICES.ipart1}');
-ctx.drawImage(part1, 50, 110);
-{/if}
-
-{IF $AVATARCHOICES.part2 != NULL}
-var part2 = loadImage('../../img/{$AVATARCHOICES.ipart2}');
-ctx.drawImage(part2, 50, 25);
-{/if}
-//
-//var part2 = loadImage('http://introcs.cs.princeton.edu/java/31datatype/peppers.jpg', main);
-
-
-
-
-
-
-function loadImage(src, onload) {
-    // http://www.thefutureoftheweb.com/blog/image-onload-isnt-being-called
-    var img = new Image();
-    
-    img.onload = onload;
-    img.src = src;
-
-    return img;
-}
-});
-
-{literal}
-
-{/literal}
-					</script>
-<canvas style="padding-left: 0;    padding-right: 0;    margin-left: auto;    margin-right: auto;    display: block;" width="200" height="300" id="canvas"></canvas>
 <form action="{$BASE_URL}actions/avatar.php" method=POST>
 	<br><br>
 					<div class="skincolor">
@@ -173,7 +121,7 @@ function loadImage(src, onload) {
 					</div>	
 
 						
-					<input type="submit" class="btn btn-danger">
+					<input type="submit" class="btn btn-danger" value="Change">
 
 						</form>
 					</div>

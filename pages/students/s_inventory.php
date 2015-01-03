@@ -22,6 +22,7 @@
 		$smarty->assign("AVATARCHOICES",$avatar_choices);
 
 		$smarty->display('common/header.tpl');
+        $smarty->display('common/avatar.tpl');
 		$smarty->display('students/s_inventory.tpl');
 		$smarty->display('common/footer.tpl');
     }
