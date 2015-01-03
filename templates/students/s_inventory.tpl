@@ -53,7 +53,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="skincolor" value="skincolor"> <input type="radio" name="skincolor" value="eyecolor" checked="checked" display:none></td></td>
+									<td><input type="radio" name="skincolor" value={$itemobj.id}> <input type="radio" name="skincolor" value="-1" checked="checked" style="display:none"></td>
 								</tr>
 								{/if}
 								{/foreach}					
@@ -83,7 +83,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="shirt" value="shirt"> <input type="radio" name="shirt" value="eyecolor" checked="checked" display:none></td></td>
+									<td><input type="radio" name="shirt" value={$itemobj.id}> <input type="radio" name="shirt"  checked="checked" value="-1" style="display:none"></td>
 								</tr>
 								{/if}
 								{/foreach}					
@@ -113,7 +113,7 @@
 									<td>{$itemobj.description}</td>
 									<!--td>{$itemobj.part}</td-->
 									<td> <a id="popoverOption" class="btn" href="#" data-content="" rel="popover" data-original-title={$itemobj.name}><img src="{$itemobj.img_location}" class="avatar img-circle" alt="itemImage" height="42" widtd="42"></td></a>
-									<td><input type="radio" name="eyecolor" value="eyecolor"> <input type="radio" name="eyecolor" value="eyecolor" checked="checked" display:none></td>
+									<td><input type="radio" name="eyecolor" value={$itemobj.id}> <input type="radio" name="eyecolor" checked="checked" value="-1" style="display:none"></td>
 								</tr>
 								{/if}
 								{/foreach}					

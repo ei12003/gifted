@@ -7,7 +7,7 @@ function avatarselection($memberId,$part0,$part1,$part2) {
 													$part2=? 
 													where 
 													$memberId = ? ');
-     $stmt->execute(array($memberId,$part0,$part1,$part2));
+     $stmt->execute(array($part0,$part1,$part2,$memberId));
        $result = $stmt->rowCount();    
 	return $result;
 }

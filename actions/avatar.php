@@ -1,6 +1,16 @@
 <?php
   include_once('../config/init.php');
   include_once('../database/avatar.php');
+  include_once('../database/members.php');
+
+//print_r($_SESSION['userid']);
+print_r($_POST['skincolor']) ;
+//print_r($_POST['shirt']) ;
+//print_r($_POST['eyecolor']);
+//print_r($_SESSION['usertype']) ;
+
+
+
 
   if(isset($_SESSION['userid']) 
   	&& $_SESSION['usertype'] == "student"
