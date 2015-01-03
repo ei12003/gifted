@@ -69,7 +69,7 @@ $(document).ready(function () {
 
 	$(".setsTable tbody>tr").unbind("click").click( function() {
 		var set_row = $('td', this).html();
-		var setID = set_row.substring(0,set_row.lastIndexOf("."));
+		var setID = set_row.substring(0,set_row.lastIndexOf(".")).trim();
 		var setName = set_row.substring(set_row.lastIndexOf(".")+1);
 
 		var id = $(this).parent().parent().attr('id');
