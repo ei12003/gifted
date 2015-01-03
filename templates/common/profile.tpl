@@ -29,7 +29,7 @@ background-repeat: no-repeat;}
       <div class="col-md-9 personal-info">
         <h3>Personal info</h3>
         
-        <form class="form-horizontal" action="{$BASE_URL}actions/editProfile.php" method="POST" role="form" id="editProfile_form"
+        <form class="form-horizontal" action="{$BASE_URL}actions/editProfile.php" method="POST" role="form" id="editProfile_form">
           <input type="hidden" name="userid" value="{$USERID}">
           <div class="form-group">
             <label class="col-md-3 control-label">First name:</label>
