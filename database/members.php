@@ -63,7 +63,7 @@ function editProfile($username,$first_name,$last_name,$email,$password,$id){
 	
 	$stmt = $conn->prepare($query);
     $stmt->execute(array($username,$first_name,$last_name,$email,$password,$id));
-    $result = $conn->rowCount(); 
+    $result = $stmt->rowCount(); 
 	return $result;	
     } 
     catch(PDOException $exception){ 

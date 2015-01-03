@@ -58,13 +58,13 @@ background-repeat: no-repeat;}
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="password" value="{$USERINFO.password}" name="password" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
+              <input required  class="form-control" type="password" name="password" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input required  class="form-control" type="password" value="{$USERINFO.password}" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
+              <input required  class="form-control" type="password" name="rpassword" pattern="(?=.*?[A-Za-z])(?=.*?[0-9]).{literal}{6,}{/literal}">
             </div>
           </div>
           <div class="form-group">
