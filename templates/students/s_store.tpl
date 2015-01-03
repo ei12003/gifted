@@ -40,7 +40,7 @@
 				
 				<!-- {foreach from=$ITEMS item=item}
 					{$item.name}
-					{$item.img_location} 
+					{$BASE_URL}img/{$item.img_location} 
 					{$item.description}
 				{/foreach}
 				
@@ -66,7 +66,7 @@
 						<div {if $pagnum !=1} style = "display: none;"{/if} id="{$pagnum}" class="col-sm-4 col-lg-4 col-md-4 pgn"  >
 						
 							<div class="thumbnail" >
-								<img src="{$item.img_location}" alt="" style="width:100px;height:100px;">
+								<img src="{$BASE_URL}img/{$item.img_location}" alt="" style="width:100px;height:100px;">
 								<div class="caption">
 									<h4 class="span5 pull-right">{$item.price} §</h4>
 									<h4><a class="buy-item" id="{$item.id}">{$item.name}</a>

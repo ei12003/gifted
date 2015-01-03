@@ -142,6 +142,10 @@ CREATE TRIGGER on_exercise_delete BEFORE DELETE ON Exercises BEGIN
   DELETE FROM ExerciseSet WHERE exerciseId = old.id;
 END;
 
+CREATE TRIGGER on_create_member AFTER INSERT ON Members BEGIN
+  INSERT INTO AvatarUser (memberId,part0,part1,part2) values (NEW.rowid,null,null,null);
+END;
+
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Benjamin', 'Hayes', 'bhayes0@narod.ru', '7/8/2014', 'Male', 'teacher', 'J5eFdrH3G8HU', 'bhayes0');
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Evelyn', 'Lopez', 'elopez1@vinaora.com', '4/7/2014', 'Female', 'teacher', 'rlPc4Nzhz1', 'elopez1');
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Marilyn', 'Hansen', 'mhansen2@hibu.com', '10/8/2014', 'Female', 'teacher', 'r262xzI6Cy', 'mhansen2');
@@ -193,14 +197,14 @@ insert into Members (first_name, last_name, email, birth_date, gender, usertype,
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Barbara', 'Diaz', 'bdiaz1c@cyberchimps.com', '7/26/2014', 'Female', 'student', 'KbCysAYpd2', 'bdiaz1c');
 insert into Members (first_name, last_name, email, birth_date, gender, usertype, password, username) values ('Lawrence', 'Long', 'llong1d@sun.com', '3/2/2014', 'Male', 'student', 'tWXOqAxu', 'llong1d');
 
-insert into Itens (part,name, img_location, description, price) values (0,'Brown skin', 'http://i.imgur.com/Nhsz4TO.png', 'Get the summer look with this brown skin!', 53);
-insert into Itens (part,name, img_location, description, price) values (0,'Yellow skin', 'http://i.imgur.com/XOpyAs4.png', 'Yellow skin? Why not?', 2);
-insert into Itens (part,name, img_location, description, price) values (0,'Pink skin', 'http://i.imgur.com/FerKE2m.png', 'Do you blush frequently? This pink skin will recreate those moments!', 1);
-insert into Itens (part,name, img_location, description, price) values (1,'Blue T-shirt', 'http://i.imgur.com/hMk1Sb8.png', 'Style your avatar with this cool blue t-shirt!', 94);
-insert into Itens (part,name, img_location, description, price) values (1,'White T-shirt', 'http://i.imgur.com/38XEYzX.png', 'You can''t go wrong in white. This white t-shirt will suit you perfectly!', 50);
-insert into Itens (part,name, img_location, description, price) values (2,'Black eyes', 'http://i.imgur.com/sS84mre.png', 'Set the color of your avatar''s eyes to black.', 85);
-insert into Itens (part,name, img_location, description, price) values (2,'Red eyes', 'http://i.imgur.com/MKZdj8S.png', 'Set the color of your avatar''s eyes to red.', 76);
-insert into Itens (part,name, img_location, description, price) values (2,'Green eyes', 'http://i.imgur.com/z8CqW2B.png', 'Set the color of your avatar''s eyes to green.', 81);
-insert into Itens (part,name, img_location, description, price) values (2,'Brown eyes', 'http://i.imgur.com/MUM9uNj.png', 'Set the color of your avatar''s eyes to brown.', 38);
 
-insert into AvatarUser( memberId ,part0,part1,part2) values (5,1,5,7);
+insert into Itens (part,name, img_location, description, price) values (0,'Brown skin', 'brskin.png', 'Get the summer look with this brown skin!', 53);
+insert into Itens (part,name, img_location, description, price) values (0,'Yellow skin', 'yskin.png', 'Yellow skin? Why not?', 2);
+insert into Itens (part,name, img_location, description, price) values (0,'Pink skin', 'pskin.png', 'Do you blush frequently? This pink skin will recreate those moments!', 1);
+insert into Itens (part,name, img_location, description, price) values (1,'Blue T-shirt', 'blshirt.png', 'Style your avatar with this cool blue t-shirt!', 94);
+insert into Itens (part,name, img_location, description, price) values (1,'White T-shirt', 'wshirt.png', 'You can''t go wrong in white. This white t-shirt will suit you perfectly!', 50);
+insert into Itens (part,name, img_location, description, price) values (2,'Black eyes', 'blaeyes.png', 'Set the color of your avatar''s eyes to black.', 85);
+insert into Itens (part,name, img_location, description, price) values (2,'Red eyes', 'reyes.png', 'Set the color of your avatar''s eyes to red.', 76);
+insert into Itens (part,name, img_location, description, price) values (2,'Green eyes', 'geyes.png', 'Set the color of your avatar''s eyes to green.', 81);
+insert into Itens (part,name, img_location, description, price) values (2,'Brown eyes', 'breyes.png', 'Set the color of your avatar''s eyes to brown.', 38);
+

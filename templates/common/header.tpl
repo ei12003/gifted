@@ -42,6 +42,11 @@
 
 	<!-- JQEURY JavaScript -->
 	<script src="{$BASE_URL}js/select2.js"></script>
+    
+    {if isset($INVENTORY)}
+    <!-- Inventory -->
+    <script src="{$BASE_URL}js/s_inventory.js"></script>
+    {/if}
 	
 </head>
 
