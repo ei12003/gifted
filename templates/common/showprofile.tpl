@@ -1,9 +1,10 @@
-<div class="container">
-  	<hr>
-	<div class="row">      
+<div class="container" style="background: #42647F;padding:50px;border-radius: 50px;">
+	<h2>Personal info</h2>
+   
+	<hr>	
      <div class="row">
       <div class="col-md-10 personal-info">
-        <h3>Personal info</h3>
+       
         <div class="row">
             <label class="col-md-3 control-label">First name:</label>
             <div class="col-md-9">
@@ -34,15 +35,14 @@
     </div> 
      
             
-          
-        Events
+        <hr>
+        <h3><u><i>Events</i></u></h3>
         {if $EVENTS|@count == 0}
-        <hr>No events to be shown.</hr>
+		 No events to be shown.
         {else}
          {foreach from=$EVENTS item=event}
-          <hr>{$event.description}</hr>
+         {$event.description}<br>
          {/foreach}
          {/if}
-  </div>
 </div>
 <hr>

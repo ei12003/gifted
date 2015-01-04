@@ -1,9 +1,15 @@
 <div class="container">
 	<h1>My Exercises</h1>
-	
+
 	<button id="createSet" type="button" class="btn btn-lg btn-success" style="margin-bottom:20px;">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Exercise Set
 	</button>
+	
+	{if $SETS|@count == 0}
+		<h3 style="padding-top:50px;">
+			You currently have no exercise sets created.
+		</h3>
+	{/if}
 
 	<div id="setPanelGroup" class="panel-group">
 		{foreach from=$SETS item=set}

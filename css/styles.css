@@ -133,7 +133,7 @@ a:visited {
 .btn-log:active,
 .btn-log.active,
 .open > .dropdown-toggle.btn-log {
-  color: #000;
+  color: #fff;
   background-color: #4B97D2;
   border-color: #000;
 }
@@ -150,7 +150,7 @@ a:visited {
 .btn-reg:active,
 .btn-reg.active,
 .open > .dropdown-toggle.btn-reg {
-  color: #000;
+  color: #fff;
   background-color: #EFA120;
   border-color: #000;
 }

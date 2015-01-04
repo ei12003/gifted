@@ -59,6 +59,12 @@
     My Classes
   </h1>
   
+  {if $CLASSES|@count == 0}
+		<h3>
+			You are currently not in any class.
+		</h3>
+  {/if}
+  
   <div id="classPanelGroup" class="panel-group">
     {foreach from=$CLASSES item=class}
     <div id="{$class.id}" class="panel panel-default">

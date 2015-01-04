@@ -48,6 +48,14 @@
     <script src="{$BASE_URL}js/s_inventory.js"></script>
     {/if}
 	
+	<style>
+	
+	body {
+		background: url({$BASE_URL}img/bg.jpg) fixed 50% / cover;
+	}
+	
+	</style>
+	
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
