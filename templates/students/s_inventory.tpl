@@ -8,7 +8,7 @@
 	<br><br>
 					<div class="skincolor">
 						 <h3>Skin Color</h3>
-						<table class="table table-striped table-condensed table-bordered" id="inventory">
+						<table class="table table-condensed table-bordered" style="background:white;" id="inventory">
 							<tdead>
 								<tr>
 									<th>#</th>
@@ -45,7 +45,7 @@
 					</div>
 					<br>
 					<div class="shirt">
-						<table class="table table-striped table-condensed table-bordered" id="inventory">
+						<table class="table table-striped table-condensed table-bordered" style="background:white;"  id="inventory">
 							 <h3>Shirts</h3>
 							<tdead>
 								<tr>
@@ -83,7 +83,7 @@
 					</div>
 					<br>
 					<div class="eyes">
-						<table class="table table-striped table-condensed table-bordered" id="inventory">
+						<table class="table table-striped table-condensed table-bordered table-responsive" style="background:white;"  id="inventory">
 							 <h3>Eye Color</h3>
 							<tdead>
 								<tr>
@@ -121,7 +121,7 @@
 					</div>	
 
 						
-					<input type="submit" class="btn btn-danger" value="Change">
+					<input type="submit" style="border-color:#333;background:#333" class="btn btn-danger" value="Change">
 
 						</form>
 					</div>
