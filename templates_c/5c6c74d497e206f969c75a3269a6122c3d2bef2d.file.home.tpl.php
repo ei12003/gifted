@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-01-03 20:12:36
+<?php /* Smarty version Smarty-3.1.15, created on 2015-01-05 18:32:47
          compiled from "C:\Xampp\htdocs\gifted\templates\common\home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2785654a83f24aa2705-87147270%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5c6c74d497e206f969c75a3269a6122c3d2bef2d' => 
     array (
       0 => 'C:\\Xampp\\htdocs\\gifted\\templates\\common\\home.tpl',
-      1 => 1420242276,
+      1 => 1420479164,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
   'unifunc' => 'content_54a83f24ab1c90_78279572',
+  'variables' => 
+  array (
+    'BASE_URL' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54a83f24ab1c90_78279572')) {function content_54a83f24ab1c90_78279572($_smarty_tpl) {?>	<h1 style="font-size:80px; padding-top:60px;  text-align: center;" class="brand-heading">GiftEd</h1>
 
@@ -33,23 +37,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+                <div class="fill" style="background-image:url('<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+img/pages/i1.png');"></div>
+
                 <div class="carousel-caption">
-                    <h2>Caption 1</h2>
+                    
                 </div>
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+                <div class="fill" style="background-image:url('<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+img/pages/i2.png');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 2</h2>
+                  
                 </div>
             </div>
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                <div class="fill" style="background-image:url('<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+img/pages/i3.png');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 3</h2>
+                    
                 </div>
             </div>
         </div>

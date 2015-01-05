@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-01-04 17:57:05
+<?php /* Smarty version Smarty-3.1.15, created on 2015-01-05 15:18:23
          compiled from "C:\Xampp\htdocs\gifted\templates\teachers\t_exercises.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:426554a970e1c202a3-75086273%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6a1527204809ffbdc8d502a79ef68022c7a84a7d' => 
     array (
       0 => 'C:\\Xampp\\htdocs\\gifted\\templates\\teachers\\t_exercises.tpl',
-      1 => 1420388992,
+      1 => 1420467493,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_54a970e1e8c938_55090133',
   'variables' => 
   array (
     'SETS' => 0,
@@ -26,8 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'BASE_URL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_54a970e1e8c938_55090133',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54a970e1e8c938_55090133')) {function content_54a970e1e8c938_55090133($_smarty_tpl) {?><div class="container">
 	<h1>My Exercises</h1>
@@ -37,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</button>
 	
 	<?php if (count($_smarty_tpl->tpl_vars['SETS']->value)==0) {?>
-		<h3 style="padding-top:50px;">
+		<h3 class="noexerc" style="padding-top:50px;">
 			You currently have no exercise sets created.
 		</h3>
 	<?php }?>

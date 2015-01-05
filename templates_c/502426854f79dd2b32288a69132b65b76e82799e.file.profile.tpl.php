@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-01-03 20:12:31
+<?php /* Smarty version Smarty-3.1.15, created on 2015-01-05 15:20:28
          compiled from "C:\Xampp\htdocs\gifted\templates\common\profile.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2598654a83f1f6aad48-70703530%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '502426854f79dd2b32288a69132b65b76e82799e' => 
     array (
       0 => 'C:\\Xampp\\htdocs\\gifted\\templates\\common\\profile.tpl',
-      1 => 1420311300,
+      1 => 1420388992,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_54a83f1f767924_59173324',
   'variables' => 
   array (
     'BASE_URL' => 0,
@@ -24,10 +26,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'event' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_54a83f1f767924_59173324',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54a83f1f767924_59173324')) {function content_54a83f1f767924_59173324($_smarty_tpl) {?><style type="text/css"> 
+<?php if ($_valid && !is_callable('content_54a83f1f767924_59173324')) {function content_54a83f1f767924_59173324($_smarty_tpl) {?><style type="text/css" > 
 input:required:invalid, input:focus:invalid{ 
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC); 
 background-position: right top;
@@ -40,7 +40,7 @@ background-position: right top;
 background-repeat: no-repeat;}
 </style>
 
-<div class="container">
+<div class="container" style="background: #42647F;padding:50px;border-radius: 50px;">
     <h1>Edit Profile</h1>
   	<hr>
 	<div class="row">
@@ -113,7 +113,7 @@ actions/editProfile.php" method="POST" role="form" id="editProfile_form">
             </div>
           </div>
         </form>
-        Events
+        <h3><u><i>Events</i></u></h3>
         <?php if (count($_smarty_tpl->tpl_vars['EVENTS']->value)==0) {?>
         <hr>No events to be shown.</hr>
         <?php } else { ?>
