@@ -1,12 +1,9 @@
 <?php
 include_once('../config/init.php');
 include_once('../database/members.php');
-  
- // echo $_POST['username']; echo $_POST['password'];
-// echo 'session:'.$_SESSION['username'];
-// insertUser($first_name, $last_name, $email, $birth_date, $gender, $usertype, $password, $username){
+
 if (!isset($_SESSION['username'])){
-	//$_POST['confpass'] VERIFICAR
+	
 	if (isset($_POST['first_name'])
 		&& isset($_POST['last_name'])
 		&& isset($_POST['email'])
@@ -22,7 +19,6 @@ if (!isset($_SESSION['username'])){
 						$_POST['password'], $_POST['username']);
 		
 		if($result<0){
-			//echo "failed";
 			header("Location: ../index.php");
 		}
 		else{
@@ -33,9 +29,9 @@ if (!isset($_SESSION['username'])){
 			
 			if (!empty($_SERVER['HTTP_REFERER']))
 				header("Location: ".$_SERVER['HTTP_REFERER']);
-				//echo "back";
+				
 			else
-				//echo "home";
+				
 				header("Location: ../index.php");
 		
 		}

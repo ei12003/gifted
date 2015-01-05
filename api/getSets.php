@@ -1,4 +1,7 @@
 <?php
+
+  /* A logged teacher gets all the sets he made. */
+
   include_once('../config/init.php');
   include_once('../database/exercises.php');
 
@@ -11,7 +14,6 @@
 	
   }
   else
-	//header('HTTP/1.1 404');
-	echo false;
+	 echo false;
  
 ?>

@@ -1,4 +1,7 @@
 <?php
+
+/* Customizes the logged user avatar with his choices */
+
   include_once('../config/init.php');
   include_once('../database/avatar.php');
   include_once('../database/members.php');
@@ -11,11 +14,7 @@
     && isset($_POST['eyecolor']))
   {
 
-  print_r($_POST) ;
-  print_r($_SESSION) ;
-
   $memberId = $_SESSION['userid'];
-  
   if($_POST['skincolor'] != 0)
     $part0 = $_POST['skincolor'];
   else
@@ -36,12 +35,8 @@
 
  if (!empty($_SERVER['HTTP_REFERER']))
         header("Location: ".$_SERVER['HTTP_REFERER']);
-        //echo "back";
       else
-        //echo "home";
         header("Location: ../index.php"); 
-    
-
   }
 
     else

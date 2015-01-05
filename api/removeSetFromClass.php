@@ -1,10 +1,12 @@
 <?php
+
+  /* A logged teacher removes the association of a set to a class. */
+
   include_once('../config/init.php');
   include_once('../database/exercises.php');
 
   if(isset($_SESSION['username']) 
   	&& $_SESSION['usertype'] == "teacher"
-    //AND TEACHER OF THIS CLASS
   	&& isset($_GET['classid']) 
   	&& isset($_GET['setid'])){
 

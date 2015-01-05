@@ -1,11 +1,13 @@
 <?php
+
+  /* A logged student leaves one of his classes. */
+
   include_once('../config/init.php');
   include_once('../database/classes.php');
 
   if(isset($_SESSION['username'])
 	&& isset($_SESSION['userid'])
   	&& $_SESSION['usertype'] == "student"
-    //AND STUDENT OF THIS CLASS
   	&& isset($_GET['classid']) ){
 
 	$row = removeUserFromClass($_SESSION['userid'],$_GET['classid']);

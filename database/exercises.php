@@ -1,5 +1,7 @@
 <?php
 
+/* All database queries associated with Sets, Exercises and Options. */
+
 function getSet($setid) {
 	global $conn;
 	$stmt = $conn->prepare(

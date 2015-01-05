@@ -1,4 +1,9 @@
 <?php
+  /*
+   * The logged student buys a item for himself or to offer someone else .
+   * If either '$_GET['offer_userid']'' or '$_GET['offer_username']' exists, then the item is to be offered.
+  */
+
   include_once('../config/init.php');
   include_once('../database/store.php');
   include_once('../database/members.php');

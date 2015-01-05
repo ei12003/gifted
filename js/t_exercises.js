@@ -252,6 +252,7 @@ function createExercise(setID, ques, opt1, opt2, opt3, opt4, ans) {
 		var data_array = jQuery.parseJSON( data );
 		
 		if (data_array[0] == true) {
+
 			
 			exID = data_array[1];
 			
@@ -321,6 +322,7 @@ function createSet(setName) {
 		var data_array = jQuery.parseJSON( data );
 	
 		if (data_array[0] == true) {
+			$(".noexerc").remove();
 		
 			var setID = data_array[1];
 			

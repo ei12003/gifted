@@ -1,12 +1,18 @@
 <?php
+
+ /* Checks a logged user profile. */
+
 	include_once('../config/init.php');
 	include_once('../database/members.php');
 	include_once('../database/classes.php');
 	include_once('../database/avatar.php');
+
 if(isset($_SESSION['username'])){
 	$CURRENT_PAGE = 'profile';
 	$user = getUser($_SESSION['userid']);
 	$events = getStudentEvents($_SESSION['userid']);
+	
+	// If it's a student, get his avatar.
 	if($_SESSION['usertype']=='student'){
 		$avatar_choices = getAvatarSelection($_SESSION['userid']);
     	for($i=0;$i<3;$i++){
@@ -26,6 +32,7 @@ if(isset($_SESSION['username'])){
 
 	if($_SESSION['usertype']=='student')
 		$smarty->display('common/avatar.tpl');
+
 	$smarty->display('common/profile.tpl');
 	$smarty->display('common/footer.tpl');
 }

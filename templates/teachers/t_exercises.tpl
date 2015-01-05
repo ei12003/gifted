@@ -6,7 +6,7 @@
 	</button>
 	
 	{if $SETS|@count == 0}
-		<h3 style="padding-top:50px;">
+		<h3 class="noexerc" style="padding-top:50px;">
 			You currently have no exercise sets created.
 		</h3>
 	{/if}

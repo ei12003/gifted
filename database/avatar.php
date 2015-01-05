@@ -1,4 +1,7 @@
 <?php
+
+/* All database queries associated with a student avatar. */
+
 function avatarSelection($memberId,$part0,$part1,$part2) {
 	global $conn;
 

@@ -1,5 +1,7 @@
 <?php
 
+/* Page where a teacher can see and manage his sets of exercises. */
+
 include_once('../../config/init.php');
 include_once('../../database/exercises.php');
 
@@ -8,7 +10,6 @@ if(isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['us
 	$CURRENT_PAGE = 't_exercises';
 	$list_sets = getSetsFromTeacher($_SESSION['userid']);
 	$sets = array();
-
 
 	foreach($list_sets as $set){
 		
@@ -37,10 +38,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['usertype']) && $_SESSION['us
 		array_push($sets,$set);
 	}
 
-	//echo json_encode($sets);
-	
 	$smarty->assign("SETS", $sets);
-
 	$smarty->display('common/header.tpl');
 	$smarty->display('teachers/t_exercises.tpl');
 	$smarty->display('common/footer.tpl'); 

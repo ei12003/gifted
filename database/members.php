@@ -1,5 +1,6 @@
 <?php
 
+/* All database queries associated with the Members (teachers or students). */
 
 function searchUser($search_query) {
 	global $conn;
@@ -67,7 +68,7 @@ function editProfile($username,$first_name,$last_name,$email,$password,$id){
 	return $result;	
     } 
     catch(PDOException $exception){ 
-       // return $exception->getMessage(); 
+
 	   return -1;
     }
 }
@@ -86,7 +87,7 @@ function insertUser($first_name, $last_name, $email, $birth_date, $gender, $user
 	return $result;	
     } 
     catch(PDOException $exception){ 
-       // return $exception->getMessage(); 
+
 	   return -1;
     } 
 	

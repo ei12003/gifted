@@ -2,22 +2,20 @@
 include_once('../config/init.php');
 include_once('../database/members.php');
   
- // echo $_POST['username']; echo $_POST['password'];
-// echo 'session:'.$_SESSION['username'];
-
 if (!isset($_SESSION['username'])){
 	
 	if (isset($_POST['username']) && isset($_POST['password'])) {
-			
+		// Check if user exists.
 		$row=getUserWithPass($_POST['username'],$_POST['password']);
 		
+		// If he does not:
 		if(!$row){
 
 			$_SESSION['username'] = null;
 			$_SESSION['error_messages']= 'Login failed';
-			//echo "failed";
 			header("Location: ../index.php");
 		}
+		// If he does:
 		else{
 			$_SESSION['usertype'] = $row['usertype'];
 			$_SESSION['userpoints'] = $row['points'];
@@ -26,9 +24,7 @@ if (!isset($_SESSION['username'])){
 		
 			if (!empty($_SERVER['HTTP_REFERER']))
 				header("Location: ".$_SERVER['HTTP_REFERER']);
-				//echo "back";
 			else
-				//echo "home";
 				header("Location: ../index.php");
 		
 		}

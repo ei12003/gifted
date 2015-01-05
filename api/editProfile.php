@@ -1,4 +1,7 @@
 <?php
+
+  /* Edits a logged user profile. */
+
   include_once('../config/init.php');
   include_once('../database/members.php');
 

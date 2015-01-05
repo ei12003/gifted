@@ -51,14 +51,7 @@ if(isset($_SESSION['userid']))
 else
 	$smarty->assign('USERID', array());
 	
-	
-	//TOREMOVE
-	//for testing purposes
- 	//$smarty->assign('USERNAME', "BOB");
-	//$smarty->assign('USERTYPE', "teacher");
-	////
-
-	
+		
 	unset($_SESSION['success_messages']);
 	unset($_SESSION['error_messages']);  
 	unset($_SESSION['field_errors']);

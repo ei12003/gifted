@@ -1,7 +1,11 @@
 <?php
+
+ /* Page to register a new user. */
+
 	include_once('../config/init.php');
 	include_once('../database/members.php');
 	include_once('../database/classes.php');
+	
 if(!isset($_SESSION['username'])){
 	$CURRENT_PAGE = 'register';
 	

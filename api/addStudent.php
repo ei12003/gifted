@@ -1,4 +1,7 @@
 <?php
+	
+  /* The logged teacher adds a student to one of his classes. */
+
   include_once('../config/init.php');
   include_once('../database/classes.php');
   include_once('../database/members.php');

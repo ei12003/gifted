@@ -1,4 +1,7 @@
 <?php
+
+  /* A logged teacher deletes a set. */
+
   include_once('../config/init.php');
   include_once('../database/exercises.php');
 

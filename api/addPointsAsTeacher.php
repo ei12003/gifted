@@ -1,4 +1,7 @@
 <?php
+
+  /* The logged teacher can freely give points to a particular student. */
+
   include_once('../config/init.php');
 
   include_once('../database/exercises.php');
@@ -10,8 +13,6 @@
   	&& isset($_GET['userid'])){
 
 	$row = addPointsToStudent($_GET['amount'],$_GET['userid'],$_GET['classid']);
-
-
 
 	if($row==0)
 		echo json_encode(array(false, "Fail."));

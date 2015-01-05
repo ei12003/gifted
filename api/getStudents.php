@@ -1,4 +1,7 @@
 <?php
+
+  /* A logged teacher gets all existing students. */
+
   include_once('../config/init.php');
   include_once('../database/members.php');
 

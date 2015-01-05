@@ -1,5 +1,10 @@
 <?php
-
+	
+	/*
+	 * Page where a student can see classes.
+     * A student can check all class sets of exercises, as well its events.
+	 */
+	
 	include_once('../../config/init.php');
 	include_once('../../database/classes.php');
 	include_once('../../database/members.php');
@@ -20,7 +25,6 @@
 			$class_events = getStudentsEventsClass($row['id']);
 			$set_list = getSetsIDFromClass($row['id']);
 			$exercises = array();
-			//Array ( [0] => Array ( [setId] => 2 [name] => Division [classId] => 1 ) [1] => Array ( [setId] => 1 [name] => Sum [classId] => 1 ) ) 
 			foreach($set_list as $exercise){
 				if(hasAnsweredSet($exercise['setId'],$_SESSION['userid'])){
 					array_push($exercises,array('done'=> 1,'setId'=>$exercise['setId'],'name'=>$exercise['name'],'classId'=>$exercise['classId']));

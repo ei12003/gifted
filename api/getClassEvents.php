@@ -1,4 +1,7 @@
 <?php
+
+  /* Gets all student events related to this class. */
+
   include_once('../config/init.php');
   include_once('../database/classes.php');
 
@@ -12,7 +15,6 @@
 	
   }
   else
-	//header('HTTP/1.1 404');
 	echo false;
  
 ?>

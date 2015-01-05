@@ -1,5 +1,9 @@
 <?php
 
+	/*
+	 * Page where a student can see and buy new items for his avatar.
+	 */
+
 	include_once('../../config/init.php');
 	include_once('../../database/store.php');
 	$ITEM_PER_PAGE = 6;

@@ -1,4 +1,7 @@
 <?php
+
+/* A logged user answers a set of exercises given by a class */
+
   include_once('../config/init.php');
   include_once('../database/members.php');
   include_once('../database/exercises.php');
@@ -7,9 +10,6 @@ if(isset($_SESSION['username'])
   	&& $_SESSION['usertype'] == "student"
   	&& isset($_GET['setid'])
     && isset($_GET['classid'])){
-
-$row =1;
-
 
   $setid = $_GET['setid'];
   $classid = $_GET['classid'];
@@ -21,6 +21,7 @@ $row =1;
   $count_points = 0;
   $list_ex = getSet($setid);
 
+  //Checks if the size of answered exercises is the same as the size of exercises of the given set.
   if(count($list_ex) != (count($_GET)-2))
     header('Location: ../index.php');
 
@@ -36,7 +37,6 @@ $row =1;
     if(isOptionFromExercise($exe_id,$user_opt)==0)
       header('Location: ../index.php');
 
-
     $correct = getRightAnswer($exe_id);
 
     if($correct == $user_opt)
@@ -49,18 +49,10 @@ $row =1;
     array_push($corrects,array($exe_id,$correct));
   }
 
-  print_r($answers);
-  echo '<br>';
-  print_r($corrects);
-  echo '<br>'.$count_points.'<br>';
-
-
   addPointsToStudent($count_points,$_SESSION['userid'],$classid);
 
   $id = addMemberAnswer($setid,$classid,$_SESSION['userid'],$count_points);
   $_SESSION['userpoints'] = getUserPoints($_SESSION['userid']);
-
-
 
   foreach($answers as $answer)
     addMemberAnswersOption($id,$answer['exeid'],$answer['optid']);
@@ -71,11 +63,8 @@ $row =1;
 
   if (!empty($_SERVER['HTTP_REFERER']))
         header("Location: ".$_SERVER['HTTP_REFERER']);
-	//$row = givePointsToUser($_GET['amount'],$_GET['classid'],$_GET['userid']);
-
-
-  }
-  else
-	echo json_encode(array(false, "Unauthorized."));
+}
+else
+ 	echo json_encode(array(false, "Unauthorized."));
  
 ?>

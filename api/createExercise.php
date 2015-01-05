@@ -1,4 +1,7 @@
 <?php
+
+  /* The logged teacher associates to an existing set, an exercise with a question, four options and the correct one. */
+
   include_once('../config/init.php');
   include_once('../database/exercises.php');
   $error = "";
@@ -13,9 +16,7 @@
      && isset($_GET['correct'])
      && isset($_GET['setid']) ){
 
-  	/*http://localhost/gifted/api/createSet.php?question=question1&op1=option1&op2=option2&op3=option3&op4=option4&correct=op2&setid=52
-
-  	*/
+  	
   	if(hasStudentAnsweredSet($_GET['setid'])==1)
   		echo json_encode(array(false, "You can't add more exercises because a student has already answered this set."));
 
@@ -23,12 +24,8 @@
 		$exeid = createExercise($_GET['question']);	
 
 		if($exeid<1)
-			//header('HTTP/1.1 404');
 			echo json_encode(array(false, "Error creating exercise."));
 		else{
-			//header('HTTP/1.1 200');
-			//question / op1 / op2 / op3 / op4 / correct / setid
-
 			$ops = array();	
 
 			for($i=1;$i<5;$i++){
@@ -60,7 +57,6 @@
 	
   }
   else
-	//header('HTTP/1.1 404');
 	echo json_encode(array(false, "Unauthorized"));
  
 ?>

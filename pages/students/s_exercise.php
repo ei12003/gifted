@@ -1,5 +1,10 @@
 <?php
 
+	/*
+	 * Page where a student can solve a set of exercises from a class.
+     * If it's already solved, he can check which answers he got right or wrong.
+	 */
+
 	include_once('../../config/init.php');
 	include_once('../../database/classes.php');
 	include_once('../../database/members.php');
@@ -37,7 +42,9 @@
 			$smarty->assign("SET",$set);			
 
 			$answer = getMemberAnswer($setid,$classid,$userid);
-			if(count($answer) == 0)// User still hasn't answered this set of exercises.
+
+			
+			if(count($answer) == 0)
 				$smarty->assign("ANSWERED","false");			
 			else{
 				

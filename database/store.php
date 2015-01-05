@@ -1,5 +1,7 @@
 <?php
 
+/* All database queries associated with the Store. */
+
 function getStore() {
 	global $conn;
 	$stmt = $conn->prepare('SELECT price, id,name,img_location,description FROM Itens');
@@ -16,11 +18,11 @@ function getStoreSize() {
 	return $result['size'];
 }
 
-//$offer_userid = 0 if not offering.
+
 function buyItem($userid,$itemid,$offer_userid) {
 	global $conn;
 	
-	//Check if User can afford it.
+	// Check if User can afford it.
 	$stmt = $conn->prepare('SELECT price FROM Itens WHERE Itens.id= ?');
     $stmt->execute(array($itemid));
     $result = $stmt->fetch();    
@@ -35,12 +37,16 @@ function buyItem($userid,$itemid,$offer_userid) {
 	if($points_left<=0)
 		return -1;
 	else{
+
+		// Payment for the item. 
 		$stmt = $conn->prepare('UPDATE Members SET points = ? WHERE Members.id= ?');
     	$stmt->execute(array($points_left,$userid));
     	$result = $stmt->fetch();    
 		if($stmt->rowCount()<1)
 			return -1;
 		$stmt = $conn->prepare('INSERT INTO MemberInventory (memberId, itenId) VALUES (?, ?)');
+    	
+    	// Checks if it's an offer or not.
     	if($offer_userid>0)
     		$stmt->execute(array($offer_userid,$itemid));
     	else

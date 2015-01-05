@@ -1,5 +1,10 @@
 <?php
 
+    /*
+     * Page where a student can see his items bought, as well his avatar.
+     * He can choose which items he wishes to equip his avatar.
+     */
+
 	include_once('../../config/init.php');
 	include_once('../../database/inventory.php');
 	include_once('../../database/avatar.php');

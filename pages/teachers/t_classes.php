@@ -1,5 +1,8 @@
 <?php
 
+	/* Page where a teacher can see and manage his classes. */
+
+
 	include_once('../../config/init.php');
 	include_once('../../database/classes.php');
 	include_once('../../database/members.php');
@@ -21,7 +24,7 @@
 			$classes[] = $class;
 		}
 
-		//  print_r($exercises);
+		
 		$smarty->assign("CLASSES",$classes);
 
 

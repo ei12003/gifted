@@ -1,5 +1,6 @@
 <?php
 
+/* All database queries associated with Classes. */
 
 function getClassName($class_id) {
 	global $conn;
@@ -9,7 +10,7 @@ function getClassName($class_id) {
 	return $result;
 }
 
-function getUserClasses($user_id) { // US07
+function getUserClasses($user_id) { 
 	global $conn;
 	$stmt = $conn->prepare('SELECT Classes.name, Classes.id FROM Classes,ClassMember WHERE ClassMember.memberId = ? AND ClassMember.classId = Classes.id GROUP BY Classes.id');
     $stmt->execute(array($user_id));
@@ -24,7 +25,7 @@ function getScoreInClass($user_id,$class_id) {
     $result = $stmt->fetch();
 	return $result;
   }
-function getRankedClass($class_id){ //US06/US24
+function getRankedClass($class_id){ 
 	global $conn;
 	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, memberId, score FROM ClassMember,Members WHERE Members.id = ClassMember.memberId AND classId = ?');
     $stmt->execute(array($class_id));
@@ -48,7 +49,7 @@ function getTeacherFromClass($class_id) {
 	return $result;
 }
 
-function getStudentsEventsClass($class_id){ //US15
+function getStudentsEventsClass($class_id){ 
 	global $conn;
 	$stmt = $conn->prepare('SELECT Members.first_name, Members.last_name, MemberEvents.memberId, MemberEvents.description FROM MemberEvents,Members WHERE MemberEvents.memberId = Members.id AND MemberEvents.classId = ? AND Members.usertype = "student" ORDER BY Members.id');
     $stmt->execute(array($class_id));
@@ -56,7 +57,7 @@ function getStudentsEventsClass($class_id){ //US15
 	return $result;
 }
 
-function getStudentEvents($userid){ //US15
+function getStudentEvents($userid){ 
 	global $conn;
 	$stmt = $conn->prepare('SELECT MemberEvents.description, Classes.name FROM Classes,MemberEvents WHERE MemberEvents.memberId = ? AND MemberEvents.classId=Classes.id');
     $stmt->execute(array($userid));
@@ -85,7 +86,7 @@ function getClassTotalScore($class_id){
 	return $result['totalscore'];
 } 
 
-function createClass($userid,$class_name){ //US08
+function createClass($userid,$class_name){ 
 
 	global $conn;
 	
@@ -105,7 +106,7 @@ function createClass($userid,$class_name){ //US08
 
 }
 
-function deleteClass($classid){//US05
+function deleteClass($classid){
 
 	global $conn;
 	$query = "DELETE FROM Classes WHERE id = ?";
@@ -116,7 +117,7 @@ function deleteClass($classid){//US05
 
 }
 
-function addUserToClass($userid,$classid){//US09
+function addUserToClass($userid,$classid){
 
  global $conn;
 
@@ -144,7 +145,7 @@ function addUserToClass($userid,$classid){//US09
 
 }
 
-function removeUserFromClass($userid,$classid){//US23
+function removeUserFromClass($userid,$classid){
 	global $conn;
 	$query = "DELETE FROM ClassMember WHERE classId=? AND memberId = ?";
 	$stmt = $conn->prepare($query);
